@@ -1,0 +1,610 @@
+/* Reset */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+img,
+iframe {
+  vertical-align: bottom;
+  max-width: 100%;
+}
+
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* [End] Reset */
+
+:root {
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --base-size: 16px;
+  --duration: 0.5s;
+  --type-primary: 'Neue Machina';
+}
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+  color: var(--color-white);
+}
+
+html,
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+
+  height: 100%;
+  font-size: var(--base-size);
+  color: var(--color-white);
+  background: var(--color-black);
+}
+
+#app,
+.view {
+  height: 100%;
+}
+
+/* =========== HOME PAGE ========== */
+
+/* Header */
+.header {
+  position: absolute;
+  z-index: 2;
+  height: 100%;
+  width: 100%;
+}
+
+.logo {
+  height: 100%;
+  font-family: 'Neue Montreal', -apple-system, BlinkMacSystemFont, Roboto, helvetica neue,
+    sans-serif;
+  font-weight: 400;
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: -0.015em;
+}
+
+.logo a {
+  color: var(--color-white);
+  text-decoration: none;
+}
+
+.logo--split {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.logo--split__left {
+  top: 45%;
+}
+
+.logo--split__right {
+  bottom: 45%;
+}
+
+/* Cover */
+.cover {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.cover--splitscreen {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.split {
+  position: relative;
+  width: 100%;
+  height: 50%;
+  transition: all 0.6s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.split__commercial {
+  background: var(--color-black);
+}
+
+.split__commercial:hover {
+  height: 80%;
+}
+
+.split__commercial:hover .split__personal {
+  height: 20%;
+  opacity: 0.5;
+}
+
+.split__personal:hover {
+  height: 80%;
+}
+
+.split__personal:hover .split__commercial {
+  height: 20%;
+  opacity: 0.5;
+}
+
+.split__personal {
+  background: var(--color-black);
+}
+
+.split--video {
+  position: absolute;
+  left: 50%;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: 1;
+
+
+  transform: translate(-50%);
+  transition: opacity 0.6s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+}
+
+.split--video.is-loaded {
+  opacity: 0.4;
+}
+
+.split:hover .split--video {
+  opacity: 1;
+}
+
+.status {
+  display: flex;
+  object-position: center;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.status--loader {
+  width: 48px;
+  height: 48px;
+}
+
+.split--title {
+  font-family: 'Neue Machina', -apple-system, BlinkMacSystemFont, Roboto, helvetica neue, sans-serif;
+  font-weight: 700;
+  font-size: 3em;
+
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  padding: 1em;
+  z-index: 3;
+  transform: translate(-50%, -50%);
+}
+
+.split--title a {
+  pointer-events: auto;
+  color: var(--color-white);
+  text-decoration: none;
+  letter-spacing: -0.05em;
+  transition: all 0.6s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+}
+
+.split--title a:hover {
+  color: var(--color-white);
+  text-decoration: none;
+}
+
+/* =========== PROJECTS ========== */
+
+.navigation {}
+
+.sitenav {}
+
+.sitenav--item,
+.socialnav--item {
+  font-family: 'Neue Montreal', -apple-system, BlinkMacSystemFont, Roboto, helvetica neue,
+    sans-serif;
+  font-weight: 700;
+  color: white;
+  position: absolute;
+  text-decoration: none;
+}
+
+.sitenav--split__left {
+  left: 1em;
+  top: 1em;
+}
+
+.sitenav--split__right {
+  right: 1em;
+  top: 1em;
+}
+
+.socialnav {
+  display: none;
+}
+
+.projects {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.project {
+  position: relative;
+  display: block;
+  width: 80vw;
+  min-height: 80vh;
+  background: black;
+  margin: 10vh 0;
+  pointer-events: none;
+}
+
+.project:hover .project--overlay {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.project:hover .project--video {
+  transform-origin: center;
+  transform: scale(1.2) translate(-40%);
+}
+
+.project .project--content {
+  pointer-events: auto;
+}
+
+.project--content {
+  position: sticky;
+  position: -webkit-sticky;
+  padding: 1rem 25% 1rem 1rem;
+  color: white;
+  top: 75vh;
+}
+
+.project--overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  transition: all 0.6s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  z-index: 2;
+}
+
+.project--videowrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.project--video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 1;
+  min-width: 100%;
+  height: 100%;
+  left: 50%;
+  transform: translate(-50%);
+  transition: opacity 0.6s cubic-bezier(0.785, 0.135, 0.15, 0.86) 0.2s;
+  transition: transform 3.6s cubic-bezier(0.785, 0.135, 0.15, 0.86) 0.2s;
+}
+
+.project--year {
+  font-family: 'Neue Montreal', -apple-system, BlinkMacSystemFont, Roboto, helvetica neue,
+    sans-serif;
+  font-size: 1em;
+  font-weight: 500;
+  letter-spacing: 0.05rem;
+  color: #fff;
+}
+
+.project--title {
+  font-family: 'Neue Machina', -apple-system, BlinkMacSystemFont, Roboto, helvetica neue, sans-serif;
+  font-size: 5rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  color: #fff;
+}
+
+.project--control {
+  font-family: 'Neue Montreal', -apple-system, BlinkMacSystemFont, Roboto, helvetica neue,
+    sans-serif;
+  font-weight: 400;
+  color: #fff;
+  font-size: 1.5rem;
+  text-decoration: none;
+  margin-right: 0.75rem;
+}
+
+.footer {}
+
+.footer--credit {
+  font-family: 'Neue Montreal', -apple-system, BlinkMacSystemFont, Roboto, helvetica neue,
+    sans-serif;
+  text-decoration: none;
+  font-size: 0.8em;
+  position: absolute;
+  right: 1em;
+  bottom: 1em;
+  overflow: hidden;
+  z-index: 10;
+}
+
+/* Tablet */
+@media only screen and (min-width: 768px) {
+  .logo {
+    height: auto;
+    width: 100%;
+    text-align: center;
+    padding-top: 1em;
+  }
+
+  .logo--split {
+    display: inline;
+    position: relative;
+    top: 0;
+    left: 0;
+    transform: none;
+  }
+
+  .logo--split__left {
+    top: none;
+  }
+
+  .logo--split__right {
+    left: none;
+    bottom: none;
+  }
+
+  .cover {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cover--splitscreen {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .split {
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .split__personal h1 {
+    top: 1em;
+    right: auto;
+    left: 1em;
+    transform: translate(0);
+  }
+
+  .split__commercial:hover {
+    width: 70%;
+    height: 100%;
+  }
+
+  .split__commercial:hover .split__personal {
+    width: 30%;
+    height: 100%;
+  }
+
+  .split__commercial:hover~.split__commercial>video {
+    /* wat doet dit? */
+    opacity: 0.1;
+  }
+
+  .split__personal:hover {
+    width: 70%;
+    height: 100%;
+  }
+
+  .split__personal:hover .split__commercial {
+    width: 30%;
+    height: 100%;
+    opacity: 0.1;
+  }
+
+  .split__personal:hover~.split__commercial>video {
+    /* wat doet dit? */
+    opacity: 0.1;
+  }
+
+  .project {
+    width: 80vw;
+    min-height: 60vh;
+    margin: 20vh 0;
+  }
+
+  .project--video {
+    height: 100%;
+    width: auto;
+  }
+}
+
+/* Widescreen */
+@media only screen and (min-width: 1920px) {
+  .cover {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cover--splitscreen {
+    display: flex;
+    flex-direction: row;
+    max-width: 90vw;
+    max-height: 90vh;
+  }
+
+  .split__commercial,
+  .split__personal {
+    width: 50%;
+    height: 100%;
+  }
+}
+
+@media (min-aspect-ratio: 16/9) {
+  .project--video {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-aspect-ratio: 16/9) {
+  .project--video {
+    width: auto;
+    height: 100%;
+  }
+}

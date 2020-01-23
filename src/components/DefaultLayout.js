@@ -3,9 +3,9 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 const DefaultLayout = ({title, children}) => (
-  <div className="view">
+  <div className={`view view__${title}`}>
     <Header />
-    {children}
+    <section className="content">{children}</section>
     <Footer />
   </div>
 );

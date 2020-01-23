@@ -1,8 +1,16 @@
+// React
 import React, {useEffect, useState} from 'react';
+// Prismic
 import Prismic from 'prismic-javascript';
 import {client, linkResolver} from '../prismic-configuration';
+// 404
 import NotFound from './NotFound';
+// Components
+import Cover from '../components/Cover';
 import ProjectCard from '../components/ProjectCard';
+import DefaultLayout from '../components/DefaultLayout';
+// Slug formats
+import slugify from 'react-slugify';
 
 const Projects = ({match}) => {
   const [doc, setDocData] = useState(null);
@@ -15,7 +23,9 @@ const Projects = ({match}) => {
       const tag = [];
       tag.push(uid);
 
-      const result = await client.query(Prismic.Predicates.at('document.tags', tag));
+      const result = await client.query(Prismic.Predicates.at('document.tags', tag), {
+        orderings: '[document.last_publication_date desc]'
+      });
 
       if (result) {
         return setDocData(result);
@@ -30,13 +40,14 @@ const Projects = ({match}) => {
   if (doc) {
     const projects = doc.results;
 
-    console.log(projects);
     return (
-      <section className="projects">
-        {projects.map(project => (
-          <ProjectCard key={project.id} {...project} />
-        ))}
-      </section>
+      <DefaultLayout title="projects">
+        <section className="projects">
+          {projects.map(project => (
+            <Cover key={project.id} coverType="video" {...project.data.cover[0]} />
+          ))}
+        </section>
+      </DefaultLayout>
     );
   } else if (notFound) {
     return <NotFound />;

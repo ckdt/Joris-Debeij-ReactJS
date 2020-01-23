@@ -1,51 +1,65 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import slugify from 'react-slugify';
-import loader from '../images/loader.svg';
+import Loader from '../components/Loader';
 
-const Loader = ({loaded}) => {
-  console.log(loaded);
+const CoverVideo = ({
+  showTitle = true,
+  showInfoControl = true,
+  showPlayControl = true,
+  isHomeCover = false,
+  ...props
+}) => {
+  const [loaded, setLoaded] = useState(false);
+
+  // Set Vars
+  const video = props.cover_video.url;
+  const title = props.cover_title[0].text;
+  const fallback = props.cover_fallback_image.url;
+
   return (
-    <div className="status">{loaded ? '' : <img className="status--loader" src={loader} />}</div>
-  );
-};
+    <div className={`cover cover__${slugify(title)} ${isHomeCover ? 'is-home' : 'is-default'} `}>
+      {(showTitle || showInfoControl || showPlayControl) && (
+        <div className="overlay">
+          <div className="overlay--content">
+            {title && (
+              <h2 className="overlay--title">
+                <Link to={`projects/${slugify(title)}`}>{title}</Link>
+              </h2>
+            )}
+            {(showInfoControl || showPlayControl) && (
+              <div className="overlay--controls">
+                {showPlayControl && <a className="control--play">Play</a>}
+                {showInfoControl && <a className="control--info">Info</a>}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
 
-class CoverVideo extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loaded: false
-    };
-  }
-
-  render() {
-    const {loaded} = this.state;
-    const {id, title, video} = this.props;
-
-    return (
-      <div className={`split split__${slugify(title)}`}>
-        <h2 className="split--title">
-          <Link to={`projects/${slugify(title)}`}>{title}</Link>
-        </h2>
-
-        {video ? (
+      {video && (
+        <div className={`video ${loaded ? 'is-loaded' : 'loading'}`}>
           <video
-            className={`split--video split--video__commercial ${loaded && 'is-loaded'}`}
+            className="video--player"
             playsInline
             autoPlay
             muted
             loop
             src={video}
-            onLoadedData={() => this.setState({loaded: true})}
+            onLoadedData={() => setLoaded(true)}
           />
-        ) : (
-          <div> No video found</div>
-        )}
+        </div>
+      )}
 
-        <Loader loaded={loaded} />
-      </div>
-    );
-  }
-}
+      {fallback && (
+        <div className="fallback">
+          <img className="fallback--image" src={fallback} alt={`Cover of ${title}`} />
+        </div>
+      )}
+
+      <Loader loaded={loaded} />
+    </div>
+  );
+};
 
 export default CoverVideo;

@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import {Helmet} from 'react-helmet';
 import {TransitionGroup, CSSTransition} from 'react-transition-group';
-import {BrowserRouter, Route, Switch, Redirect, Link} from 'react-router-dom';
+import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
 import {apiEndpoint} from './prismic-configuration';
 import {Home, Projects, Preview, NotFound, Page} from './pages';
 
@@ -27,12 +27,6 @@ class App extends Component {
 
         {/* Route Pages / Views */}
         <BrowserRouter>
-          <nav>
-            <Link to="/home"> Home </Link>
-            <Link to="/page/about"> About </Link>
-            <Link to="/projects/commercial"> Commercial </Link>
-          </nav>
-
           <Route
             render={({location}) => {
               const {pathname, key} = location;
@@ -41,7 +35,7 @@ class App extends Component {
                 <TransitionGroup component={null}>
                   <CSSTransition
                     key={location.key}
-                    timeout={{enter: 300, exit: 300}}
+                    timeout={{enter: 500, exit: 500}}
                     classNames={'fade'}
                   >
                     <Switch location={location}>

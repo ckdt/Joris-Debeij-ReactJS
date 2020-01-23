@@ -1,18 +1,23 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import {Link} from 'react-router-dom';
+import DefaultLayout from '../components/DefaultLayout';
 
 /**
  * Page not found (404) componenet
  */
 const NotFound = () => {
   return (
-    <div className="not-found" style={notFoundStyle}>
-      <h1>404</h1>
-      <h2>Document not found</h2>
-      <p><Link to="/">Return to homepage</Link></p>
-    </div>
-  )
-}
+    <DefaultLayout>
+      <div className="not-found" style={notFoundStyle}>
+        <h1>404</h1>
+        <h2>Document not found</h2>
+        <p>
+          <Link to="/">Return to homepage</Link>
+        </p>
+      </div>
+    </DefaultLayout>
+  );
+};
 
 const notFoundStyle = {
   display: 'flex',
@@ -20,6 +25,6 @@ const notFoundStyle = {
   justifyContent: 'center',
   height: '50vw',
   alignItems: 'center'
-}
+};
 
-export default NotFound
+export default NotFound;
