@@ -3,9 +3,15 @@ import loader from '../images/loader.svg';
 
 const Loader = ({loaded}) => {
   console.log(loaded);
-  return (
-    <div className="status">{loaded ? '' : <img className="status--loader" src={loader} />}</div>
-  );
+  if (loaded) {
+    return null;
+  } else {
+    return (
+      <div className="status">
+        <img className="status--loader" src={loader} />
+      </div>
+    );
+  }
 };
 
 export default Loader;

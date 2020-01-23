@@ -13,10 +13,11 @@ import DefaultLayout from '../components/DefaultLayout';
 import slugify from 'react-slugify';
 
 const Projects = ({match}) => {
-  const [doc, setDocData] = useState(null);
+  const uid = match.params.uid;
   const [notFound, toggleNotFound] = useState(false);
 
-  const uid = match.params.uid;
+  const [data, setDocData] = useState(null);
+  const [covers, setCoverData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,27 +27,34 @@ const Projects = ({match}) => {
       const result = await client.query(Prismic.Predicates.at('document.tags', tag), {
         orderings: '[document.last_publication_date desc]'
       });
-
       if (result) {
-        return setDocData(result);
+        const newData = result.results;
+        setDocData(newData);
+
+        const newCovers = newData
+          .filter(item => item.data.cover[0])
+          .map(item => item.data.cover[0]);
+
+        setCoverData(newCovers);
+
+        return true;
       } else {
         console.warn('Page document not found. Make sure it exists in your Prismic repository');
         toggleNotFound(true);
       }
     };
     fetchData();
-  }, [uid]); // Skip the Effect hook if the UID hasn't changed
+  }, [uid]);
 
-  if (doc) {
-    const projects = doc.results;
-
+  if (data && covers.length > 0) {
+    console.log(covers);
     return (
       <DefaultLayout title="projects">
-        <section className="projects">
-          {projects.map(project => (
-            <Cover key={project.id} coverType="video" {...project.data.cover[0]} />
+        <div class="projects">
+          {covers.map(cover => (
+            <Cover key={`${slugify(cover.cover_title[0].text)}`} coverType="video" {...cover} />
           ))}
-        </section>
+        </div>
       </DefaultLayout>
     );
   } else if (notFound) {

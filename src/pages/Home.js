@@ -48,6 +48,8 @@ const Home = () => {
                 key={slugify(cover.cover_title[0].text)}
                 coverType="video"
                 isHomeCover={true}
+                showPlayControl={false}
+                showInfoControl={false}
                 {...cover}
               />
             ))}

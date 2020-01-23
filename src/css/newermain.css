@@ -1,0 +1,309 @@
+/* =========== Defaults ========== */
+
+:root {
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --base-size: 16px;
+  --duration: 0.5s;
+  --type-primary: 'Neue Machina';
+}
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+  color: var(--color-white);
+}
+
+html,
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+
+  height: 100%;
+  font-size: var(--base-size);
+  color: var(--color-white);
+  background: var(--color-black);
+}
+
+/* =========== App ========== */
+
+#app,
+.view {
+  height: 100%;
+}
+
+.header {
+  position: absolute;
+  width: 100%;
+  z-index: 8;
+}
+
+.logo {
+  height: 100%;
+  font-family: 'Neue Montreal', -apple-system, BlinkMacSystemFont, Roboto, helvetica neue,
+    sans-serif;
+  font-weight: 400;
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: -0.015em;
+}
+
+.logo a {
+  color: var(--color-white);
+  text-decoration: none;
+}
+
+.logo--split {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.logo--split__left {
+  top: 46%;
+}
+
+.logo--split__right {
+  top: 51%;
+}
+
+.view__home .header {
+  height: 100%;
+}
+
+.navigation {
+  /* display: none; */
+}
+
+.content {}
+
+.view__home .content {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.splash {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.cover {
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.view__home .splash .cover {
+  position: relative;
+  width: 100%;
+  height: 50%;
+  /* Uitkijken */
+  transition: all 0.6s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+}
+
+.cover .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+  /* Uitkijken */
+  transition: all 0.6s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+}
+
+.cover .overlay--content {
+  position: sticky;
+  position: -webkit-sticky;
+  padding: 1rem 25% 1rem 1rem;
+  color: white;
+  top: 75vh;
+}
+
+.cover.is-home .overlay--content {
+  position: relative;
+  top: 0;
+  height: 100%;
+}
+
+.cover.is-home .overlay--title {
+  font-family: 'Neue Machina', -apple-system, BlinkMacSystemFont, Roboto, helvetica neue, sans-serif;
+  font-weight: 700;
+  font-size: 3em;
+
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  padding: 1em;
+  z-index: 3;
+  transform: translate(-50%, -50%);
+}
+
+.cover.is-home .overlay--title a {
+  pointer-events: auto;
+  color: var(--color-white);
+  text-decoration: none;
+  letter-spacing: -0.05em;
+  /* Uitkijken */
+  transition: all 0.6s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+}
+
+.cover.is-home .split--title a:hover {
+  color: var(--color-white);
+  text-decoration: none;
+}
+
+.cover.is-home .overlay--controls {
+  display: none;
+}
+
+.cover .video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  opacity: 0;
+  z-index: 8;
+}
+
+.cover .video.is-loaded {
+  opacity: 1;
+}
+
+.cover .fallback {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 6;
+}
+
+.cover .fallback img {
+
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+
+.cover .video .video--player {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 1;
+  min-width: 100%;
+  height: 100%;
+  left: 50%;
+  transform: translate(-50%);
+  transition: opacity 0.6s cubic-bezier(0.785, 0.135, 0.15, 0.86) 0.2s;
+  transition: transform 3.6s cubic-bezier(0.785, 0.135, 0.15, 0.86) 0.2s;
+}
+
+
+.cover .status {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 12;
+}
+
+
+/* =========== Tablet ========== */
+@media only screen and (min-width: 768px) {
+
+
+  .logo {
+    height: auto;
+    width: 100%;
+    text-align: center;
+    padding-top: 1em;
+  }
+
+  .logo--split {
+    display: inline;
+    position: relative;
+    top: 0;
+    left: 0;
+    transform: none;
+  }
+
+  .logo--split__left {
+    top: none;
+    margin-right: 0.25em;
+  }
+
+  .logo--split__right {
+    left: none;
+    bottom: none;
+  }
+
+
+
+  .view__home .content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .splash {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .view__home .splash .cover {
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+}
+
+/* =========== Widescreen ========== */
+@media only screen and (min-width: 1920px) {
+
+  .view__home .content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .splash {
+    display: flex;
+    flex-direction: row;
+    max-width: 90vw;
+    max-height: 90vh;
+  }
+
+  .view__home .splash .cover {
+    width: 50%;
+    height: 100%;
+  }
+}
+
+
+@media (min-aspect-ratio: 16/9) {
+  .cover .video {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-aspect-ratio: 9/16) {
+  .cover .video {
+    width: auto;
+    height: 100%;
+  }
+}

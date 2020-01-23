@@ -1,155 +1,3 @@
-/* =========== Reset ========== */
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-menu,
-nav,
-output,
-ruby,
-section,
-summary,
-time,
-mark,
-audio,
-video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
-}
-
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
-  display: block;
-}
-
-body {
-  line-height: 1;
-}
-
-ol,
-ul {
-  list-style: none;
-}
-
-blockquote,
-q {
-  quotes: none;
-}
-
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-  content: '';
-  content: none;
-}
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-img,
-iframe {
-  vertical-align: bottom;
-  max-width: 100%;
-}
-
-input,
-textarea,
-select {
-  font: inherit;
-}
-
-* {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
 /* =========== Defaults ========== */
 
 :root {
@@ -185,59 +33,18 @@ body {
   height: 100%;
 }
 
-.header {
-  position: absolute;
-  width: 100%;
-  z-index: 8;
-}
-
-.logo {
-  height: 100%;
-  font-family: 'Neue Montreal', -apple-system, BlinkMacSystemFont, Roboto, helvetica neue,
-    sans-serif;
-  font-weight: 400;
-  font-size: 1.5rem;
-  font-weight: 900;
-  letter-spacing: -0.015em;
-}
-
-.logo a {
-  color: var(--color-white);
-  text-decoration: none;
-}
-
-.logo--split {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%);
-}
-
-.logo--split__left {
-  top: 46%;
-}
-
-.logo--split__right {
-  top: 51%;
-}
-
-.view__home .header {
-  height: 100%;
-}
-
-.navigation {
-  /* display: none; */
-}
+.header {}
 
 .content {}
 
+/* Home */
 .view__home .content {
   display: flex;
   height: 100%;
   width: 100%;
 }
 
-.splash {
+.view__home .splash {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -245,77 +52,35 @@ body {
   overflow: hidden;
 }
 
-.cover {
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.view__home .splash .cover {
+.view__home .cover {
   position: relative;
   width: 100%;
   height: 50%;
-  /* Uitkijken */
-  transition: all 0.6s cubic-bezier(0.785, 0.135, 0.15, 0.86);
 }
 
-.cover .overlay {
+.view__home .cover .overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 10;
-  /* Uitkijken */
-  transition: all 0.6s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  z-index: 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.cover .overlay--content {
-  position: sticky;
-  position: -webkit-sticky;
-  padding: 1rem 25% 1rem 1rem;
-  color: white;
-  top: 75vh;
-}
-
-.cover.is-home .overlay--content {
-  position: relative;
-  top: 0;
-  height: 100%;
-}
-
-.cover.is-home .overlay--title {
+.cover .overlay--title {
   font-family: 'Neue Machina', -apple-system, BlinkMacSystemFont, Roboto, helvetica neue, sans-serif;
   font-weight: 700;
   font-size: 3em;
-
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  padding: 1em;
-  z-index: 3;
-  transform: translate(-50%, -50%);
 }
 
-.cover.is-home .overlay--title a {
-  pointer-events: auto;
-  color: var(--color-white);
-  text-decoration: none;
-  letter-spacing: -0.05em;
-  /* Uitkijken */
-  transition: all 0.6s cubic-bezier(0.785, 0.135, 0.15, 0.86);
-}
-
-.cover.is-home .split--title a:hover {
-  color: var(--color-white);
+.cover .overlay--title a {
   text-decoration: none;
 }
 
-.cover.is-home .overlay--controls {
-  display: none;
-}
-
-.cover .video {
+.view__home .cover .video {
   position: absolute;
   top: 0;
   left: 0;
@@ -326,91 +91,34 @@ body {
   z-index: 8;
 }
 
-.cover .video.is-loaded {
-  opacity: 1;
-}
-
-.cover .fallback {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  z-index: 6;
-}
-
-.cover .fallback img {
-
+.cover .video .video--player {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 50% 50%;
 }
 
-.cover .video .video--player {
-  position: absolute;
-  top: 0;
-  left: 0;
+.view__home .cover .video.is-loaded {
   opacity: 1;
-  min-width: 100%;
-  height: 100%;
-  left: 50%;
-  transform: translate(-50%);
-  transition: opacity 0.6s cubic-bezier(0.785, 0.135, 0.15, 0.86) 0.2s;
-  transition: transform 3.6s cubic-bezier(0.785, 0.135, 0.15, 0.86) 0.2s;
 }
 
+/* Projects */
 
-.cover .status {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  z-index: 12;
-}
+
+.footer {}
+
 
 
 /* =========== Tablet ========== */
 @media only screen and (min-width: 768px) {
 
-
-  .logo {
-    height: auto;
-    width: 100%;
-    text-align: center;
-    padding-top: 1em;
-  }
-
-  .logo--split {
-    display: inline;
-    position: relative;
-    top: 0;
-    left: 0;
-    transform: none;
-  }
-
-  .logo--split__left {
-    top: none;
-    margin-right: 0.25em;
-  }
-
-  .logo--split__right {
-    left: none;
-    bottom: none;
-  }
-
-
-
+  /* Home */
   .view__home .content {
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  .splash {
+  .view__home .splash {
     display: flex;
     flex-direction: row;
   }
@@ -421,18 +129,20 @@ body {
     overflow: hidden;
   }
 
+
 }
 
 /* =========== Widescreen ========== */
 @media only screen and (min-width: 1920px) {
 
+  /* Home */
   .view__home .content {
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  .splash {
+  .view__home .splash {
     display: flex;
     flex-direction: row;
     max-width: 90vw;
@@ -443,4 +153,6 @@ body {
     width: 50%;
     height: 100%;
   }
+
+
 }
