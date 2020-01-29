@@ -20,17 +20,15 @@ const VideoCarousel = ({videos}) => {
       setAutoPlay(true);
     }
   };
-
   if (videos) {
     return (
       <>
         <Carousel setActiveIndex={setActiveIndex} options={{loop: false, draggable: false}}>
           {videos.map((video, index) => (
-            <div style={{flex: '0 0 100%'}} key={video.id}>
+            <div style={{flex: '0 0 100%'}} key={index}>
               <VideoPlayer
-                id={video.id}
-                title={video.slug}
-                url={video.src}
+                fallback={video.fallback_image.url}
+                url={video.video_source.url}
                 playing={index === activeIndex && !manualPause}
               />
             </div>

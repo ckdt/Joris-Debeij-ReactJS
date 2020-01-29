@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
-import slugify from 'react-slugify';
 import Loader from '../components/Loader';
 import {RichText} from 'prismic-reactjs';
 
@@ -14,20 +13,21 @@ const CoverVideo = ({
   const [loaded, setLoaded] = useState(false);
 
   // Set Vars
-  const slug = props.slug;
-  const video = props.cover_video.url;
-  const title = RichText.asText(props.cover_title);
-  const fallback = props.cover_fallback_image.url;
+  const {id, slug, video, title, fallback} = props;
+
+  const videoSource = video.url;
+  const titleText = RichText.asText(title);
+  const fallbackSource = fallback.url;
 
   const styleFallback = {
-    backgroundImage: `url(${fallback})`,
+    backgroundImage: `url(${fallbackSource})`,
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center center',
     backgroundSize: 'cover'
   };
 
   return (
-    <div className={`cover cover__${slugify(title)} ${isHomeCover ? 'is-home' : 'is-project'} `}>
+    <div className={`cover cover__${slug} ${isHomeCover ? 'is-home' : 'is-project'} `}>
       {(showTitle || showInfoControl || showPlayControl) && (
         <div className="overlay">
           <div className="overlay--content">
@@ -35,22 +35,22 @@ const CoverVideo = ({
               <h2 className="overlay--title">
                 {isHomeCover ? (
                   // Link to project overview
-                  <Link to={`/projects/${slug}`}>{title}</Link>
+                  <Link to={`/projects/${slug}`}>{titleText}</Link>
                 ) : (
                   // Link to project detail
-                  <Link to={`/project/${slug}`}>{title}</Link>
+                  <Link to={`/project/${slug}`}>{titleText}</Link>
                 )}
               </h2>
             )}
             {(showInfoControl || showPlayControl) && (
               <div className="overlay--controls">
                 {showPlayControl && (
-                  <Link to={`/project/${slugify(title)}`} className="control--play">
+                  <Link to={`/project/${slug}`} className="control--play">
                     Play
                   </Link>
                 )}
                 {showInfoControl && (
-                  <Link to={`/project/${slugify(title)}#info`} className="control--info">
+                  <Link to={`/project/${slug}#info`} className="control--info">
                     Info
                   </Link>
                 )}
@@ -68,7 +68,7 @@ const CoverVideo = ({
             autoPlay
             muted
             loop
-            src={video}
+            src={videoSource}
             onLoadedData={() => setLoaded(true)}
           />
         </div>

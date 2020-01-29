@@ -6,7 +6,7 @@ const Navigation = () => (
     <NavLink to="/home">Home</NavLink>
     <NavLink to="/page/about">About</NavLink>
     <NavLink to="/projects/commercial">Commercial</NavLink>
-    <NavLink to="/projects/personal">Personal</NavLink>
+    <NavLink to="/projects/tv-film">TV &amp; Film</NavLink>
   </nav>
 );
 export default Navigation;

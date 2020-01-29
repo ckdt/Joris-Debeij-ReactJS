@@ -6,33 +6,37 @@ import {client} from '../prismic-configuration';
 // 404
 import NotFound from './NotFound';
 // Components
-import Cover from '../components/Cover';
+import CoverVideo from '../components/CoverVideo';
 import DefaultLayout from '../components/DefaultLayout';
 
+// Page: Projects
 const Projects = ({match}) => {
   const uid = match.params.uid;
-  const [notFound, toggleNotFound] = useState(false);
 
+  // States
+  const [notFound, toggleNotFound] = useState(false);
   const [data, setDocData] = useState(null);
   const [covers, setCoverData] = useState([]);
 
+  // ComponentDidMount
   useEffect(() => {
     const fetchData = async () => {
-      const tag = [];
-      tag.push(uid);
-
-      const result = await client.query(Prismic.Predicates.at('document.tags', tag), {
+      const result = await client.query(Prismic.Predicates.at('document.tags', [uid]), {
         orderings: '[document.last_publication_date desc]'
       });
+
       if (result) {
-        const newData = result.results;
-        setDocData(newData);
+        const {results} = result;
+        setDocData(results);
 
-        const newCovers = newData
-          .filter(item => item.data.cover[0])
-          .map(item => ({...item.data.cover[0], id: item.id, uid: item.uid}));
-
-        setCoverData(newCovers);
+        const covers = results.map(item => ({
+          title: item.data.title,
+          id: item.id,
+          slug: item.uid,
+          video: item.data.cover_video,
+          fallback: item.data.cover_image
+        }));
+        setCoverData(covers);
 
         return true;
       } else {
@@ -48,7 +52,7 @@ const Projects = ({match}) => {
       <DefaultLayout title="projects">
         <div className="projects">
           {covers.map(cover => (
-            <Cover key={cover.id} slug={cover.uid} coverType="video" {...cover} />
+            <CoverVideo key={cover.id} {...cover} />
           ))}
         </div>
       </DefaultLayout>
