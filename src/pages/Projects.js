@@ -2,15 +2,12 @@
 import React, {useEffect, useState} from 'react';
 // Prismic
 import Prismic from 'prismic-javascript';
-import {client, linkResolver} from '../prismic-configuration';
+import {client} from '../prismic-configuration';
 // 404
 import NotFound from './NotFound';
 // Components
 import Cover from '../components/Cover';
-import ProjectCard from '../components/ProjectCard';
 import DefaultLayout from '../components/DefaultLayout';
-// Slug formats
-import slugify from 'react-slugify';
 
 const Projects = ({match}) => {
   const uid = match.params.uid;
@@ -33,7 +30,7 @@ const Projects = ({match}) => {
 
         const newCovers = newData
           .filter(item => item.data.cover[0])
-          .map(item => item.data.cover[0]);
+          .map(item => ({...item.data.cover[0], id: item.id, uid: item.uid}));
 
         setCoverData(newCovers);
 
@@ -47,12 +44,11 @@ const Projects = ({match}) => {
   }, [uid]);
 
   if (data && covers.length > 0) {
-    console.log(covers);
     return (
       <DefaultLayout title="projects">
-        <div class="projects">
+        <div className="projects">
           {covers.map(cover => (
-            <Cover key={`${slugify(cover.cover_title[0].text)}`} coverType="video" {...cover} />
+            <Cover key={cover.id} slug={cover.uid} coverType="video" {...cover} />
           ))}
         </div>
       </DefaultLayout>

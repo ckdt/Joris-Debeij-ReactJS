@@ -181,7 +181,6 @@ body {
 #app,
 .view {
   height: 100%;
-
 }
 
 /* =========== HOME PAGE ========== */
@@ -284,7 +283,6 @@ body {
   min-height: 100%;
   z-index: 1;
 
-
   transform: translate(-50%);
   transition: opacity 0.6s cubic-bezier(0.785, 0.135, 0.15, 0.86);
 }
@@ -340,9 +338,11 @@ body {
 
 /* =========== PROJECTS ========== */
 
-.navigation {}
+.navigation {
+}
 
-.sitenav {}
+.sitenav {
+}
 
 .sitenav--item,
 .socialnav--item {
@@ -467,7 +467,8 @@ body {
   margin-right: 0.75rem;
 }
 
-.footer {}
+.footer {
+}
 
 .footer--credit {
   font-family: 'Neue Montreal', -apple-system, BlinkMacSystemFont, Roboto, helvetica neue,
@@ -541,7 +542,7 @@ body {
     height: 100%;
   }
 
-  .split__commercial:hover~.split__commercial>video {
+  .split__commercial:hover ~ .split__commercial > video {
     /* wat doet dit? */
     opacity: 0.1;
   }
@@ -557,7 +558,7 @@ body {
     opacity: 0.1;
   }
 
-  .split__personal:hover~.split__commercial>video {
+  .split__personal:hover ~ .split__commercial > video {
     /* wat doet dit? */
     opacity: 0.1;
   }
@@ -603,7 +604,7 @@ body {
   }
 }
 
-@media (max-aspect-ratio: 16/9) {
+@media (max-aspect-ratio: 9/16) {
   .project--video {
     width: auto;
     height: 100%;

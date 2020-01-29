@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import slugify from 'react-slugify';
 import Loader from '../components/Loader';
+import {RichText} from 'prismic-reactjs';
 
 const CoverVideo = ({
   showTitle = true,
@@ -13,16 +14,18 @@ const CoverVideo = ({
   const [loaded, setLoaded] = useState(false);
 
   // Set Vars
+  const slug = props.slug;
   const video = props.cover_video.url;
-  const title = props.cover_title[0].text;
+  const title = RichText.asText(props.cover_title);
   const fallback = props.cover_fallback_image.url;
-  console.log(fallback);
+
   const styleFallback = {
     backgroundImage: `url(${fallback})`,
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center center',
     backgroundSize: 'cover'
   };
+
   return (
     <div className={`cover cover__${slugify(title)} ${isHomeCover ? 'is-home' : 'is-project'} `}>
       {(showTitle || showInfoControl || showPlayControl) && (
@@ -30,13 +33,27 @@ const CoverVideo = ({
           <div className="overlay--content">
             {title && (
               <h2 className="overlay--title">
-                <Link to={`projects/${slugify(title)}`}>{title}</Link>
+                {isHomeCover ? (
+                  // Link to project overview
+                  <Link to={`/projects/${slug}`}>{title}</Link>
+                ) : (
+                  // Link to project detail
+                  <Link to={`/project/${slug}`}>{title}</Link>
+                )}
               </h2>
             )}
             {(showInfoControl || showPlayControl) && (
               <div className="overlay--controls">
-                {showPlayControl && <a className="control--play">Play</a>}
-                {showInfoControl && <a className="control--info">Info</a>}
+                {showPlayControl && (
+                  <Link to={`/project/${slugify(title)}`} className="control--play">
+                    Play
+                  </Link>
+                )}
+                {showInfoControl && (
+                  <Link to={`/project/${slugify(title)}#info`} className="control--info">
+                    Info
+                  </Link>
+                )}
               </div>
             )}
           </div>
@@ -56,12 +73,6 @@ const CoverVideo = ({
           />
         </div>
       )}
-
-      {/* {fallback && (
-        <div className="fallback">
-          <img className="fallback--image" src={fallback} alt={`Cover of ${title}`} />
-        </div>
-      )} */}
 
       <Loader loaded={loaded} />
     </div>

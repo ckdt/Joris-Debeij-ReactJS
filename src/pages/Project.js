@@ -2,26 +2,48 @@
 import React, {useEffect, useState} from 'react';
 // Prismic
 import {RichText} from 'prismic-reactjs';
-import {client, linkResolver} from '../prismic-configuration';
+import {client} from '../prismic-configuration';
 // 404
 import NotFound from './NotFound';
 // Components
 import DefaultLayout from '../components/DefaultLayout';
+import VideoCarousel from '../components/VideoCarousel';
 
-const Page = ({match}) => {
+const Project = ({match}) => {
   const [doc, setDocData] = useState(null);
   const [notFound, toggleNotFound] = useState(false);
   const uid = match.params.uid;
+
+  const videoData = [
+    {
+      id: '0',
+      slug: 'video-one',
+      src: 'https://www.youtube.com/watch?v=ysz5S6PUM-U'
+    },
+    {
+      id: '1',
+      slug: 'video-two',
+      src: 'https://vimeo.com/385369619'
+    },
+    {
+      id: '2',
+      slug: 'video-three',
+      src: 'https://vimeo.com/275891086'
+    }
+  ];
+
+  console.log(match);
 
   // Get the page document from Prismic
   useEffect(() => {
     const fetchData = async () => {
       // We are using the function to get a document by its UID
-      const result = await client.getByUID('page', uid);
+      const result = await client.getByUID('project', uid);
 
       if (result) {
         // We use the State hook to save the document
-        return setDocData(result);
+        console.log(result);
+        return setDocData(result.data);
       } else {
         // Otherwise show an error message
         console.warn('Page document not found. Make sure it exists in your Prismic repository');
@@ -32,15 +54,12 @@ const Page = ({match}) => {
   }, [uid]); // Skip the Effect hook if the UID hasn't changed
 
   if (doc) {
+    console.log(doc);
     return (
       <DefaultLayout>
         <div className="page">
-          {/* This is how to get an image into your template */}
-          <img src={doc.data.image.url} alt={doc.data.image.alt} />
-          {/* This is how to render a Rich Text field as plain text */}
-          <h1>{RichText.asText(doc.data.title)}</h1>
-          {/* This is how to render a Rich Text field into your template as HTML */}
-          <RichText render={doc.data.description} linkResolver={linkResolver} />
+          <VideoCarousel videos={videoData} />
+          <h1>{RichText.asText(doc.title)}</h1>
         </div>
       </DefaultLayout>
     );
@@ -50,4 +69,4 @@ const Page = ({match}) => {
   return null;
 };
 
-export default Page;
+export default Project;
