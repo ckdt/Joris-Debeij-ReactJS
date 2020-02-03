@@ -35,6 +35,48 @@ body {
 
 .header {}
 
+.logo {
+  z-index: 10;
+  position: fixed;
+  top: 1em;
+  left: 50%;
+  transform: translate(-50%, 0)
+}
+
+.navigation {}
+
+.view__home .navigation {
+  display: none;
+}
+
+.nav__commercial {
+  position: fixed;
+  top: 50%;
+  left: 1em;
+  z-index: 10;
+  transform-origin: 0, 0;
+  transform: rotate(-90deg) translate(-50%, 0);
+}
+
+.nav__tv-film {
+  position: fixed;
+  top: 50%;
+  right: 1em;
+  z-index: 10;
+  transform-origin: 0, 0;
+  transform: rotate(90deg) translate(50%, 0);
+}
+
+.nav__about {
+  position: fixed;
+  left: 50%;
+  bottom: 1em;
+  z-index: 10;
+  transform-origin: 0, 0;
+  transform: translate(-50%, 0);
+}
+
+
 .content {}
 
 /* Home */
@@ -117,6 +159,19 @@ body {
   height: auto;
 }
 
+.cover .overlay--controls {
+  text-transform: lowercase;
+}
+
+.cover .control--info {
+  text-decoration: none;
+}
+
+.cover .control--play {
+  text-decoration: none;
+  padding-right: 1em;
+}
+
 /* Projects */
 .view__projects .content {
   display: flex;
@@ -139,7 +194,7 @@ body {
   position: -webkit-sticky;
   padding: 1rem 25% 1rem 1rem;
   color: white;
-  top: 75vh;
+  top: 50%;
 }
 
 .footer {}
