@@ -1,7 +1,12 @@
 import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import Loader from '../components/Loader';
 import {RichText} from 'prismic-reactjs';
+
+const handleClick = (history, location) => {
+  return history.push(location);
+  console.log('move', location);
+};
 
 const CoverVideo = ({
   showTitle = true,
@@ -10,6 +15,7 @@ const CoverVideo = ({
   isHomeCover = false,
   ...props
 }) => {
+  let history = useHistory();
   const [loaded, setLoaded] = useState(false);
 
   // Set Vars
@@ -26,20 +32,19 @@ const CoverVideo = ({
     backgroundSize: 'cover'
   };
 
+  const permaLink = isHomeCover ? `/projects/${slug}` : `/project/${slug}`;
+
   return (
-    <div className={`cover cover__${slug} ${isHomeCover ? 'is-home' : 'is-project'} `}>
+    <div
+      className={`cover cover__${slug} ${isHomeCover ? 'is-home' : 'is-project'} `}
+      onClick={() => handleClick(history, permaLink)}
+    >
       {(showTitle || showInfoControl || showPlayControl) && (
         <div className="overlay">
           <div className="overlay--content">
             {title && (
               <h2 className="overlay--title">
-                {isHomeCover ? (
-                  // Link to project overview
-                  <Link to={`/projects/${slug}`}>{titleText}</Link>
-                ) : (
-                  // Link to project detail
-                  <Link to={`/project/${slug}`}>{titleText}</Link>
-                )}
+                <Link to={permaLink}>{titleText}</Link>
               </h2>
             )}
             {(showInfoControl || showPlayControl) && (
@@ -60,7 +65,7 @@ const CoverVideo = ({
         </div>
       )}
 
-      {video && (
+      {videoSource ? (
         <div className={`video ${loaded ? 'is-loaded' : 'loading'}`} style={styleFallback}>
           <video
             className="video--player"
@@ -72,9 +77,10 @@ const CoverVideo = ({
             onLoadedData={() => setLoaded(true)}
           />
         </div>
+      ) : (
+        <div className="video is-loaded is-unavailable" style={styleFallback}></div>
       )}
-
-      <Loader loaded={loaded} />
+      {videoSource && <Loader loaded={loaded} />}
     </div>
   );
 };

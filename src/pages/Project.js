@@ -9,34 +9,24 @@ import NotFound from './NotFound';
 // Components
 import DefaultLayout from '../components/DefaultLayout';
 import VideoCarousel from '../components/VideoCarousel';
-import VideoPlayer from '../components/VideoPlayer';
+import Video from '../components/Video';
+import Info from '../components/Info';
 
 const Slices = ({doc}) => {
   const {body} = doc;
   const content = body.map(function(item, index) {
     const type = item.slice_type;
-    const {items} = item;
-    const {primary} = item;
-
-    console.log(primary);
-
+    const {items, primary} = item;
     switch (type) {
       case 'video':
-        return (
-          <VideoPlayer
-            fallback={primary.fallback_image.url}
-            url={primary.video_source.url}
-            playing={true}
-          />
-        );
+        return <Video video={primary} key={index} />;
       case 'series':
-        return <VideoCarousel videos={items} />;
+        return <VideoCarousel videos={items} key={index} />;
       case 'image':
         return null;
       default:
         return null;
     }
-    // einde map
   });
   if (content) {
     return content;
@@ -45,27 +35,6 @@ const Slices = ({doc}) => {
   }
 };
 
-// const Content = ({doc}) => {
-//   if (doc) {
-//     console.log(doc);
-//     const content = doc.body.map(function(slice, index) {
-//       const type = slice.slice_type;
-//       switch (type) {
-//         case 'video':
-//           console.log('video', slice);
-//           return <VideoPlayer url={slice.primary.link.url} />;
-//         case 'videos':
-//           return <VideoCarousel videos={videoData} />;
-//         case 'image':
-//           return <div></div>;
-//         default:
-//           return null;
-//       }
-//     });
-//   }
-//   return null;
-// };
-
 // Page: Project
 const Project = ({match}) => {
   const uid = match.params.uid;
@@ -73,6 +42,15 @@ const Project = ({match}) => {
   // States
   const [notFound, toggleNotFound] = useState(false);
   const [doc, setDocData] = useState(null);
+  const [showInfo, setShowInfo] = useState(false);
+
+  const toggleInfo = () => {
+    if (showInfo) {
+      setShowInfo(false);
+    } else {
+      setShowInfo(true);
+    }
+  };
 
   // ComponentDidMount
   useEffect(() => {
@@ -97,11 +75,10 @@ const Project = ({match}) => {
 
   if (doc) {
     return (
-      <DefaultLayout>
-        <div className="page">
-          <h1>{RichText.asText(doc.title)}</h1>
-          <Slices doc={doc} />
-        </div>
+      <DefaultLayout title="project">
+        <Info doc={doc} toggleInfo={toggleInfo} showInfo={showInfo} />
+        <Slices doc={doc} />
+        <button onClick={() => toggleInfo()}>Info</button>
       </DefaultLayout>
     );
   } else if (notFound) {
