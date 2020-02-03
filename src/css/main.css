@@ -33,17 +33,19 @@ body {
   height: 100%;
 }
 
-.header {}
+.header {
+}
 
 .logo {
   z-index: 10;
   position: fixed;
   top: 1em;
   left: 50%;
-  transform: translate(-50%, 0)
+  transform: translate(-50%, 0);
 }
 
-.navigation {}
+.navigation {
+}
 
 .view__home .navigation {
   display: none;
@@ -76,8 +78,8 @@ body {
   transform: translate(-50%, 0);
 }
 
-
-.content {}
+.content {
+}
 
 /* Home */
 .view__home .content {
@@ -133,11 +135,11 @@ body {
 }
 
 .cover .video {
-  /* position: absolute;
+  position: absolute;
   top: 0;
   left: 0;
 
-  z-index: 8; */
+  z-index: 8;
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -147,6 +149,9 @@ body {
 .video .video--player {
   width: 100%;
   height: 100%;
+  object-fit: cover;
+}
+.video .video--player video {
   object-fit: cover;
 }
 
@@ -197,7 +202,8 @@ body {
   top: 50%;
 }
 
-.footer {}
+.footer {
+}
 
 /* Project */
 .view__project .info {
@@ -214,8 +220,6 @@ body {
   z-index: 8;
 }
 
-
-
 /* =========== Video Player Component ========== */
 .carousel-slide {
   flex: '0 0 100%';
@@ -223,8 +227,8 @@ body {
 
 .player-wrapper {
   position: relative;
-  padding-top: 56.25%
-    /* Player ratio: 100 / (1280 / 720) */
+  padding-top: 56.25%;
+  /* Player ratio: 100 / (1280 / 720) */
 }
 
 .react-player {
@@ -233,10 +237,8 @@ body {
   left: 0;
 }
 
-
 /* =========== Tablet ========== */
 @media only screen and (min-width: 768px) {
-
   /* Home */
   .view__home .content {
     display: flex;
@@ -254,13 +256,10 @@ body {
     height: 100%;
     overflow: hidden;
   }
-
-
 }
 
 /* =========== Widescreen ========== */
 @media only screen and (min-width: 1920px) {
-
   /* Home */
   .view__home .content {
     display: flex;
@@ -279,6 +278,4 @@ body {
     width: 50%;
     height: 100%;
   }
-
-
 }
