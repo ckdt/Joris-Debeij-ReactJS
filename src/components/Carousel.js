@@ -3,7 +3,7 @@ import EmblaCarouselReact from 'embla-carousel-react';
 import left from '../images/arrow-left.svg';
 import right from '../images/arrow-right.svg';
 
-const Carousel = ({options, children, activeIndex, setActiveIndex, ...props}) => {
+const Carousel = ({options, children, setActiveIndex, activeIndex, ...props}) => {
   const [embla, setEmbla] = useState(null);
   const [isLastSlide, setLastSlide] = useState(false);
 
@@ -17,7 +17,8 @@ const Carousel = ({options, children, activeIndex, setActiveIndex, ...props}) =>
         } else {
           setLastSlide(false);
         }
-        console.log(current, '/', total);
+
+        console.log(setActiveIndex, activeIndex, current, '/', total);
         setActiveIndex(current);
       });
     }
@@ -25,7 +26,7 @@ const Carousel = ({options, children, activeIndex, setActiveIndex, ...props}) =>
 
   return (
     <>
-      <EmblaCarouselReact emblaRef={setEmbla} options={options}>
+      <EmblaCarouselReact emblaRef={setEmbla} options={options} setActiveIndex={setActiveIndex}>
         <div style={{display: 'flex'}}>{children}</div>
       </EmblaCarouselReact>
       <div className="slidecontrols">

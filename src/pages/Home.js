@@ -5,8 +5,8 @@ import {client} from '../prismic-configuration';
 // 404
 import NotFound from './NotFound';
 // Components
-import CoverVideo from '../components/CoverVideo';
 import DefaultLayout from '../components/DefaultLayout';
+import HomeCover from '../components/HomeCover';
 
 // Page: Home
 const Home = () => {
@@ -18,11 +18,12 @@ const Home = () => {
   // ComponentDidMount
   useEffect(() => {
     const fetchData = async () => {
+      // Get single page (home)
       const result = await client.getSingle('home');
       if (result) {
         const {data} = result;
-
         setDocData(data);
+
         const covers = data.cover.map((item, index) => ({
           title: item.cover_title,
           id: index,
@@ -30,7 +31,6 @@ const Home = () => {
           video: item.cover_video,
           fallback: item.cover_fallback_image
         }));
-
         setCoverData(covers);
 
         return true;
@@ -47,14 +47,8 @@ const Home = () => {
       return (
         <DefaultLayout title="home">
           <div className="splash">
-            {covers.map(cover => (
-              <CoverVideo
-                key={cover.id}
-                isHomeCover={true}
-                showPlayControl={false}
-                showInfoControl={false}
-                {...cover}
-              />
+            {covers.map(item => (
+              <HomeCover key={item.id} {...item} />
             ))}
           </div>
         </DefaultLayout>
@@ -65,5 +59,4 @@ const Home = () => {
   }
   return null;
 };
-
 export default Home;

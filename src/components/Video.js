@@ -5,25 +5,15 @@ import React, {useState, useEffect} from 'react';
 import VideoPlayer from './VideoPlayer';
 
 // Video
-const Video = ({video}) => {
-  const [autoPlay, setAutoPlay] = useState(true);
-  const [manualPause, setManualPause] = useState(false);
-
-  const togglePlay = () => {
-    if (autoPlay) {
-      setAutoPlay(false);
-    } else {
-      setAutoPlay(true);
-    }
-  };
+const Video = ({video, isPlaying, togglePlay}) => {
   if (video) {
+    console.log('video playing?', isPlaying);
     return (
       <>
         <VideoPlayer
           fallback={video.fallback_image.url}
           url={video.video_source.url}
-          playing={autoPlay}
-          onClick={togglePlay}
+          playing={isPlaying}
         />
 
         <button onClick={togglePlay}>Play/Pause</button>

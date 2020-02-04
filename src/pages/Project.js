@@ -12,16 +12,32 @@ import VideoCarousel from '../components/VideoCarousel';
 import Video from '../components/Video';
 import Info from '../components/Info';
 
-const Slices = ({doc}) => {
+const Slices = ({
+  doc,
+  togglePlay,
+  isPlaying,
+  toggleCarouselPlayback,
+  activeIndex,
+  setActiveIndex
+}) => {
   const {body} = doc;
   const content = body.map(function(item, index) {
     const type = item.slice_type;
     const {items, primary} = item;
     switch (type) {
       case 'video':
-        return <Video video={primary} key={index} />;
+        return <Video key={index} video={primary} togglePlay={togglePlay} isPlaying={isPlaying} />;
       case 'series':
-        return <VideoCarousel videos={items} key={index} />;
+        return (
+          <VideoCarousel
+            key={index}
+            videos={items}
+            toggleCarouselPlayback={toggleCarouselPlayback}
+            isPlaying={isPlaying}
+            activeIndex={activeIndex}
+            setActiveIndex={setActiveIndex}
+          />
+        );
       case 'image':
         return null;
       default:
@@ -38,13 +54,38 @@ const Slices = ({doc}) => {
 // Page: Project
 const Project = ({match}) => {
   const uid = match.params.uid;
+  const path = match.path;
 
   // States
   const [notFound, toggleNotFound] = useState(false);
   const [doc, setDocData] = useState(null);
   const [showInfo, setShowInfo] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [manualPause, setManualPause] = useState(false);
+
+  const togglePlay = () => {
+    if (isPlaying) {
+      setIsPlaying(false);
+    } else {
+      setIsPlaying(true);
+    }
+  };
+
+  const toggleCarouselPlayback = () => {
+    if (isPlaying) {
+      setManualPause(true);
+      setIsPlaying(false);
+    } else {
+      setManualPause(false);
+      setIsPlaying(true);
+    }
+  };
 
   const toggleInfo = () => {
+    if (!manualPause) {
+      togglePlay();
+    }
     if (showInfo) {
       setShowInfo(false);
     } else {
@@ -62,6 +103,9 @@ const Project = ({match}) => {
         console.log(data);
         setDocData(data);
 
+        if (path === '/project/:uid/info') {
+          toggleInfo();
+        }
         // We use the State hook to save the document
         return true;
       } else {
@@ -77,7 +121,14 @@ const Project = ({match}) => {
     return (
       <DefaultLayout title="project">
         <Info doc={doc} toggleInfo={toggleInfo} showInfo={showInfo} />
-        <Slices doc={doc} />
+        <Slices
+          doc={doc}
+          togglePlay={togglePlay}
+          toggleCarouselPlayback={toggleCarouselPlayback}
+          activeIndex={activeIndex}
+          setActiveIndex={setActiveIndex}
+          isPlaying={isPlaying}
+        />
         <button className="info--toggle" onClick={() => toggleInfo()}>
           Info
         </button>

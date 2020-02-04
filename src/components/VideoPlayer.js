@@ -14,8 +14,6 @@ const VideoPlayer = ({url, handlePlay, togglePlay, handlePause, ...props}) => {
         height="100%"
         url={url}
         controls={false}
-        onPlay={handlePlay}
-        onPause={handlePause}
         {...props}
       />
     </div>
