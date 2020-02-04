@@ -41,6 +41,7 @@ class App extends Component {
                       <Route exact path="/page/:uid" component={Page} />
                       <Route exact path="/projects/:uid" component={Projects} />
                       <Route exact path="/project/:uid" component={Project} />
+                      <Route exact path="/project/:uid/info" component={Project} />
                       <Route component={NotFound} />
                     </Switch>
                   </CSSTransition>

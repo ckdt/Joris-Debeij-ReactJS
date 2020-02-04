@@ -6,7 +6,7 @@ import {client} from '../prismic-configuration';
 // 404
 import NotFound from './NotFound';
 // Components
-import CoverVideo from '../components/CoverVideo';
+import ProjectCover from '../components/ProjectCover';
 import DefaultLayout from '../components/DefaultLayout';
 
 // Page: Projects
@@ -51,8 +51,8 @@ const Projects = ({match}) => {
     return (
       <DefaultLayout title="projects">
         <div className="projects">
-          {covers.map(cover => (
-            <CoverVideo key={cover.id} {...cover} />
+          {covers.map(item => (
+            <ProjectCover key={item.id} {...item} />
           ))}
         </div>
       </DefaultLayout>
