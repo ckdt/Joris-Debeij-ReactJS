@@ -47,7 +47,8 @@ body {
 .navigation {
 }
 
-.view__home .navigation {
+.view__home .navigation,
+.view__project .navigation {
   display: none;
 }
 
@@ -206,6 +207,9 @@ body {
 }
 
 /* Project */
+.view__project .footer {
+  display: none;
+}
 .view__project .info {
   position: absolute;
   z-index: -1;
@@ -219,10 +223,43 @@ body {
 
   z-index: 8;
 }
+.info--toggle {
+  position: fixed;
+  left: 50%;
+
+  bottom: 2em;
+  transform: translateX(-50%);
+  z-index: 10;
+}
 
 /* =========== Video Player Component ========== */
 .carousel-slide {
   flex: '0 0 100%';
+}
+.slidecontrols {
+}
+.slidenav {
+  width: 64px;
+  height: 64px;
+  cursor: pointer;
+}
+.slidenav.is-disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+.slidenav__prev {
+  position: fixed;
+  top: 50%;
+  left: 1em;
+  z-index: 10;
+  transform-origin: 0, 0;
+}
+.slidenav__next {
+  position: fixed;
+  top: 50%;
+  right: 1em;
+  z-index: 10;
+  transform-origin: 0, 0;
 }
 
 .player-wrapper {

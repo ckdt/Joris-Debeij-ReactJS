@@ -5,7 +5,7 @@ import React, {useEffect, useState} from 'react';
 import ReactPlayer from 'react-player';
 
 // VideoPlayer
-const VideoPlayer = ({url, handlePlay, handlePause, ...props}) => {
+const VideoPlayer = ({url, handlePlay, togglePlay, handlePause, ...props}) => {
   return (
     <div className="player-wrapper">
       <ReactPlayer

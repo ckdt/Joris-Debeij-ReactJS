@@ -23,7 +23,11 @@ const VideoCarousel = ({videos}) => {
   if (videos) {
     return (
       <>
-        <Carousel setActiveIndex={setActiveIndex} options={{loop: false, draggable: false}}>
+        <Carousel
+          setActiveIndex={setActiveIndex}
+          activeIndex={activeIndex}
+          options={{loop: false, draggable: false}}
+        >
           {videos.map((video, index) => (
             <div style={{flex: '0 0 100%'}} key={index}>
               <VideoPlayer

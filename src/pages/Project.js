@@ -78,7 +78,9 @@ const Project = ({match}) => {
       <DefaultLayout title="project">
         <Info doc={doc} toggleInfo={toggleInfo} showInfo={showInfo} />
         <Slices doc={doc} />
-        <button onClick={() => toggleInfo()}>Info</button>
+        <button className="info--toggle" onClick={() => toggleInfo()}>
+          Info
+        </button>
       </DefaultLayout>
     );
   } else if (notFound) {

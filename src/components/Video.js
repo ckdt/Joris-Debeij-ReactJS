@@ -23,6 +23,7 @@ const Video = ({video}) => {
           fallback={video.fallback_image.url}
           url={video.video_source.url}
           playing={autoPlay}
+          onClick={togglePlay}
         />
 
         <button onClick={togglePlay}>Play/Pause</button>
