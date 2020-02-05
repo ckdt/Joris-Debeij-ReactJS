@@ -6,7 +6,10 @@ import {apiEndpoint} from './prismic-configuration';
 import {Home, Projects, Project, Preview, NotFound, Page} from './pages';
 
 /**
- * Main application componenet
+ * My First React / Prismic Website.
+ * Thanks @superhi_ community,
+ * @riklomas
+ *
  */
 
 const repoNameArray = /([^/]+)\.cdn.prismic\.io\/api/.exec(apiEndpoint);
@@ -33,7 +36,7 @@ class App extends Component {
 
               return (
                 <TransitionGroup component={null}>
-                  <CSSTransition key={key} timeout={{enter: 500, exit: 500}} classNames={'fade'}>
+                  <CSSTransition key={key} timeout={6000} classNames="transition">
                     <Switch location={location}>
                       <Redirect exact from="/" to="/home" />
                       <Route exact path="/home" component={Home} />

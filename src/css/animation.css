@@ -1,4 +1,4 @@
-.fade-enter {
+/* .fade-enter {
   opacity: 0.01;
 }
 
@@ -14,4 +14,47 @@
 .fade-exit.fade-exit-active {
   opacity: 0.01;
   transition: opacity 500ms ease-in;
+} */
+
+.transition-exit {
+  opacity: 1;
+}
+
+.transition-exit-active {
+  opacity: 1;
+  transition: opacity 4s;
+}
+
+.transition-exit .cover {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+.transition-exit-active .cover {
+  opacity: 0;
+  transform: translate(0, 100px);
+  transition: opacity 4s, transform 4s;
+}
+
+
+.transition-exit .cover__commercial {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+.transition-exit-active .cover__commercial {
+  opacity: 1;
+  transform: translate(-100%, 0);
+  transition: opacity 4s, transform 4s;
+}
+
+.transition-exit .cover__tv-film {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+.transition-exit-active .cover__tv-film {
+  opacity: 1;
+  transform: translate(100%, 0);
+  transition: opacity 4s, transform 4s;
 }
