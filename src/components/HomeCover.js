@@ -46,6 +46,7 @@ const HomeCover = ({...props}) => {
       {videoSource ? (
         <div className={`video ${loaded ? 'is-loaded' : 'loading'}`} style={styleFallback}>
           <video
+            key={id}
             className="video--player"
             playsInline
             autoPlay
