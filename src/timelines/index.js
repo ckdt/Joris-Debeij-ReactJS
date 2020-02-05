@@ -9,12 +9,12 @@ const getDefaultTimeline = (node, delay) => {
 
 const getHomeTimeline = (node, delay) => {
   const timeline = new Timeline({paused: true});
+  const coverLeft = node.querySelector('.cover');
 
-  console.log('homeTimeLine', node, delay);
-  // const covers = node.querySelectorAll('.cover');
-
-  // timeline
-  //   .from(node, 0, {display: 'none', autoAlpha: 0, delay})
+  console.log('covers', node, coverLeft);
+  timeline.from(coverLeft, 0.15, {autoAlpha: 0, y: 25, ease: Power1.easeInOut});
+  // to(coverLeft, {rotation: 27, x: 100, duration: 1, autoAlpha: 0, delay});
+  //timeline.from(coverLeft, 0, {display: 'none', autoAlpha: 0, delay});
   //   .staggerFrom(covers, 0.375, {autoAlpha: 0, x: -25, ease: Power1.easeOut}, 0.125);
 
   return timeline;

@@ -29,12 +29,12 @@ body {
 /* =========== App ========== */
 
 #app,
-.view {
+.view,
+.aniWrapper {
   height: 100%;
 }
 
-.header {
-}
+.header {}
 
 .logo {
   z-index: 10;
@@ -44,8 +44,7 @@ body {
   transform: translate(-50%, 0);
 }
 
-.navigation {
-}
+.navigation {}
 
 .view__home .navigation,
 .view__project .navigation {
@@ -79,8 +78,7 @@ body {
   transform: translate(-50%, 0);
 }
 
-.content {
-}
+.content {}
 
 /* Home */
 .view__home .content {
@@ -204,8 +202,7 @@ body {
   top: 50%;
 }
 
-.footer {
-}
+.footer {}
 
 /* Project */
 .view__project .footer {
@@ -239,8 +236,7 @@ body {
   flex: '0 0 100%';
 }
 
-.slidecontrols {
-}
+.slidecontrols {}
 
 .slidenav {
   width: 64px;
@@ -283,6 +279,7 @@ body {
 
 /* =========== Tablet ========== */
 @media only screen and (min-width: 768px) {
+
   /* Home */
   .view__home .content {
     display: flex;
@@ -304,6 +301,7 @@ body {
 
 /* =========== Widescreen ========== */
 @media only screen and (min-width: 1920px) {
+
   /* Home */
   .view__home .content {
     display: flex;
