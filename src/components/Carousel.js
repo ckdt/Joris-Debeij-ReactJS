@@ -12,7 +12,7 @@ const Carousel = ({options, children, setActiveIndex, activeIndex, ...props}) =>
       embla.on('select', () => {
         const current = embla.selectedScrollSnap();
         const total = embla.slideNodes().length - 1;
-        if (current == total) {
+        if (current === total) {
           setLastSlide(true);
         } else {
           setLastSlide(false);

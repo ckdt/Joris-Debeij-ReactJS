@@ -8,7 +8,7 @@ const Slices = ({doc}) => {
   const {body} = doc;
   const content = body.map(function(item, index) {
     const type = item.slice_type;
-    const {items, primary} = item;
+    const {primary} = item;
 
     switch (type) {
       case 'credits':

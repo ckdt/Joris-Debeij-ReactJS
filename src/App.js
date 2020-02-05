@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import {Helmet} from 'react-helmet';
-import {TransitionGroup, CSSTransition} from 'react-transition-group';
+import {Transition, TransitionGroup} from 'react-transition-group';
+import {play, exit} from './timelines';
 import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
 import {apiEndpoint} from './prismic-configuration';
 import {Home, Projects, Project, Preview, NotFound, Page} from './pages';
@@ -29,22 +30,27 @@ class App extends Component {
         <BrowserRouter>
           <Route
             render={({location}) => {
-              const {key} = location;
-
+              const {pathname, key} = location;
               return (
                 <TransitionGroup component={null}>
-                  <CSSTransition key={key} timeout={{enter: 500, exit: 500}} classNames={'fade'}>
+                  <Transition
+                    key={key}
+                    appear={true}
+                    onEnter={(node, appears) => play(pathname, node, appears)}
+                    onExit={(node, appears) => exit(node, appears)}
+                    timeout={{enter: 750, exit: 150}}
+                  >
                     <Switch location={location}>
                       <Redirect exact from="/" to="/home" />
                       <Route exact path="/home" component={Home} />
-                      <Route exact path="/preview" component={Preview} />
-                      <Route exact path="/page/:uid" component={Page} />
-                      <Route exact path="/projects/:uid" component={Projects} />
-                      <Route exact path="/project/:uid" component={Project} />
-                      <Route exact path="/project/:uid/info" component={Project} />
+                      <Route path="/preview" component={Preview} />
+                      <Route path="/page/:uid" component={Page} />
+                      <Route path="/projects/:uid" component={Projects} />
+                      <Route path="/project/:uid" component={Project} />
+                      <Route path="/project/:uid/info" component={Project} />
                       <Route component={NotFound} />
                     </Switch>
-                  </CSSTransition>
+                  </Transition>
                 </TransitionGroup>
               );
             }}
