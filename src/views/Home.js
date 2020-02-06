@@ -1,12 +1,26 @@
-// React
+// Import Defaults
 import React, {useEffect, useState} from 'react';
-// Prismic
+
+// Import Prismic
 import {client} from '../prismic-configuration';
-// 404
-import NotFound from './NotFound';
-// Components
+
+// Import Views
+import NotFound from '../views/NotFound';
+
+// Import Custom Components
 import DefaultLayout from '../components/DefaultLayout';
 import HomeCover from '../components/HomeCover';
+
+// Component: Cover
+const Cover = ({items}) => {
+  return (
+    <div className="covers">
+      {items.map(item => (
+        <HomeCover key={item.id} {...item} />
+      ))}
+    </div>
+  );
+};
 
 // Page: Home
 const Home = () => {
@@ -35,7 +49,7 @@ const Home = () => {
 
         return true;
       } else {
-        console.warn('Page document not found. Make sure it exists in your Prismic repository');
+        console.warn('404. Page document not found.');
         return toggleNotFound(true);
       }
     };
@@ -46,11 +60,7 @@ const Home = () => {
     if (covers) {
       return (
         <DefaultLayout title="home">
-          <div className="splash">
-            {covers.map(item => (
-              <HomeCover key={item.id} {...item} />
-            ))}
-          </div>
+          <Cover items={covers} />
         </DefaultLayout>
       );
     }

@@ -1,11 +1,11 @@
-// React
+// Import Defaults
 import React, {useState, useEffect} from 'react';
 
-// Components
+// Import Custom Components
 import Carousel from './Carousel';
 import VideoPlayer from './VideoPlayer';
 
-// VideoCarousel
+// Component: VideoCarousel
 const VideoCarousel = ({
   videos,
   isPlaying,
@@ -37,5 +37,5 @@ const VideoCarousel = ({
   }
   return null;
 };
-
+// Component: VideoCarousel
 export default VideoCarousel;

@@ -1,8 +1,14 @@
+// Import Defaults
 import React, {useState, useEffect} from 'react';
-import EmblaCarouselReact from 'embla-carousel-react';
-import left from '../images/arrow-left.svg';
-import right from '../images/arrow-right.svg';
 
+// Import Carousel
+import EmblaCarouselReact from 'embla-carousel-react';
+
+// Import Assets
+import left from '../assets/images/arrow-left.svg';
+import right from '../assets/images/arrow-right.svg';
+
+// Component: Carousel
 const Carousel = ({options, children, setActiveIndex, activeIndex, ...props}) => {
   const [embla, setEmbla] = useState(null);
   const [isLastSlide, setLastSlide] = useState(false);
@@ -48,4 +54,5 @@ const Carousel = ({options, children, setActiveIndex, activeIndex, ...props}) =>
   );
 };
 
+// Export: Carousel
 export default Carousel;

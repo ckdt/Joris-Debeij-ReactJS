@@ -1,7 +1,12 @@
+// Import Defaults
 import React, {useState} from 'react';
 import {Link, useHistory} from 'react-router-dom';
-import Loader from './Loader';
+
+// Import Prismic
 import {RichText} from 'prismic-reactjs';
+
+// Import Custom Components
+import Loader from './Loader';
 
 // EventHandlers
 const handleClick = (history, location) => {
@@ -9,9 +14,9 @@ const handleClick = (history, location) => {
   return history.push(location);
 };
 
+// Component: ProjectCover
 const ProjectCover = ({...props}) => {
-  // Set history for EventHandler
-  let history = useHistory();
+  let history = useHistory(); // Set history for EventHandler
 
   // States
   const [loaded, setLoaded] = useState(false);
@@ -24,7 +29,6 @@ const ProjectCover = ({...props}) => {
   const videoSource = video.url;
   const titleText = RichText.asText(title);
   const fallbackSource = fallback.url;
-
   const styleFallback = {
     backgroundImage: `url(${fallbackSource})`,
     backgroundRepeat: 'no-repeat',
@@ -33,7 +37,7 @@ const ProjectCover = ({...props}) => {
   };
 
   return (
-    <div className={`cover cover__${slug} is-project`}>
+    <div className={`project--item project--item__${slug}`}>
       <div className="overlay">
         <div className="overlay--content">
           {titleText && (
@@ -71,4 +75,5 @@ const ProjectCover = ({...props}) => {
   );
 };
 
+// Export: ProjectCover
 export default ProjectCover;

@@ -8,7 +8,7 @@ const handleClick = (history, location) => {
   // Go to a new page
   return history.push(location);
 };
-// Component
+// Component: HomeCover
 const HomeCover = ({...props}) => {
   // Set history for EventHandler
   let history = useHistory();
@@ -32,7 +32,10 @@ const HomeCover = ({...props}) => {
   };
 
   return (
-    <div className={`cover cover__${slug} is-home`} onClick={() => handleClick(history, permaLink)}>
+    <div
+      className={`cover--item cover--item__${slug}`}
+      onClick={() => handleClick(history, permaLink)}
+    >
       {titleText && (
         <div className="overlay">
           <div className="overlay--content">

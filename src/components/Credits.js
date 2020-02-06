@@ -1,11 +1,12 @@
+// Import Defaults
 import React from 'react';
+
+// Import Prismic
 import {RichText, linkResolver} from 'prismic-reactjs';
 
+// Component: Awards
 const Credits = ({content}) => {
   const {credits_list} = content;
-
-  console.log('Credits', credits_list);
-
   if (credits_list.length > 1) {
     // multiple paragraphs
     return (
@@ -29,4 +30,6 @@ const Credits = ({content}) => {
   }
   return null;
 };
+
+// Export Credits
 export default Credits;

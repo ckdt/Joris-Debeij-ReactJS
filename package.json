@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "embla-carousel-react": "^1.2.14",
+    "plyr": "^3.5.7-beta.0",
     "prismic-javascript": "^2.1.1",
     "prismic-reactjs": "^1.1.2",
     "qs": "^6.9.1",

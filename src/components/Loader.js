@@ -1,6 +1,10 @@
+// Import Defaults
 import React from 'react';
-import loader from '../images/loader.svg';
 
+// Import Assets
+import loader from '../assets/images/loader.svg';
+
+// Component: Loader
 const Loader = ({loaded}) => {
   if (loaded) {
     return null;
@@ -13,4 +17,5 @@ const Loader = ({loaded}) => {
   }
 };
 
+// Export: Loader
 export default Loader;

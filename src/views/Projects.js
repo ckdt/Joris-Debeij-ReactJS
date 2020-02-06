@@ -1,15 +1,18 @@
-// React
+// Import Defaults
 import React, {useEffect, useState} from 'react';
-// Prismic
+
+// Import Prismic
 import Prismic from 'prismic-javascript';
 import {client} from '../prismic-configuration';
-// 404
-import NotFound from './NotFound';
-// Components
+
+// Import Views
+import NotFound from '../views/NotFound';
+
+// Import Custom Components
 import ProjectCover from '../components/ProjectCover';
 import DefaultLayout from '../components/DefaultLayout';
 
-// Page: Projects
+// Component: Projects
 const Projects = ({match}) => {
   const uid = match.params.uid;
 
@@ -63,4 +66,5 @@ const Projects = ({match}) => {
   return null;
 };
 
+// Export View
 export default Projects;

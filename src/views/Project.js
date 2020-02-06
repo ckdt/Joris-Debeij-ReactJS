@@ -1,17 +1,20 @@
-// React
+// Import Defaults
 import React, {useEffect, useState} from 'react';
-// Prismic
-import Prismic from 'prismic-javascript';
-import {RichText} from 'prismic-reactjs';
+
+// Import Prismic
 import {client} from '../prismic-configuration';
-// 404
+
+// Import Views
 import NotFound from './NotFound';
-// Components
+
+// Import Custom Components
+import VideoPlyr from '../components/VideoPlyr';
 import DefaultLayout from '../components/DefaultLayout';
 import VideoCarousel from '../components/VideoCarousel';
 import Video from '../components/Video';
 import Info from '../components/Info';
 
+// Handle Slices
 const Slices = ({
   doc,
   togglePlay,
@@ -26,7 +29,15 @@ const Slices = ({
     const {items, primary} = item;
     switch (type) {
       case 'video':
-        return <Video key={index} video={primary} togglePlay={togglePlay} isPlaying={isPlaying} />;
+        return (
+          <VideoPlyr key={index} url={primary.video_source.url} />
+          // <Plyr
+          //   type="vimeo" // or "vimeo"
+          //   videoId={primary.video_source.url}
+          // />
+        );
+
+      // return <Video key={index} video={primary} togglePlay={togglePlay} isPlaying={isPlaying} />;
       case 'series':
         return (
           <VideoCarousel
@@ -51,7 +62,7 @@ const Slices = ({
   }
 };
 
-// Page: Project
+// Component: Project
 const Project = ({match}) => {
   const uid = match.params.uid;
   const path = match.path;
@@ -140,4 +151,5 @@ const Project = ({match}) => {
   return null;
 };
 
+// Export View
 export default Project;

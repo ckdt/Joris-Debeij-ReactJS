@@ -1,0 +1,41 @@
+.transition-exit {
+  opacity: 1;
+}
+
+.transition-exit-active {
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+
+.transition-exit .cover--item {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+.transition-exit-active .project--item {
+  opacity: 0;
+  transform: translate(0, 100px);
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+.transition-exit .cover--item__commercial {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+.transition-exit-active .cover--item__commercial {
+  opacity: 1;
+  transform: translate(-100%, 0);
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+.transition-exit .cover--item__tv-film {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+.transition-exit-active .cover--item__tv-film {
+  opacity: 1;
+  transform: translate(100%, 0);
+  transition: opacity 0.5s, transform 0.5s;
+}
