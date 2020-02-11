@@ -1,4 +1,4 @@
-@font-face {
+/* @font-face {
   font-family: 'Neue Machina';
   src: url('../fonts/Neue Machina/neuemachina-ultralight-webfont.woff2') format('woff2'),
     url('../fonts/Neue Machina/neuemachina-ultralight-webfont.woff') format('woff');
@@ -47,6 +47,22 @@
   src: url('../fonts/Neue Machina/neuemachina-black-webfont.woff2') format('woff2'),
     url('../fonts/Neue Machina/neuemachina-black-webfont.woff') format('woff');
   font-weight: 900;
+} */
+
+@font-face {
+  font-family: 'Formula Condensed';
+  src: url('../fonts/Formula Condensed/FormulaCondensed-Black.woff2') format('woff2'),
+    url('../fonts/Formula Condensed/FormulaCondensed-Black.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Formula Condensed';
+  src: url('../fonts/Formula Condensed/FormulaCondensed-Regular.woff2') format('woff2'),
+    url('../fonts/Formula Condensed/FormulaCondensed-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {

@@ -43,10 +43,67 @@ body {
   left: 50%;
   transform: translate(-50%, 0);
 }
-
+.nav--toggle {
+  position: absolute;
+  top: 2em;
+  right: 2em;
+  z-index: 14;
+}
 .navigation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 12;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main--nav {
+  text-align: center;
+}
+.navigation a {
+  font-family: 'Formula Condensed', -apple-system, BlinkMacSystemFont, Roboto, helvetica neue,
+    sans-serif;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  font-size: 8em;
+  color: #fff;
+  text-decoration: none;
+  position: relative;
+  z-index: 20;
 }
 
+@keyframes strike {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+.strike {
+  position: relative;
+}
+.strike::before {
+  content: ' ';
+  position: absolute;
+  top: 33.3%;
+  left: 0;
+  width: 100%;
+  height: 32px;
+  background: #ffc701;
+  animation-name: strike;
+  animation-duration: 0.25s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+/* 
 .view__home .navigation,
 .view__project .navigation {
   display: none;
@@ -77,7 +134,7 @@ body {
   z-index: 10;
   transform-origin: 0, 0;
   transform: translate(-50%, 0);
-}
+} */
 
 .content {
 }
@@ -107,7 +164,7 @@ body {
   height: 100%;
 }
 
-/* .cover--item {
+/*.cover--item {
   background: red;
   cursor: pointer;
 } */
@@ -127,13 +184,18 @@ body {
 }
 
 .overlay--title {
-  font-family: 'Neue Machina', -apple-system, BlinkMacSystemFont, Roboto, helvetica neue, sans-serif;
-  font-weight: 700;
-  font-size: 3em;
+  font-family: 'Formula Condensed', -apple-system, BlinkMacSystemFont, Roboto, helvetica neue,
+    sans-serif;
+  font-weight: 900;
+  letter-spacing: 0.033em;
+  text-transform: uppercase;
+  font-size: 8em;
 }
 
 .overlay--title a {
   text-decoration: none;
+
+  color: #ffc701;
 }
 
 .cover--item .video,
@@ -241,9 +303,42 @@ body {
 }
 
 /* CustomPlyr */
-.videoPlyr {
+.view__project .video {
   margin: 20px auto;
   max-width: 500px;
+}
+
+.plyr--full-ui input[type='range'] {
+  color: #ffc701;
+}
+
+.plyr__control--overlaid {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.plyr--video .plyr__control.plyr__tab-focus,
+.plyr--video .plyr__control:hover,
+.plyr--video .plyr__control[aria-expanded='true'] {
+  background: none;
+}
+
+.plyr--video .plyr__control[aria-expanded='true'] {
+  background: none;
+}
+
+.plyr--video .plyr__control svg {
+  fill: #fff;
+}
+
+.plyr--video .plyr__control:hover svg {
+  fill: #ffc701;
+}
+.plyr__control.plyr__tab-focus {
+  box-shadow: none;
+}
+
+.plyr__menu__container .plyr__control[role='menuitemradio'][aria-checked='true']::before {
+  background: #ffc701;
 }
 
 /* =========== Video Player Component ========== */

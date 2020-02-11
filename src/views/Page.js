@@ -20,20 +20,16 @@ const Page = ({match}) => {
   // Get the page document from Prismic
   useEffect(() => {
     const fetchData = async () => {
-      // We are using the function to get a document by its UID
       const result = await client.getByUID('page', uid);
-
       if (result) {
-        // We use the State hook to save the document
         return setDocData(result);
       } else {
-        // Otherwise show an error message
-        console.warn('Page document not found. Make sure it exists in your Prismic repository');
+        console.warn('404. Page document not found.');
         toggleNotFound(true);
       }
     };
     fetchData();
-  }, [uid]); // Skip the Effect hook if the UID hasn't changed
+  }, [uid]);
 
   if (doc) {
     return (
