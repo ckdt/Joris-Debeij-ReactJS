@@ -48,7 +48,131 @@ body {
   top: 2em;
   right: 2em;
   z-index: 14;
+  display: block;
+  padding: 10px;
+  text-align: right;
 }
+.navigation-checkbox {
+  display: none;
+}
+.navigation-toggle {
+  width: 40px;
+  height: 40px;
+  display: block;
+  position: relative;
+  cursor: pointer;
+}
+
+.navigation-toggle-icon {
+  border-bottom: 6px solid white;
+  padding-top: 17px;
+  display: block;
+}
+
+.navigation-toggle-icon:before,
+.navigation-toggle-icon:after {
+  border-top: 6px solid white;
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.navigation-toggle-icon:before {
+  top: 4px;
+}
+
+.navigation-toggle-icon:after {
+  bottom: 4px;
+}
+
+/*
+ * This is where all the animation happens
+ */
+.navigation-toggle-icon,
+.navigation-toggle-icon:before,
+.navigation-toggle-icon:after {
+  -webkit-transition-property: -webkit-transform, border-color;
+  -moz-transition-property: -moz-transform, border-color;
+  transition-property: transform, border-color;
+  -webkit-transition-duration: 0.25s;
+  -moz-transition-duration: 0.25s;
+  transition-duration: 0.25s;
+  -webkit-transition-timing-function: cubic-bezier(0.5, -0.5, 0.5, 1.5);
+  -moz-transition-timing-function: cubic-bezier(0.5, -0.5, 0.5, 1.5);
+  transition-timing-function: cubic-bezier(0.5, -0.5, 0.5, 1.5);
+}
+
+.navigation-toggle-icon {
+  -webkit-transition-delay: 0.125s;
+  -moz-transition-delay: 0.125s;
+  transition-delay: 0.125s;
+}
+
+.navigation-toggle-icon:before,
+.navigation-toggle-icon:after {
+  -webkit-transition-delay: 0s;
+  -moz-transition-delay: 0s;
+  transition-delay: 0s;
+  -webkit-transform-origin: center;
+  -moz-transform-origin: center;
+  -ms-transform-origin: center;
+  -o-transform-origin: center;
+  transform-origin: center;
+}
+
+.navigation-checkbox:checked + .navigation-toggle .navigation-toggle-icon {
+  -webkit-transition-delay: 0s;
+  -moz-transition-delay: 0s;
+  transition-delay: 0s;
+}
+.navigation-checkbox:checked + .navigation-toggle .navigation-toggle-icon:before,
+.navigation-checkbox:checked + .navigation-toggle .navigation-toggle-icon:after {
+  -webkit-transition-delay: 0.125s;
+  -moz-transition-delay: 0.125s;
+  transition-delay: 0.125s;
+}
+.navigation-checkbox:checked + .navigation-toggle .navigation-toggle-icon:before {
+  -webkit-transform: translateY(13px) rotate(135deg);
+  -moz-transform: translateY(13px) rotate(135deg);
+  -ms-transform: translateY(13px) rotate(135deg);
+  -o-transform: translateY(13px) rotate(135deg);
+  transform: translateY(13px) rotate(135deg);
+  border-color: #ffc701;
+}
+.navigation-checkbox:checked + .navigation-toggle .navigation-toggle-icon {
+  border-color: transparent;
+}
+.navigation-checkbox:checked + .navigation-toggle .navigation-toggle-icon:after {
+  -webkit-transform: translateY(-13px) rotate(-135deg);
+  -moz-transform: translateY(-13px) rotate(-135deg);
+  -ms-transform: translateY(-13px) rotate(-135deg);
+  -o-transform: translateY(-13px) rotate(-135deg);
+  transform: translateY(-13px) rotate(-135deg);
+  border-color: #ffc701;
+}
+
+/*
+ * Presentational stuff
+ */
+body,
+html {
+  padding: 0;
+  margin: 0;
+}
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.navigation-toggle {
+  margin: 0 auto;
+}
+
 .navigation {
   position: fixed;
   top: 0;
@@ -258,14 +382,14 @@ body {
 }
 
 .view__projects .project--item .overlay {
-  justify-content: left;
   padding-left: 3em;
-
   position: sticky;
   position: -webkit-sticky;
   padding: 1rem 25% 1rem 1rem;
   color: white;
   top: 50%;
+  height: auto;
+  display: block;
 }
 
 .footer {
@@ -322,7 +446,7 @@ body {
   font-family: 'Formula Condensed', -apple-system, BlinkMacSystemFont, Roboto, helvetica neue,
     sans-serif;
   font-weight: 900;
-  letter-spacing: 0.025em;
+  letter-spacing: 0.02em;
 }
 
 .plyr--full-ui input[type='range'] {

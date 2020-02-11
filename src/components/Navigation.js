@@ -27,9 +27,8 @@ const Navigation = () => {
 
   const links = routes.map(({id, to, label, slug}) => {
     return (
-      <li className="main--nav">
+      <li className="main--nav" key={id}>
         <NavLink
-          key={id}
           className={`nav--item nav--item__${slug} ${navHoverID === id ? 'strike' : null}`}
           to={to}
           onMouseEnter={() => handleMouseEnter(id)}
@@ -40,29 +39,28 @@ const Navigation = () => {
       </li>
     );
   });
-  const Toggle = () => {
-    return (
-      <button className="nav--toggle" onClick={() => toggleNav()}>
-        Open/close
-      </button>
-    );
-  };
-  if (navIsOpen) {
-    return (
-      <>
+
+  return (
+    <>
+      {navIsOpen && (
         <nav className="navigation">
           <ul>{links}</ul>
         </nav>
-        <Toggle />
-      </>
-    );
-  } else {
-    return (
-      <>
-        <Toggle />
-      </>
-    );
-  }
+      )}
+      <div className="nav--toggle">
+        <input
+          id="navigation-checkbox"
+          className="navigation-checkbox"
+          type="checkbox"
+          checked={navIsOpen ? 'checked' : null}
+          onChange={() => toggleNav()}
+        />
+        <label className="navigation-toggle" htmlFor="navigation-checkbox">
+          <span className="navigation-toggle-icon"></span>
+        </label>
+      </div>
+    </>
+  );
 };
 
 // Export Navigation
