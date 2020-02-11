@@ -307,6 +307,23 @@ body {
   margin: 20px auto;
   max-width: 500px;
 }
+.plyr--video .plyr__title {
+  position: absolute;
+  left: 0;
+  bottom: 1.5em;
+  width: 100%;
+  text-align: left;
+  padding: 0 1rem;
+  font-size: 16px;
+  font-size: 1.6rem;
+  line-height: 20px;
+  line-height: 2rem;
+  text-transform: uppercase;
+  font-family: 'Formula Condensed', -apple-system, BlinkMacSystemFont, Roboto, helvetica neue,
+    sans-serif;
+  font-weight: 900;
+  letter-spacing: 0.025em;
+}
 
 .plyr--full-ui input[type='range'] {
   color: #ffc701;

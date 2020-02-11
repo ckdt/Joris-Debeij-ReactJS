@@ -1,21 +1,49 @@
 import React, {useRef, useState, useEffect} from 'react';
 import Plyr from 'plyr';
 
-const Video = ({videoUrl, videoType, videoFallback, videoIsPaused}) => {
+const Video = ({videoTitle, videoUrl, videoType, videoFallback, videoIsPaused}) => {
   const videoID = parseVideo(videoUrl).id;
   const videoInstance = useRef(null);
   const [videoPlayer, setVideoPlayer] = useState(null);
 
-  const controls = ['play-large', 'play', 'progress', 'mute', 'fullscreen'];
+  const controls = `
+  <div class="plyr__controls">
+    <div class="plyr__controls__item plyr__title">
+      ${videoTitle}
+    </div>
+    <button type="button" class="plyr__control" aria-label="Play, ${videoTitle}" data-plyr="play">
+        <svg class="icon--pressed" role="presentation"><use xlink:href="#plyr-pause"></use></svg>
+        <svg class="icon--not-pressed" role="presentation"><use xlink:href="#plyr-play"></use></svg>
+    </button>
+    <div class="plyr__controls__item plyr__progress__container">
+        <div class="plyr__progress">
+        <input data-plyr="seek" type="range" min="0" max="100" step="0.01" value="0" aria-label="Seek">
+        <progress class="plyr__progress__buffer" min="0" max="100" value="0">% buffered</progress>
+        <span role="tooltip" class="plyr__tooltip">00:00</span>
+        </div>
+    </div>
+    <button type="button" class="plyr__control" aria-label="Mute" data-plyr="mute">
+        <svg class="icon--pressed" role="presentation"><use xlink:href="#plyr-muted"></use></svg>
+        <svg class="icon--not-pressed" role="presentation"><use xlink:href="#plyr-volume"></use></svg>
+    </button>
+    <button type="button" class="plyr__control" data-plyr="fullscreen">
+        <svg class="icon--pressed" role="presentation"><use xlink:href="#plyr-exit-fullscreen"></use></svg>
+        <svg class="icon--not-pressed" role="presentation"><use xlink:href="#plyr-enter-fullscreen"></use></svg>
+    </button>
+  </div>
+  `;
 
   // Initialize Plyr
   useEffect(() => {
     const plyr = new Plyr(videoInstance.current, {
       volume: 0.5,
       muted: false,
-      controls: controls
+      controls: controls,
+      title: videoTitle
       // autoplay: true
     });
+
+    console.log('title', videoTitle);
 
     if (!videoIsPaused) {
       plyr.autoplay = true;

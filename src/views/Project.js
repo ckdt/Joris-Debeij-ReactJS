@@ -31,7 +31,7 @@ const ContentSlices = ({doc, videoIsPaused, setVideoIsPaused, seriesIndex, setSe
         const videoUrl = primary.video_source.url;
         const videoType = primary.video_embed_type;
         const videoFallback = primary.fallback_image.url;
-
+        const videoTitle = RichText.asText(doc.title);
         return (
           <Video
             key={index}
@@ -39,6 +39,7 @@ const ContentSlices = ({doc, videoIsPaused, setVideoIsPaused, seriesIndex, setSe
             videoFallback={videoFallback}
             videoType={videoType}
             videoIsPaused={videoIsPaused}
+            videoTitle={videoTitle}
           />
         );
       case 'series':
