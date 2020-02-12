@@ -2,7 +2,7 @@
 import React from 'react';
 
 // Import Assets
-import loader from '../assets/images/loader.svg';
+// import loader from '../assets/images/loader.svg';
 
 // Component: Loader
 const Loader = ({loaded}) => {
@@ -11,7 +11,7 @@ const Loader = ({loaded}) => {
   } else {
     return (
       <div className="status">
-        <img className="status--loader" alt="loading..." src={loader} />
+        <div className="status--loader"></div>
       </div>
     );
   }

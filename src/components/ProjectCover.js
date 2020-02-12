@@ -21,7 +21,7 @@ const ProjectCover = ({...props}) => {
   // States
   const [loaded, setLoaded] = useState(false);
   // Descructure
-  const {id, slug, video, title, fallback} = props;
+  const {id, slug, video, title, fallback, preload} = props;
 
   // Set vars
   const permaLink = `/project/${slug}`;
@@ -29,12 +29,7 @@ const ProjectCover = ({...props}) => {
   const videoSource = video.url;
   const titleText = RichText.asText(title);
   const fallbackSource = fallback.url;
-  const styleFallback = {
-    backgroundImage: `url(${fallbackSource})`,
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'center center',
-    backgroundSize: 'cover'
-  };
+  const preloadSource = preload.url;
 
   return (
     <div className={`project--item project--item__${slug}`}>
@@ -56,11 +51,12 @@ const ProjectCover = ({...props}) => {
         </div>
       </div>
       {videoSource ? (
-        <div className={`video ${loaded ? 'is-loaded' : 'loading'}`} style={styleFallback}>
+        <div className={`video ${loaded ? 'is-loaded' : 'loading'}`}>
           <video
+            poster={fallbackSource}
             className="video--player"
             playsInline
-            autoPlay
+            // autoPlay
             muted
             loop
             src={videoSource}
@@ -68,9 +64,15 @@ const ProjectCover = ({...props}) => {
           />
         </div>
       ) : (
-        <div className="video is-loaded is-unavailable" style={styleFallback}></div>
+        <div className="video is-loaded is-unavailable"></div>
       )}
       {videoSource && <Loader loaded={loaded} />}
+
+      {preloadSource && (
+        <div className="preload">
+          <img className="preload--image" src={preloadSource} />
+        </div>
+      )}
     </div>
   );
 };

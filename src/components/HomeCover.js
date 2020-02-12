@@ -16,25 +16,26 @@ const HomeCover = ({...props}) => {
   // States
   const [loaded, setLoaded] = useState(false);
   // Destructure
-  const {id, slug, video, title, fallback} = props;
+  const {id, slug, video, title, fallback, preload} = props;
 
   // Set vars
   const permaLink = `/projects/${slug}`;
   const videoSource = video.url;
   const titleText = RichText.asText(title);
   const fallbackSource = fallback.url;
+  const preloadSource = preload.url;
 
-  const styleFallback = {
-    backgroundImage: `url(${fallbackSource})`,
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'center center',
-    backgroundSize: 'cover'
-  };
+  // const styleFallback = {
+  //   backgroundImage: `url(${fallbackSource})`,
+  //   backgroundRepeat: 'no-repeat',
+  //   backgroundPosition: 'center center',
+  //   backgroundSize: 'cover'
+  // };
 
   return (
     <div
       className={`cover--item cover--item__${slug}`}
-      onClick={() => handleClick(history, permaLink)}
+      // onClick={() => handleClick(history, permaLink)}
     >
       {titleText && (
         <div className="overlay">
@@ -47,8 +48,9 @@ const HomeCover = ({...props}) => {
       )}
 
       {videoSource ? (
-        <div className={`video ${loaded ? 'is-loaded' : 'loading'}`} style={styleFallback}>
+        <div className={`video ${loaded ? 'is-loaded' : 'loading'}`}>
           <video
+            poster={fallbackSource}
             key={id}
             className="video--player"
             playsInline
@@ -60,9 +62,15 @@ const HomeCover = ({...props}) => {
           />
         </div>
       ) : (
-        <div className="video is-loaded is-unavailable" style={styleFallback}></div>
+        <div className="video is-loaded is-unavailable"></div>
       )}
       {videoSource && <Loader loaded={loaded} />}
+
+      {preloadSource && (
+        <div className="preload">
+          <img className="preload--image" src={preloadSource} />
+        </div>
+      )}
     </div>
   );
 };

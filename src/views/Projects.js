@@ -37,14 +37,15 @@ const Projects = ({match}) => {
           id: item.id,
           slug: item.uid,
           video: item.data.cover_video,
-          fallback: item.data.cover_image
+          fallback: item.data.cover_image,
+          preload: item.data.cover_preload_image
         }));
         setCoverData(covers);
 
         return true;
       } else {
-        console.warn('Page document not found. Make sure it exists in your Prismic repository');
-        toggleNotFound(true);
+        console.warn('404. Page document not found.');
+        return toggleNotFound(true);
       }
     };
     fetchData();
@@ -53,6 +54,10 @@ const Projects = ({match}) => {
   if (data && covers.length > 0) {
     return (
       <DefaultLayout title="projects">
+        <div className="projects--splash">
+          {uid === 'commercial' && <h1 className="splash--title">Commercial</h1>}
+          {uid === 'tv-film' && <h1 className="splash--title">TV &amp; Film</h1>}
+        </div>
         <div className="projects">
           {covers.map(item => (
             <ProjectCover key={item.id} {...item} />

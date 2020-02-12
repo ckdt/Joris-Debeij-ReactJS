@@ -31,16 +31,23 @@ const App = () => {
 
             return (
               <TransitionGroup component={null}>
-                <CSSTransition key={key} timeout={{enter: 500, exit: 500}} classNames="transition">
-                  <Switch location={location}>
-                    {/* <Redirect exact from="/" to="/" /> */}
-                    <Route exact path="/" component={Home} />
-                    <Route exact path="/page/:uid" component={Page} />
-                    <Route exact path="/projects/:uid" component={Projects} />
-                    <Route exact path="/project/:uid" component={Project} />
-                    <Route exact path="/project/:uid/info" component={Project} />
-                    <Route component={NotFound} />
-                  </Switch>
+                <CSSTransition
+                  key={key}
+                  appear={true}
+                  timeout={{enter: 500, exit: 500}}
+                  classNames="transition"
+                >
+                  <div className="transition--wrapper">
+                    <Switch location={location}>
+                      {/* <Redirect exact from="/" to="/" /> */}
+                      <Route exact path="/" component={Home} />
+                      <Route exact path="/page/:uid" component={Page} />
+                      <Route exact path="/projects/:uid" component={Projects} />
+                      <Route exact path="/project/:uid" component={Project} />
+                      <Route exact path="/project/:uid/info" component={Project} />
+                      <Route component={NotFound} />
+                    </Switch>
+                  </div>
                 </CSSTransition>
               </TransitionGroup>
             );

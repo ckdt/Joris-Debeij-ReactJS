@@ -27,9 +27,9 @@ const Navigation = () => {
 
   const links = routes.map(({id, to, label, slug}) => {
     return (
-      <li className="main--nav" key={id}>
+      <li className="list--item" key={id}>
         <NavLink
-          className={`nav--item nav--item__${slug} ${navHoverID === id ? 'strike' : null}`}
+          className={`list--link link--list__${slug} ${navHoverID === id ? 'strike' : null}`}
           to={to}
           onMouseEnter={() => handleMouseEnter(id)}
           onMouseLeave={() => handleMouseLeave()}
@@ -42,6 +42,51 @@ const Navigation = () => {
 
   return (
     <>
+      <div className="navigation">
+        <div className="nav--toggle">
+          <input
+            id="burger"
+            className="burger"
+            type="checkbox"
+            checked={navIsOpen ? 'checked' : null}
+            onChange={() => toggleNav()}
+          />
+          <label className="burger--toggle" htmlFor="burger">
+            <span className="burger--icon"></span>
+          </label>
+        </div>
+        <div className={`nav--overlay nav--overlay__${navIsOpen ? 'visible' : 'hidden'}`}>
+          <nav className="menu" role="navigation">
+            <ul className="menu--list menu--list__main">{links}</ul>
+            <ul className="menu--list menu--list__social">
+              <li className="list--item">
+                <a className="list--link" href="#">
+                  Instagram
+                </a>
+              </li>
+              <li className="list--item">
+                <a className="list--link" href="#">
+                  Vimeo
+                </a>
+              </li>
+              <li className="list--item">
+                <a className="list--link" href="#">
+                  IMDB
+                </a>
+              </li>
+            </ul>
+            <ul className="menu--list menu--list__credits">
+              <li className="list--item">
+                <a className="list--link" href="https://allthis.digital" target="_blank">
+                  Design &amp; Development by ALL THIS
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </>
+    /* 
       {navIsOpen && (
         <nav className="navigation">
           <ul>{links}</ul>
@@ -59,7 +104,7 @@ const Navigation = () => {
           <span className="navigation-toggle-icon"></span>
         </label>
       </div>
-    </>
+    </> */
   );
 };
 
