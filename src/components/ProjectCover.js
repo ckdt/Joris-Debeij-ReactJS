@@ -56,7 +56,7 @@ const ProjectCover = ({...props}) => {
             poster={fallbackSource}
             className="video--player"
             playsInline
-            // autoPlay
+            autoPlay
             muted
             loop
             src={videoSource}
