@@ -10,7 +10,8 @@
   --color-primary: #FFC701;
   --base-size: 16px;
   --duration: 0.5s;
-  --type-primary: 'Formula Condensed';
+  --type-head: 'Formula Condensed';
+  --type-paragraph: 'Neue Montreal';
 }
 
 /* Links */
@@ -273,6 +274,8 @@ body {
 
 /* Home */
 .view__home .content {
+  position: relative;
+  z-index: 5;
   display: flex;
   width: 100%;
   height: 100%;
@@ -351,6 +354,12 @@ body {
   animation-timing-function: ease-in-out;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
+}
+
+.cover--item .video--fallback {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* Animate in cover video*/
@@ -454,6 +463,8 @@ body {
 
 /* Projects */
 .view__projects .content {
+  position: relative;
+  z-index: 5;
   display: flex;
   flex-direction: column;
   height: auto;
@@ -471,6 +482,19 @@ body {
   align-items: center;
   justify-content: center;
   z-index: 1;
+  animation: splashup 500ms ease-out;
+  animation-fill-mode: forwards;
+  animation-delay: 1s;
+}
+
+@keyframes splashup {
+  0% {
+    margin-top: 0;
+  }
+
+  100% {
+    margin-top: -100vh;
+  }
 }
 
 .projects--splash {
@@ -484,10 +508,6 @@ body {
 .projects {
   position: relative;
   z-index: 2;
-}
-
-.project--item:first-child {
-  margin: 0 0 20vh 0;
 }
 
 .project--item {
@@ -551,6 +571,12 @@ body {
   animation-fill-mode: forwards;
 }
 
+.project--item .video--fallback {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .project--item .preload {
   position: absolute;
   width: 100%;
@@ -571,8 +597,171 @@ body {
   z-index: 10;
 }
 
+/* Project */
+.view__project .content {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 64px;
+  z-index: 5;
+}
+
+.view__project .content .series {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.view__project .series--controls {
+  position: fixed;
+  bottom: 2em;
+  left: 1em;
+  z-index: 6;
+  width: 6rem;
+  height: 2.5rem;
+  font-size: 1.25rem;
+  font-family: var(--type-paragraph), sans-serif;
+  color: var(--color-white);
+  background: var(--color-black);
+  text-align: center;
+  border: 1px solid var(--color-white-lucid);
+  border-radius: 1.5em;
+  display: flex;
+  justify-content: space-around;
+}
+
+.series--control {
+  cursor: pointer;
+  margin-top: 0.4em;
+  width: 1em;
+  height: 1em;
+}
+
+.series--control.is-disabled {
+  cursor: default;
+  opacity: 0.2;
+}
 
 
+.view__project .content .video {
+  width: 100%;
+}
+
+.info--toggle {
+  position: fixed;
+  bottom: 2em;
+  right: 1em;
+  z-index: 16;
+  width: 6rem;
+  height: 2.5rem;
+  font-size: 1.25rem;
+  font-family: var(--type-paragraph), sans-serif;
+  color: var(--color-white);
+  background: var(--color-black);
+  text-align: center;
+  border: 1px solid var(--color-white-lucid);
+  border-radius: 1.5em;
+}
+
+.info--toggle {}
+
+.info--toggle:hover {
+  border: 1px solid var(--color-white);
+}
+
+.info.is-open {
+  display: block;
+}
+
+.info.is-closed {
+  display: none;
+}
+
+.info {
+  position: absolute;
+  background: var(--color-black-lucid);
+  min-height: 80vh;
+  width: 100%;
+  top: 20vh;
+  left: 0;
+  padding: 1em;
+  z-index: 8;
+
+}
+
+.info--title {
+  text-transform: uppercase;
+  font-family: var(--type-head), -apple-system, BlinkMacSystemFont, Roboto, helvetica neue,
+    sans-serif;
+  font-weight: 900;
+  font-size: 3rem;
+  letter-spacing: 0.05rem;
+}
+
+.info--subtitle {
+  font-size: 1.25em;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 1em;
+}
+
+.info--body {
+  font-size: 1em;
+
+  margin-bottom: 1em;
+}
+
+.credits {
+  padding: 1em;
+  border: 1px solid var(--color-white-lucid);
+  margin-bottom: 2em;
+}
+
+.awards {
+  padding: 1em;
+  border: 1px solid var(--color-white-lucid);
+  margin-bottom: 2em;
+}
+
+.credit--item p,
+.award--item p {
+  font-size: 0.95em;
+  line-height: 2em;
+}
+
+/* about */
+.about--content {
+  padding: 1em;
+}
+
+.page--title {
+  text-transform: uppercase;
+  font-family: var(--type-head), -apple-system, BlinkMacSystemFont, Roboto, helvetica neue,
+    sans-serif;
+  font-weight: 900;
+  font-size: 3rem;
+  letter-spacing: 0.05rem;
+}
+
+.page--lead {
+  font-size: 1.25em;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 1em;
+}
+
+.page--body {
+  font-size: 1.025em;
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 1em;
+}
+
+.page--body p {
+  margin-bottom: 1em;
+}
 
 /* =========== Tablet ========== */
 @media only screen and (min-width: 768px) {}
@@ -584,8 +773,18 @@ body {
     --base-size: calc(var(--base-amount) / 5);
   }
 
+  .header {
+    z-index: 10;
+  }
+
+  .content {
+    z-index: 5;
+  }
+
   /* Home */
   .view__home .content {
+    position: relative;
+    z-index: 5;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -597,9 +796,13 @@ body {
   }
 
   .view__home .covers .cover--item {
+    transition: width 0.6s cubic-bezier(0.785, 0.135, 0.15, 0.86);
     width: 50%;
     height: 100%;
-    overflow: hidden;
+  }
+
+  .view__home .covers .cover--item:hover {
+    width: 70%;
   }
 
   .menu--list__main {
@@ -610,13 +813,96 @@ body {
   .menu--list__credits {
     font-size: 0.8rem;
   }
+
+  /*project*/
+  .view__project .content .video {
+    width: 80%;
+    height: 70vh;
+  }
+
+  .info.is-open {
+    padding: 1rem 8rem;
+    display: flex !important;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .info--title {
+    max-width: 40vw;
+    font-size: 8em;
+  }
+
+  .info--subtitle {
+    font-size: 2em;
+    max-width: 40vw;
+    font-weight: 700;
+  }
+
+  .info--body {
+    max-width: 40vw;
+    font-size: 1em;
+  }
+
+
+  .view__project .series--controls {
+    position: absolute;
+    bottom: initial;
+    left: initial;
+    z-index: 16;
+    width: 90%;
+    height: initial;
+    font-size: initial;
+    font-family: initial;
+    color: initial;
+    background: transparent;
+    text-align: center;
+    border: none;
+    border-radius: none;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .series--control {
+    cursor: pointer;
+    margin-top: 0;
+    width: initial;
+    height: initial;
+  }
+
+  /*info*/
+  .view__page .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about--header {
+    max-width: 60vw;
+  }
+
+  .about--content {
+    max-width: 60vw;
+    padding: 1em;
+  }
+
+
 }
 
 /* =========== Widescreen ========== */
 @media only screen and (min-width: 1920px) {
 
+  .header {
+    z-index: 10;
+  }
+
+  .content {
+    z-index: 5;
+  }
+
   /* Home */
   .view__home .content {
+    position: relative;
+    z-index: 5;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -643,5 +929,66 @@ body {
   .menu--list__social,
   .menu--list__credits {
     font-size: 0.6rem;
+  }
+
+  /*project*/
+  .view__project .content .video {
+    width: 80%;
+    height: 70vh;
+    object-fit: contain;
+  }
+
+  .info--title {
+    font-size: 8em;
+  }
+
+  .info--subtitle {
+    font-size: 2em;
+    font-weight: 700;
+  }
+
+  .info--body {
+    font-size: 1em;
+  }
+
+  .view__project .series--controls {
+    position: absolute;
+    bottom: initial;
+    left: initial;
+    z-index: 16;
+    width: 90%;
+    height: initial;
+    font-size: initial;
+    font-family: initial;
+    color: initial;
+    background: transparent;
+    text-align: center;
+    border: none;
+    border-radius: none;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .series--control {
+    cursor: pointer;
+    margin-top: 0;
+    width: initial;
+    height: initial;
+  }
+
+  /*info*/
+  .view__page .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about--header {
+    max-width: 60vw;
+  }
+
+  .about--content {
+    max-width: 60vw;
+    padding: 1em;
   }
 }

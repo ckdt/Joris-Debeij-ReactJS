@@ -19,19 +19,30 @@ import Awards from '../components/Awards';
 
 import Info from '../components/Info';
 
-const ContentSlices = ({doc, videoIsPaused, setVideoIsPaused, seriesIndex, setSeriesIndex}) => {
+const ContentSlices = ({
+  doc,
+  videoIsPaused,
+  videoIsBlurred,
+  setVideoIsPaused,
+  seriesIndex,
+  setSeriesIndex
+}) => {
   const {body} = doc;
-  console.log('body', body);
 
   const content = body.map(function(item, index) {
     const type = item.slice_type;
     const {items, primary} = item;
+
+    const txtTitle = RichText.asText(doc.title);
+    const txtSubTitle = RichText.asText(doc.subtitle);
+
+    console.log('doc', doc);
     switch (type) {
       case 'video':
         const videoUrl = primary.video_source.url;
         const videoType = primary.video_embed_type;
         const videoFallback = primary.fallback_image.url;
-        const videoTitle = RichText.asText(doc.title);
+        console.log('txtTitle', txtTitle);
         return (
           <Video
             key={index}
@@ -39,7 +50,8 @@ const ContentSlices = ({doc, videoIsPaused, setVideoIsPaused, seriesIndex, setSe
             videoFallback={videoFallback}
             videoType={videoType}
             videoIsPaused={videoIsPaused}
-            videoTitle={videoTitle}
+            videoIsBlurred={videoIsBlurred}
+            videoTitle={txtTitle}
           />
         );
       case 'series':
@@ -52,6 +64,7 @@ const ContentSlices = ({doc, videoIsPaused, setVideoIsPaused, seriesIndex, setSe
             setSeriesIndex={setSeriesIndex}
             videoIsPaused={videoIsPaused}
             setVideoIsPaused={setVideoIsPaused}
+            videoIsBlurred={videoIsBlurred}
           />
         );
       default:
@@ -67,6 +80,9 @@ const ContentSlices = ({doc, videoIsPaused, setVideoIsPaused, seriesIndex, setSe
 
 const InfoPopModal = ({doc, openModal, toggleInfoModal}) => {
   const {title, subtitle, description, cover_image, body} = doc;
+
+  const txtTitle = RichText.asText(title);
+  const txtSubTitle = RichText.asText(subtitle);
 
   const backgroundSource = cover_image.url;
   const styleBackground = {
@@ -96,10 +112,19 @@ const InfoPopModal = ({doc, openModal, toggleInfoModal}) => {
     }
   };
   return (
-    <div className={`info ${openModal ? 'is-open' : 'is-closed'}`} style={styleBackground}>
-      <h1>{RichText.asText(title)}</h1>
-      <ModalSlices body={doc.body} />
-      <button onClick={() => toggleInfoModal()}>Close</button>
+    <div className={`info ${openModal ? 'is-open' : 'is-closed'}`}>
+      <div className="info--column info--column__left">
+        {txtTitle && <h1 className="info--title">{txtTitle}</h1>}
+        {txtSubTitle && <p className="info--subtitle">{txtSubTitle}</p>}
+        {description && (
+          <div className="info--body">
+            <RichText render={description} />
+          </div>
+        )}
+      </div>
+      <div className="info--column info--column__right">
+        <ModalSlices body={doc.body} />
+      </div>
     </div>
   );
 };
@@ -114,6 +139,7 @@ const Project = ({match}) => {
   const [dataHasSeries, setDataHasSeries] = useState(false);
   const [seriesIndex, setSeriesIndex] = useState(0);
   const [videoIsPaused, setVideoIsPaused] = useState(false);
+  const [videoIsBlurred, setVideoIsBlurred] = useState(false);
   const [openModal, setOpenModal] = useState(false);
 
   // ComponentDidMount
@@ -151,7 +177,7 @@ const Project = ({match}) => {
     // } else {
     return (
       <button className="info--toggle" onClick={() => toggleInfoModal()}>
-        Info
+        {openModal ? 'close' : 'info'}
       </button>
     );
     // }
@@ -160,9 +186,11 @@ const Project = ({match}) => {
   const toggleInfoModal = () => {
     if (videoIsPaused) {
       setVideoIsPaused(false);
+      setVideoIsBlurred(false);
       setOpenModal(false);
     } else {
       setVideoIsPaused(true);
+      setVideoIsBlurred(true);
       setOpenModal(true);
     }
   };
@@ -173,6 +201,7 @@ const Project = ({match}) => {
         <ContentSlices
           doc={doc}
           videoIsPaused={videoIsPaused}
+          videoIsBlurred={videoIsBlurred}
           setVideoIsPaused={setVideoIsPaused}
           seriesIndex={seriesIndex}
           setSeriesIndex={setSeriesIndex}

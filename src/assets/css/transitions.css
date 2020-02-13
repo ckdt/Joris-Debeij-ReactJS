@@ -2,109 +2,27 @@
   opacity: 0.01;
 }
 
-.transition-appear.transition-appear-active {
+.transition-appear-active {
   opacity: 1;
-  transition: opacity 500ms ease-in;
+  transition: opacity 500ms ease-out;
 }
 
 .transition-enter {
-  opacity: 0;
-}
-
-.transition-enter.transition-enter-active {
-  opacity: 1;
-  transition: opacity 500ms ease-in;
-}
-
-.transition-exit {
-  opacity: 1;
-}
-
-.transition-exit.transition-exit-active {
-  opacity: 0;
-  transition: opacity 500ms ease-in;
-}
-
-
-/* .transition-enter {
-  opacity: 0;
+  opacity: 0.01;
 }
 
 .transition-enter-active {
   opacity: 1;
-  transition: opacity 5s;
+  transition: opacity 500ms ease-out;
+  overflow: hidden;
 }
-
-.transition-enter .content {
-  opacity: 0;
-  transform: translate(0, 0);
-}
-
-.transition-enter-active .content {
-  opacity: 1;
-  transform: translate(0, 100px);
-  transition: opacity 5s, transform 5s !important;
-}
-
 
 .transition-exit {
   opacity: 1;
 }
 
 .transition-exit-active {
-  opacity: 0;
-  transition: opacity 5s;
+  opacity: 0.01;
+  transition: opacity 500ms ease-out;
+  overflow: hidden;
 }
-
-.transition-exit .content {
-  opacity: 1;
-  transform: translate(0, 0);
-}
-
-.transition-exit-active .content {
-  opacity: 0;
-  transform: translate(0, 100px);
-  transition: opacity 5s, transform 5s !important;
-}
-
-/* .transition-exit {
-  opacity: 1;
-}
-
-.transition-exit-active {
-  opacity: 1;
-  transition: opacity 0.5s;
-}
-
-.transition-exit .cover--item {
-  opacity: 1;
-  transform: translate(0, 0);
-}
-
-.transition-exit-active .project--item {
-  opacity: 0;
-  transform: translate(0, 100px);
-  transition: opacity 0.5s, transform 0.5s;
-}
-
-.transition-exit .cover--item__commercial {
-  opacity: 1;
-  transform: translate(0, 0);
-}
-
-.transition-exit-active .cover--item__commercial {
-  opacity: 1;
-  transform: translate(-100%, 0);
-  transition: opacity 0.5s, transform 0.5s;
-}
-
-.transition-exit .cover--item__tv-film {
-  opacity: 1;
-  transform: translate(0, 0);
-}
-
-.transition-exit-active .cover--item__tv-film {
-  opacity: 1;
-  transform: translate(100%, 0);
-  transition: opacity 0.5s, transform 0.5s;
-} */

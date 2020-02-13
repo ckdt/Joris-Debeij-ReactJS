@@ -33,13 +33,13 @@ const App = () => {
               <TransitionGroup component={null}>
                 <CSSTransition
                   key={key}
+                  in={true}
                   appear={true}
-                  timeout={{enter: 500, exit: 500}}
+                  timeout={500}
                   classNames="transition"
                 >
                   <div className="transition--wrapper">
                     <Switch location={location}>
-                      {/* <Redirect exact from="/" to="/" /> */}
                       <Route exact path="/" component={Home} />
                       <Route exact path="/page/:uid" component={Page} />
                       <Route exact path="/projects/:uid" component={Projects} />

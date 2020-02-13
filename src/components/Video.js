@@ -1,12 +1,18 @@
 import React, {useRef, useState, useEffect} from 'react';
 import Plyr from 'plyr';
 
-const Video = ({videoTitle, videoUrl, videoType, videoFallback, videoIsPaused}) => {
+const Video = ({videoTitle, videoUrl, videoType, videoFallback, videoIsPaused, videoIsBlurred}) => {
   const videoID = parseVideo(videoUrl).id;
   const videoInstance = useRef(null);
   const [videoPlayer, setVideoPlayer] = useState(null);
 
-  const controls = `
+  const blurStyle = {
+    filter: `blur(20px)`
+  };
+
+  // Initialize Plyr
+  useEffect(() => {
+    const controls = `
   <div class="plyr__controls">
     <div class="plyr__controls__item plyr__title">
       ${videoTitle}
@@ -33,8 +39,6 @@ const Video = ({videoTitle, videoUrl, videoType, videoFallback, videoIsPaused}) 
   </div>
   `;
 
-  // Initialize Plyr
-  useEffect(() => {
     const plyr = new Plyr(videoInstance.current, {
       volume: 0.5,
       muted: false,
@@ -42,9 +46,6 @@ const Video = ({videoTitle, videoUrl, videoType, videoFallback, videoIsPaused}) 
       title: videoTitle
       // autoplay: true
     });
-
-    console.log('title', videoTitle);
-
     if (!videoIsPaused) {
       plyr.autoplay = true;
     }
@@ -54,6 +55,8 @@ const Video = ({videoTitle, videoUrl, videoType, videoFallback, videoIsPaused}) 
   }, [videoInstance]);
 
   useEffect(() => {
+    console.log('title', videoTitle);
+    console.log('blur', videoIsBlurred);
     if (videoPlayer) {
       if (videoIsPaused) {
         videoPlayer.pause();
@@ -67,7 +70,7 @@ const Video = ({videoTitle, videoUrl, videoType, videoFallback, videoIsPaused}) 
     case 'vimeo':
       return (
         <>
-          <div className="video">
+          <div className="video" style={videoIsBlurred ? blurStyle : null}>
             <div
               ref={videoInstance}
               className="video--player"
@@ -80,7 +83,7 @@ const Video = ({videoTitle, videoUrl, videoType, videoFallback, videoIsPaused}) 
     case 'youtube':
       return (
         <>
-          <div className="video">
+          <div className="video" style={videoIsBlurred ? blurStyle : null}>
             <div
               ref={videoInstance}
               className="video--player"
@@ -93,7 +96,7 @@ const Video = ({videoTitle, videoUrl, videoType, videoFallback, videoIsPaused}) 
     default:
       return (
         <>
-          <div className="video">
+          <div className="video" style={videoIsBlurred ? blurStyle : null}>
             <video
               ref={videoInstance}
               poster={videoFallback}

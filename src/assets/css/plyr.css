@@ -1,0 +1,67 @@
+/* Variables */
+:root {
+  --color-black: #000000;
+  --color-black-lucid: rgba(0, 0, 0, 0.3);
+  --color-black-trans: rgba(0, 0, 0, 0);
+  --color-white: #ffffff;
+  --color-white-lucid: rgba(255, 255, 255, 0.3);
+  --color-primary: #FFC701;
+  --base-size: 16px;
+  --duration: 0.5s;
+  --type-head: 'Formula Condensed';
+  --type-paragraph: 'Neue Montreal';
+}
+
+.plyr--video .plyr__controls {
+  padding: 0px 16px 0 16px;
+}
+
+.plyr--video .plyr__title {
+  position: absolute;
+  left: 0;
+  bottom: 1em;
+  width: 100%;
+  text-align: left;
+  padding: 0 1rem;
+  font-size: 3rem;
+  line-height: 0.9;
+  text-transform: uppercase;
+  font-family: var(--type-head), -apple-system, BlinkMacSystemFont, Roboto, helvetica neue,
+    sans-serif;
+  font-weight: 900;
+  letter-spacing: 0.05rem;
+}
+
+.plyr--full-ui input[type='range'] {
+  color: var(--color-primary);
+}
+
+.plyr__control--overlaid {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.plyr--video .plyr__control.plyr__tab-focus,
+.plyr--video .plyr__control:hover,
+.plyr--video .plyr__control[aria-expanded='true'] {
+  background: none;
+}
+
+.plyr--video .plyr__control[aria-expanded='true'] {
+  background: none;
+}
+
+.plyr--video .plyr__control svg {
+  fill: #fff;
+}
+
+.plyr--video .plyr__control:hover svg {
+  fill: var(--color-primary);
+}
+
+.plyr__control.plyr__tab-focus {
+  box-shadow: none;
+}
+
+.plyr__menu__container .plyr__control[role='menuitemradio'][aria-checked='true']::before {
+  background: var(--color-primary);
+}

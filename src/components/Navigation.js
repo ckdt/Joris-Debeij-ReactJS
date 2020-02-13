@@ -10,7 +10,7 @@ const Navigation = () => {
   const [navIsOpen, SetNavIsOpen] = useState(false);
   const [navHoverID, setNavHoverID] = useState(null);
 
-  const toggleNav = () => {
+  const toggleNav = navIsOpen => {
     if (navIsOpen) {
       SetNavIsOpen(false);
     } else {
@@ -48,8 +48,9 @@ const Navigation = () => {
             id="burger"
             className="burger"
             type="checkbox"
-            checked={navIsOpen ? 'checked' : null}
-            onChange={() => toggleNav()}
+            checked={navIsOpen ? 'checked' : ''}
+            value={''}
+            onChange={() => toggleNav(navIsOpen)}
           />
           <label className="burger--toggle" htmlFor="burger">
             <span className="burger--icon"></span>

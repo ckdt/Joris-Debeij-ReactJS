@@ -64,7 +64,9 @@ const ProjectCover = ({...props}) => {
           />
         </div>
       ) : (
-        <div className="video is-loaded is-unavailable"></div>
+        <div className="video is-loaded is-unavailable">
+          <img className="video--fallback" src={fallbackSource} alt={titleText} />
+        </div>
       )}
       {videoSource && <Loader loaded={loaded} />}
 

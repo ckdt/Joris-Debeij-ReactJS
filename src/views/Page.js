@@ -33,14 +33,19 @@ const Page = ({match}) => {
 
   if (doc) {
     return (
-      <DefaultLayout>
-        <div className="page">
-          {/* This is how to get an image into your template */}
-          <img src={doc.data.image.url} alt={doc.data.image.alt} />
-          {/* This is how to render a Rich Text field as plain text */}
-          <h1>{RichText.asText(doc.data.title)}</h1>
-          {/* This is how to render a Rich Text field into your template as HTML */}
-          <RichText render={doc.data.description} linkResolver={linkResolver} />
+      <DefaultLayout title="page">
+        <header className="about--header">
+          <img className="page--masthead" src={doc.data.image.url} alt={doc.data.image.alt} />
+        </header>
+        <div className="about--content">
+          <h1 className="page--title">{RichText.asText(doc.data.title)}</h1>
+
+          <div className="page--lead">
+            <RichText render={doc.data.description} linkResolver={linkResolver} />
+          </div>
+          <div className="page--body">
+            <RichText render={doc.data.body} linkResolver={linkResolver} />
+          </div>
         </div>
       </DefaultLayout>
     );
