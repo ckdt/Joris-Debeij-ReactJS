@@ -9,7 +9,8 @@
   --base-size: 16px;
   --duration: 0.5s;
   --type-head: 'Formula Condensed';
-  --type-paragraph: 'Neue Montreal';
+  --type-lead: 'Object Sans';
+  --type-paragraph: 'Neue Machina';
 }
 
 .plyr--video .plyr__controls {

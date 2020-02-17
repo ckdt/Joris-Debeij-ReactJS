@@ -1,15 +1,17 @@
-/* @font-face {
-  font-family: 'Neue Machina';
-  src: url('../fonts/Neue Machina/neuemachina-ultralight-webfont.woff2') format('woff2'),
-    url('../fonts/Neue Machina/neuemachina-ultralight-webfont.woff') format('woff');
-  font-weight: 100;
+@font-face {
+  font-family: 'Formula Condensed';
+  src: url('../fonts/Formula Condensed/FormulaCondensed-Black.woff2') format('woff2'),
+    url('../fonts/Formula Condensed/FormulaCondensed-Black.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
 }
 
 @font-face {
-  font-family: 'Neue Machina';
-  src: url('../fonts/Neue Machina/neuemachina-light-webfont.woff2') format('woff2'),
-    url('../fonts/Neue Machina/neuemachina-light-webfont.woff') format('woff');
-  font-weight: 300;
+  font-family: 'Formula Condensed';
+  src: url('../fonts/Formula Condensed/FormulaCondensed-Regular.woff2') format('woff2'),
+    url('../fonts/Formula Condensed/FormulaCondensed-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
 }
 
 @font-face {
@@ -23,48 +25,43 @@
 
 @font-face {
   font-family: 'Neue Machina';
-  src: url('../fonts/Neue Machina/neuemachina-medium-webfont.woff2') format('woff2'),
-    url('../fonts/Neue Machina/neuemachina-medium-webfont.woff') format('woff');
-  font-weight: 500;
-}
-
-@font-face {
-  font-family: 'Neue Machina';
   src: url('../fonts/Neue Machina/neuemachina-bold-webfont.woff2') format('woff2'),
     url('../fonts/Neue Machina/neuemachina-bold-webfont.woff') format('woff');
   font-weight: 700;
 }
 
+
 @font-face {
-  font-family: 'Neue Machina';
-  src: url('../fonts/Neue Machina/neuemachina-ultrabold-webfont.woff2') format('woff2'),
-    url('../fonts/Neue Machina/neuemachina-ultrabold-webfont.woff') format('woff');
-  font-weight: 800;
+  font-family: 'Object Sans';
+  src: url('../fonts/Object Sans/objectsans-bold-webfont.woff2') format('woff2'),
+    url('../fonts/Object Sans/objectsans-bold-webfont.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+
 }
 
 @font-face {
-  font-family: 'Neue Machina';
-  src: url('../fonts/Neue Machina/neuemachina-black-webfont.woff2') format('woff2'),
-    url('../fonts/Neue Machina/neuemachina-black-webfont.woff') format('woff');
-  font-weight: 900;
-} */
-
-@font-face {
-  font-family: 'Formula Condensed';
-  src: url('../fonts/Formula Condensed/FormulaCondensed-Black.woff2') format('woff2'),
-    url('../fonts/Formula Condensed/FormulaCondensed-Black.woff') format('woff');
+  font-family: 'Object Sans';
+  src: url('../fonts/Object Sans/objectsans-heavy-webfont.woff2') format('woff2'),
+    url('../fonts/Object Sans/objectsans-heavy-webfont.woff') format('woff');
   font-weight: 900;
   font-style: normal;
+
 }
 
 @font-face {
-  font-family: 'Formula Condensed';
-  src: url('../fonts/Formula Condensed/FormulaCondensed-Regular.woff2') format('woff2'),
-    url('../fonts/Formula Condensed/FormulaCondensed-Regular.woff') format('woff');
-  font-weight: normal;
+  font-family: 'Object Sans';
+  src: url('../fonts/Object Sans/objectsans-regular-webfont.woff2') format('woff2'),
+    url('../fonts/Object Sans/objectsans-regular-webfont.woff') format('woff');
+  font-weight: 400;
   font-style: normal;
+
 }
 
+
+
+
+/*
 @font-face {
   font-family: 'Neue Montreal';
   src: url('../fonts/Neue Montreal/neuemontreal-light-webfont.woff2') format('woff2'),
@@ -111,3 +108,5 @@
   font-weight: 700;
   font-style: italic;
 }
+
+*/
