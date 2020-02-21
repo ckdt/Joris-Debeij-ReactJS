@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import Video from '../components/Video';
 import {RichText} from 'prismic-reactjs';
 import arrowLeft from '../assets/images/arrow-left.svg';
@@ -19,14 +19,6 @@ const Series = ({seriesData, videoIsPaused, setVideoIsPaused, videoIsBlurred}) =
       setVideoIsPaused(false);
     }
   };
-
-  useEffect(() => {
-    console.log('serues', seriesData);
-  }, [seriesData]);
-
-  useEffect(() => {
-    console.log('total', total, 'start', startIndex, 'current', currentIndex);
-  }, [currentIndex]);
 
   return (
     <div className="series">

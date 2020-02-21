@@ -21,33 +21,46 @@ const ProjectCover = ({...props}) => {
   // States
   const [loaded, setLoaded] = useState(false);
   // Descructure
-  const {id, slug, video, title, fallback, preload} = props;
+  const {tags, slug, video, title, subtitle, fallback, preload} = props;
 
   // Set vars
   const permaLink = `/project/${slug}`;
-  const permaLinkInfo = `/project/${slug}/info`;
   const videoSource = video.url;
   const titleText = RichText.asText(title);
+  const subtitleText = RichText.asText(subtitle);
   const fallbackSource = fallback.url;
   const preloadSource = preload.url;
 
+  // find year
+  const dispYear = tags.find(value => /\d{4}/.test(value));
+  const blacklist = ['tv-film', 'commercial', dispYear];
+  const dispTags = tags.filter(tag => !blacklist.includes(tag));
+
   return (
-    <div className={`project--item project--item__${slug}`}>
+    <div
+      className={`project--item project--item__${slug}`}
+      onClick={() => handleClick(history, permaLink)}
+    >
       <div className="overlay">
         <div className="overlay--content">
+          <div className="overlay--meta">
+            {dispYear && <p className="meta--year">{dispYear}</p>}
+            {dispTags && (
+              <ul className="meta--tags">
+                {dispTags.map((item, index) => (
+                  <li key={index} className="tag">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
           {titleText && (
             <h2 className="overlay--title">
               <Link to={permaLink}>{titleText}</Link>
             </h2>
           )}
-          <div className="overlay--controls">
-            <Link to={permaLink} className="control--play">
-              Play
-            </Link>
-            <Link to={permaLinkInfo} className="control--info">
-              Info
-            </Link>
-          </div>
+          {subtitleText && <h3 className="overlay--subtitle">{subtitleText}</h3>}
         </div>
       </div>
       {videoSource ? (
@@ -72,7 +85,7 @@ const ProjectCover = ({...props}) => {
 
       {preloadSource && (
         <div className="preload">
-          <img className="preload--image" src={preloadSource} />
+          <img className="preload--image" src={preloadSource} alt="loading..." />
         </div>
       )}
     </div>

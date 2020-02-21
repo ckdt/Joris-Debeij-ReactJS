@@ -11,6 +11,60 @@ import NotFound from '../views/NotFound';
 // Import Custom Components
 import DefaultLayout from '../components/DefaultLayout';
 
+const Contacts = ({items}) => {
+  const result = items.map(function(item, index) {
+    const {contact_title, contact_info} = item;
+    return (
+      <div className="contacts--item" key={index}>
+        <h2>{RichText.asText(contact_title)}</h2>
+        <RichText render={contact_info} linkResolver={linkResolver} />
+      </div>
+    );
+  });
+  if (result) {
+    return <div className="contacts">{result}</div>;
+  } else {
+    return null;
+  }
+};
+
+const Awards = ({items}) => {
+  const result = items.map(function(item, index) {
+    const {award_logo, award_title} = item;
+    return (
+      <div className="awards--item" key={index}>
+        <img src={award_logo.url} alt={award_title} />
+      </div>
+    );
+  });
+  if (result) {
+    return <div className="awards">{result}</div>;
+  } else {
+    return null;
+  }
+};
+
+const ContentSlices = ({data}) => {
+  const {slices} = data;
+  const result = slices.map(function(item, index) {
+    const type = item.slice_type;
+    const {items} = item;
+    switch (type) {
+      case 'contacts':
+        return <Contacts items={items} key={index} />;
+      case 'awards':
+        return <Awards items={items} key={index} />;
+      default:
+        return null;
+    }
+  });
+  if (result) {
+    return result;
+  } else {
+    return null;
+  }
+};
+
 // Component: Page
 const Page = ({match}) => {
   const [doc, setDocData] = useState(null);
@@ -39,12 +93,12 @@ const Page = ({match}) => {
         </header>
         <div className="about--content">
           <h1 className="page--title">{RichText.asText(doc.data.title)}</h1>
-
           <div className="page--lead">
             <RichText render={doc.data.description} linkResolver={linkResolver} />
           </div>
           <div className="page--body">
-            <RichText render={doc.data.body} linkResolver={linkResolver} />
+            <RichText render={doc.data.body_copy} linkResolver={linkResolver} />
+            <ContentSlices data={doc.data} />
           </div>
         </div>
       </DefaultLayout>

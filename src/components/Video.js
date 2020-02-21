@@ -51,12 +51,9 @@ const Video = ({videoTitle, videoUrl, videoType, videoFallback, videoIsPaused, v
     }
     window.player = plyr;
     setVideoPlayer(plyr);
-    console.log(plyr);
   }, [videoInstance]);
 
   useEffect(() => {
-    console.log('title', videoTitle);
-    console.log('blur', videoIsBlurred);
     if (videoPlayer) {
       if (videoIsPaused) {
         videoPlayer.pause();
@@ -127,10 +124,11 @@ const parseVideo = videoUrl => {
     /(http:|https:|)\/\/(player.|www.)?(vimeo\.com|youtu(be\.com|\.be|be\.googleapis\.com))\/(video\/|embed\/|watch\?v=|v\/)?([A-Za-z0-9._%-]*)(\&\S+)?/
   );
 
+  var type = '';
   if (RegExp.$3.indexOf('youtu') > -1) {
-    var type = 'youtube';
+    type = 'youtube';
   } else if (RegExp.$3.indexOf('vimeo') > -1) {
-    var type = 'vimeo';
+    type = 'vimeo';
   }
 
   return {

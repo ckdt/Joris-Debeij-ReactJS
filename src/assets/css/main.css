@@ -11,8 +11,8 @@
   --base-size: 16px;
   --duration: 0.5s;
   --type-head: 'Formula Condensed';
-  --type-lead: 'Object Sans';
-  --type-paragraph: 'Neue Machina';
+  --type-lead: 'Neue Montreal';
+  --type-paragraph: 'Neue Montreal';
 }
 
 /* Links */
@@ -47,7 +47,6 @@ body {
 }
 
 /* =========== App ========== */
-
 #app,
 .view,
 .transition--wrapper {
@@ -58,9 +57,13 @@ body {
 .header {
   position: absolute;
   width: 100%;
-  z-index: 10;
+
   height: 64px;
   font-size: 16px;
+}
+
+.header {
+  z-index: 10;
 }
 
 .logo {
@@ -114,6 +117,23 @@ body {
 .burger--icon:after {
   bottom: 0px;
 }
+
+.back--button {
+  width: 32px;
+  height: 32px;
+  display: block;
+  position: relative;
+  cursor: pointer;
+  padding: 8px 4px;
+}
+
+.back--button img {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
 
 /* Burger animation config */
 .burger--icon,
@@ -217,18 +237,20 @@ body {
   }
 }
 
-.strike {
+.strike,
+.list--link.active {
   position: relative;
 }
 
-.strike::before {
+.strike::before,
+.list--link.active::before {
   content: ' ';
   position: absolute;
   top: 36%;
   left: 0;
   width: 100%;
   height: 0.8rem;
-  background: #ffc701;
+  background: var(--color-primary);
   animation-name: strike;
   animation-duration: 0.25s;
   animation-timing-function: ease-in-out;
@@ -237,30 +259,39 @@ body {
   mix-blend-mode: screen;
 }
 
+.list--link.active::before {
+  background: var(--color-white-lucid);
+}
+
 .menu--list__social {
-  font-family: var(--type-lead), sans-serif;
-  font-weight: 400;
-  /* letter-spacing: 0.05rem; */
+  font-family: var(--type-head), sans-serif;
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: 0.05rem;
   margin-bottom: 5rem;
 }
 
-.menu--list__social .list--item {
-  display: inline;
-  padding-right: 1em;
+.menu--list__social .list--item:first-child {
+  padding-left: 0;
 }
 
-.menu--list__social .list--item:last-child {
-  padding-right: none;
+
+.menu--list__social .list--item {
+  display: inline;
+  padding-left: 1em;
 }
+
 
 .menu--list__social .list--item a:hover {
   color: var(--color-primary);
 }
 
 .menu--list__credits {
-  font-family: var(--type-lead), sans-serif;
-  position: absolute;
-  bottom: 2em;
+  font-family: var(--type-head), sans-serif;
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: 0.05rem;
+  margin-bottom: 5rem;
 }
 
 .menu--list__credits a {
@@ -280,6 +311,10 @@ body {
   display: flex;
   width: 100%;
   height: 100%;
+}
+
+.content {
+  z-index: 5;
 }
 
 .covers {
@@ -327,6 +362,7 @@ body {
   text-align: center;
   width: 100%;
 }
+
 
 .cover--item .overlay--content .overlay--title a {
   pointer-events: auto;
@@ -487,6 +523,16 @@ body {
   animation-delay: 1s;
 }
 
+@keyframes splashfade {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
 @keyframes splashup {
   0% {
     margin-top: 0;
@@ -515,6 +561,7 @@ body {
   width: 80vw;
   min-height: 60vh;
   margin: 20vh 0;
+  cursor: pointer;
 }
 
 .project--item:hover .overlay {
@@ -541,6 +588,28 @@ body {
   display: block;
 }
 
+.project--item .overlay--content .overlay--meta {
+  margin-bottom: 1em;
+  display: flex;
+}
+
+.project--item .overlay--content .meta--year {
+  padding-right: 1em;
+}
+
+.project--item .overlay--content .meta--tags {}
+
+.project--item .overlay--content .meta--tags .tag {
+  margin-right: 0.5em;
+}
+
+.project--item .overlay--content .tag {
+  display: inline;
+  border-radius: 2em;
+  padding: 0.25em 1em;
+  background: var(--color-black);
+}
+
 .project--item .overlay--content .overlay--title {
   font-family: var(--type-head), sans-serif;
   font-weight: 900;
@@ -548,6 +617,16 @@ body {
   text-transform: uppercase;
   font-size: 4rem;
   width: 100%;
+}
+
+.project--item .overlay--content .overlay--subtitle {
+  font-family: var(--type-paragraph), sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.2;
+}
+
+.project--item .overlay--content .overlay--subtitle {
+  display: none;
 }
 
 .project--item .video {
@@ -607,6 +686,8 @@ body {
   z-index: 5;
 }
 
+
+
 .view__project .content .series {
   display: flex;
   flex-direction: column;
@@ -617,7 +698,7 @@ body {
 .view__project .series--controls {
   position: fixed;
   bottom: 2em;
-  left: 1em;
+  right: 1em;
   z-index: 6;
   width: 6rem;
   height: 2.5rem;
@@ -651,11 +732,11 @@ body {
 .info--toggle {
   position: fixed;
   bottom: 2em;
-  right: 1em;
+  left: 1em;
   z-index: 16;
   width: 6rem;
   height: 2.5rem;
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-family: var(--type-paragraph), sans-serif;
   color: var(--color-white);
   background: var(--color-black);
@@ -787,20 +868,15 @@ body {
 
 @media only screen and (min-width: 1024px) {
   :root {
-    --type-head: 'Formula Condensed';
-    --type-lead: 'Object Sans';
-    --type-paragraph: 'Neue Machina';
     --base-amount: calc(100vw / 12);
-    --base-size: calc(var(--base-amount) / 5);
+    --base-size: calc(var(--base-amount) / 5) !important;
   }
 
-  .header {
-    z-index: 10;
+  html,
+  body {
+    font-size: var(--base-size);
   }
 
-  .content {
-    z-index: 5;
-  }
 
   /* Home */
   .view__home .content {
@@ -822,6 +898,11 @@ body {
     height: 100%;
   }
 
+  .view__home .covers .cover--item .overlay--content .overlay--title {
+    font-size: 4rem;
+  }
+
+
   .view__home .covers .cover--item:hover {
     width: 70%;
   }
@@ -832,8 +913,16 @@ body {
 
   .menu--list__social,
   .menu--list__credits {
+    font-size: 0.75rem;
+  }
 
-    font-size: 0.8rem;
+  /*projects*/
+  .project--item .overlay--content .overlay--subtitle {
+    display: initial;
+  }
+
+  .project--item .overlay--content .overlay--title {
+    font-size: 6rem;
   }
 
   /*project*/
@@ -851,12 +940,12 @@ body {
 
   .info--title {
     max-width: 40vw;
-    font-size: 8em;
+    font-size: 4em;
   }
 
   .info--subtitle {
     font-family: var(--type-lead), sans-serif;
-    font-size: 2em;
+    font-size: 0.75rem;
     max-width: 40vw;
     font-weight: 700;
   }
@@ -864,32 +953,7 @@ body {
   .info--body {
     font-family: var(--type-paragraph), sans-serif;
     max-width: 40vw;
-    font-size: 1em;
-  }
-
-  .view__project .series--controls {
-    position: absolute;
-    bottom: initial;
-    left: initial;
-    z-index: 16;
-    width: 90%;
-    height: initial;
-    font-size: initial;
-    font-family: initial;
-    color: initial;
-    background: transparent;
-    text-align: center;
-    border: none;
-    border-radius: none;
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .series--control {
-    cursor: pointer;
-    margin-top: 0;
-    width: initial;
-    height: initial;
+    font-size: 0.75em;
   }
 
   /*info*/
@@ -915,12 +979,10 @@ body {
 
 /* =========== Widescreen ========== */
 @media only screen and (min-width: 1920px) {
-  .header {
-    z-index: 10;
-  }
 
-  .content {
-    z-index: 5;
+  html,
+  body {
+    font-size: 32px;
   }
 
   /* Home */
@@ -949,9 +1011,9 @@ body {
     width: 70%;
   }
 
-  .menu--list__social,
-  .menu--list__credits {
-    font-size: 0.6rem;
+  /*projects*/
+  .overlay--title {
+    font-size: 6rem;
   }
 
   /*project*/
@@ -961,42 +1023,18 @@ body {
     object-fit: contain;
   }
 
+  /*info*/
   .info--title {
-    font-size: 8em;
+    font-size: 4em;
   }
 
   .info--subtitle {
-    font-size: 2em;
+    font-size: 0.75rem;
     font-weight: 700;
   }
 
   .info--body {
-    font-size: 1em;
-  }
-
-  .view__project .series--controls {
-    position: absolute;
-    bottom: initial;
-    left: initial;
-    z-index: 16;
-    width: 90%;
-    height: initial;
-    font-size: initial;
-    font-family: initial;
-    color: initial;
-    background: transparent;
-    text-align: center;
-    border: none;
-    border-radius: none;
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .series--control {
-    cursor: pointer;
-    margin-top: 0;
-    width: initial;
-    height: initial;
+    font-size: 0.75rem;
   }
 
   /*info*/

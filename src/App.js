@@ -1,6 +1,6 @@
 // Import Defaults
-import React, {Component, Fragment} from 'react';
-import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
+import React, {Fragment} from 'react';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import {TransitionGroup, CSSTransition} from 'react-transition-group';
 
 // Import Prismic

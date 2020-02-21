@@ -6,10 +6,10 @@ import Logo from '../components/Logo';
 import Navigation from './Navigation';
 
 // Component: Header
-const Header = () => (
+const Header = ({showBackButton}) => (
   <header className="header">
     <Logo />
-    <Navigation />
+    <Navigation showBackButton={showBackButton} />
   </header>
 );
 

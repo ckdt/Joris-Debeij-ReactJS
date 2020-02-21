@@ -1,18 +1,10 @@
 import React, {useState} from 'react';
-import {Link, useHistory} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import Loader from './Loader';
 import {RichText} from 'prismic-reactjs';
 
-// EventHandlers
-const handleClick = (history, location) => {
-  // Go to a new page
-  return history.push(location);
-};
 // Component: HomeCover
 const HomeCover = ({...props}) => {
-  // Set history for EventHandler
-  let history = useHistory();
-
   // States
   const [loaded, setLoaded] = useState(false);
   // Destructure
@@ -25,18 +17,8 @@ const HomeCover = ({...props}) => {
   const fallbackSource = fallback.url;
   const preloadSource = preload.url;
 
-  // const styleFallback = {
-  //   backgroundImage: `url(${fallbackSource})`,
-  //   backgroundRepeat: 'no-repeat',
-  //   backgroundPosition: 'center center',
-  //   backgroundSize: 'cover'
-  // };
-
   return (
-    <div
-      className={`cover--item cover--item__${slug}`}
-      // onClick={() => handleClick(history, permaLink)}
-    >
+    <div className={`cover--item cover--item__${slug}`}>
       {titleText && (
         <div className="overlay">
           <div className="overlay--content">
@@ -70,7 +52,7 @@ const HomeCover = ({...props}) => {
 
       {preloadSource && (
         <div className="preload">
-          <img className="preload--image" src={preloadSource} />
+          <img className="preload--image" src={preloadSource} alt="loading..." />
         </div>
       )}
     </div>

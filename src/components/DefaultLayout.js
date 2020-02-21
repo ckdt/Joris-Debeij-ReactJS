@@ -5,9 +5,9 @@ import React from 'react';
 import Header from '../components/Header';
 
 // Component: DefaultLayout
-const DefaultLayout = ({title, children}) => (
+const DefaultLayout = ({title, children, showBackButton}) => (
   <div className={`view view__${title}`}>
-    <Header />
+    <Header showBackButton={showBackButton} />
     <section className="content">{children}</section>
   </div>
 );

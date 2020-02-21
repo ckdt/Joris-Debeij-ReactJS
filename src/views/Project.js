@@ -15,9 +15,6 @@ import Video from '../components/Video';
 
 // Components
 import Credits from '../components/Credits';
-import Awards from '../components/Awards';
-
-import Info from '../components/Info';
 
 const ContentSlices = ({
   doc,
@@ -34,15 +31,12 @@ const ContentSlices = ({
     const {items, primary} = item;
 
     const txtTitle = RichText.asText(doc.title);
-    const txtSubTitle = RichText.asText(doc.subtitle);
 
-    console.log('doc', doc);
     switch (type) {
       case 'video':
         const videoUrl = primary.video_source.url;
         const videoType = primary.video_embed_type;
         const videoFallback = primary.fallback_image.url;
-        console.log('txtTitle', txtTitle);
         return (
           <Video
             key={index}
@@ -79,28 +73,20 @@ const ContentSlices = ({
 };
 
 const InfoPopModal = ({doc, openModal, toggleInfoModal}) => {
-  const {title, subtitle, description, cover_image, body} = doc;
+  const {title, subtitle, description} = doc;
 
   const txtTitle = RichText.asText(title);
   const txtSubTitle = RichText.asText(subtitle);
 
-  const backgroundSource = cover_image.url;
-  const styleBackground = {
-    backgroundImage: `url(${backgroundSource})`,
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'center center',
-    backgroundSize: 'cover'
-  };
-
   const ModalSlices = ({body}) => {
     const content = body.map(function(item, index) {
       const type = item.slice_type;
-      const {items, primary} = item;
+      const {primary} = item;
       switch (type) {
         case 'credits':
           return <Credits content={primary} key={index} />;
         case 'awards':
-          return <Awards content={primary} key={index} />;
+          return null;
         default:
           return null;
       }
@@ -131,7 +117,6 @@ const InfoPopModal = ({doc, openModal, toggleInfoModal}) => {
 
 const Project = ({match}) => {
   const uid = match.params.uid;
-  const path = match.path;
 
   // States
   const [notFound, toggleNotFound] = useState(false);
@@ -157,11 +142,6 @@ const Project = ({match}) => {
         if (hasFilter.length > 0) {
           setDataHasSeries(true);
         }
-        // Toogle info based on URL
-
-        // if (path === '/project/:uid/info') {
-        //   toggleInfo();
-        // }
         return true;
       } else {
         console.warn('404. Page document not found.');
@@ -172,15 +152,11 @@ const Project = ({match}) => {
   }, [uid]);
 
   const InfoPopToggle = ({dataHasSeries}) => {
-    // if (dataHasSeries) {
-    //   return null;
-    // } else {
     return (
       <button className="info--toggle" onClick={() => toggleInfoModal()}>
         {openModal ? 'close' : 'info'}
       </button>
     );
-    // }
   };
 
   const toggleInfoModal = () => {
@@ -197,7 +173,7 @@ const Project = ({match}) => {
 
   if (doc) {
     return (
-      <DefaultLayout title="project">
+      <DefaultLayout title="project" showBackButton={true}>
         <ContentSlices
           doc={doc}
           videoIsPaused={videoIsPaused}

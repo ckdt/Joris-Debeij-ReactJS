@@ -5,12 +5,12 @@
   --color-black-trans: rgba(0, 0, 0, 0);
   --color-white: #ffffff;
   --color-white-lucid: rgba(255, 255, 255, 0.3);
-  --color-primary: #FFC701;
+  --color-primary: #ffc701;
   --base-size: 16px;
   --duration: 0.5s;
   --type-head: 'Formula Condensed';
-  --type-lead: 'Object Sans';
-  --type-paragraph: 'Neue Machina';
+  --type-lead: 'Neue Montreal';
+  --type-paragraph: 'Neue Montreal';
 }
 
 .plyr--video .plyr__controls {
@@ -65,4 +65,8 @@
 
 .plyr__menu__container .plyr__control[role='menuitemradio'][aria-checked='true']::before {
   background: var(--color-primary);
+}
+
+.plyr__poster {
+  object-fit: cover;
 }

@@ -33,7 +33,10 @@ const Projects = ({match}) => {
         setDocData(results);
 
         const covers = results.map(item => ({
+          pageSlug: uid,
+          tags: item.tags,
           title: item.data.title,
+          subtitle: item.data.subtitle,
           id: item.id,
           slug: item.uid,
           video: item.data.cover_video,

@@ -28,7 +28,6 @@ const Credits = ({content}) => {
       </div>
     );
   }
-  return null;
 };
 
 // Export Credits
