@@ -678,11 +678,12 @@ body {
 
 /* Project */
 .view__project .content {
-  position: relative;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding-top: 64px;
+
   z-index: 5;
 }
 
@@ -792,6 +793,7 @@ body {
   margin-bottom: 1em;
 }
 
+/* 
 .credits {
   padding: 1em;
   border: 1px solid var(--color-white-lucid);
@@ -808,14 +810,17 @@ body {
 .award--item p {
   font-size: 0.95em;
   line-height: 2em;
-}
+} */
 
 /* about */
 .about--content {
   padding: 1.5em 1em;
 }
 
-.page--title {
+
+.page--title,
+.contacts--title,
+.awards--title {
   text-transform: uppercase;
   font-family: var(--type-head), -apple-system, BlinkMacSystemFont, Roboto, helvetica neue,
     sans-serif;
@@ -845,23 +850,58 @@ body {
 
 .page--lead {
   font-family: var(--type-lead), sans-serif;
-  font-size: 1.4rem;
+  font-size: 1.8rem;
   font-weight: 700;
-  line-height: 1.4;
+  line-height: 1.35;
   margin-bottom: 1em;
 }
 
 .page--body {
   font-family: var(--type-paragraph), sans-serif;
-  font-size: 1.2em;
+  font-size: 1.5rem;
   font-weight: 400;
-  line-height: 1.4;
+  line-height: 1.35;
   margin-bottom: 1em;
 }
 
 .page--body p {
   margin-bottom: 1em;
 }
+
+.page--awards,
+.page--contacts {
+  margin-top: 3em;
+  margin-bottom: 1em;
+}
+
+.contacts--item {
+  margin-bottom: 2em;
+}
+
+.contacts--item h2 {
+  font-family: var(--type-paragraph), sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 0.5em;
+}
+
+.contacts--item p {
+  font-family: var(--type-paragraph), sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  padding-bottom: 1em;
+}
+
+.contacts--item p strong {
+  font-weight: 700;
+}
+
+.awards--list {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
 
 /* =========== Tablet ========== */
 @media only screen and (min-width: 768px) {}
@@ -957,24 +997,42 @@ body {
   }
 
   /*info*/
-  .view__page .content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+  .view__page .content {}
 
-  .about--header {
-    max-width: 60vw;
-  }
 
-  .about--content {
-    max-width: 60vw;
-    padding: 1em;
-  }
+  .about--content {}
 
   .page--lead {
     font-size: 1.8rem;
   }
+
+  .awards--list {
+    display: grid;
+    grid-template-columns: auto auto auto;
+  }
+
+  .about--header {
+    max-width: inherit;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60vw;
+  }
+
+  .about--content {
+    max-width: inherit;
+    padding-top: 65vh;
+    max-width: 60vw;
+  }
+
+  .page--contacts {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 35vw;
+    padding-right: 4em;
+  }
+
 }
 
 /* =========== Widescreen ========== */
@@ -1039,17 +1097,31 @@ body {
 
   /*info*/
   .view__page .content {
-    display: flex;
+    /* display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center; */
   }
 
   .about--header {
-    max-width: 60vw;
+    max-width: inherit;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60vw;
   }
 
   .about--content {
+    max-width: inherit;
+    padding-top: 90vh;
     max-width: 60vw;
-    padding: 1em;
   }
+
+  .page--contacts {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 35vw;
+    padding-right: 4em;
+  }
+
 }

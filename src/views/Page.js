@@ -22,7 +22,14 @@ const Contacts = ({items}) => {
     );
   });
   if (result) {
-    return <div className="contacts">{result}</div>;
+    return (
+      <div className="page--contacts">
+        <div className="contacts--header">
+          <h1 className="contacts--title">Contacts</h1>
+        </div>
+        <div className="contacts--list">{result}</div>
+      </div>
+    );
   } else {
     return null;
   }
@@ -38,7 +45,14 @@ const Awards = ({items}) => {
     );
   });
   if (result) {
-    return <div className="awards">{result}</div>;
+    return (
+      <div className="page--awards">
+        <div className="awards--header">
+          <h1 className="awards--title">Awards</h1>
+        </div>
+        <div className="awards--list">{result}</div>
+      </div>
+    );
   } else {
     return null;
   }
@@ -98,8 +112,9 @@ const Page = ({match}) => {
           </div>
           <div className="page--body">
             <RichText render={doc.data.body_copy} linkResolver={linkResolver} />
-            <ContentSlices data={doc.data} />
           </div>
+
+          <ContentSlices data={doc.data} />
         </div>
       </DefaultLayout>
     );
