@@ -2,7 +2,7 @@
 
 /* Variables */
 :root {
-  --color-black: #000000;
+  --color-black: #ff0000;
   --color-black-lucid: rgba(0, 0, 0, 0.3);
   --color-black-trans: rgba(0, 0, 0, 0);
   --color-white: #ffffff;
@@ -44,6 +44,7 @@ body {
   font-size: var(--base-size);
   color: var(--color-white);
   background: var(--color-black);
+  background: green;
 }
 
 /* =========== App ========== */
