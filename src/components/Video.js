@@ -7,7 +7,7 @@ const Video = ({videoTitle, videoUrl, videoType, videoFallback, videoIsPaused, v
   const [videoPlayer, setVideoPlayer] = useState(null);
 
   const blurStyle = {
-    filter: `blur(20px)`
+    filter: `blur(20px)`,
   };
 
   // Initialize Plyr
@@ -43,7 +43,7 @@ const Video = ({videoTitle, videoUrl, videoType, videoFallback, videoIsPaused, v
       volume: 0.5,
       muted: false,
       controls: controls,
-      title: videoTitle
+      title: videoTitle,
       // autoplay: true
     });
     if (!videoIsPaused) {
@@ -51,7 +51,7 @@ const Video = ({videoTitle, videoUrl, videoType, videoFallback, videoIsPaused, v
     }
     window.player = plyr;
     setVideoPlayer(plyr);
-  }, [videoInstance]);
+  }, [videoInstance, videoIsPaused, videoTitle]);
 
   useEffect(() => {
     if (videoPlayer) {
@@ -61,7 +61,7 @@ const Video = ({videoTitle, videoUrl, videoType, videoFallback, videoIsPaused, v
         videoPlayer.play();
       }
     }
-  }, [videoIsPaused]);
+  }, [videoIsPaused, videoPlayer]);
 
   switch (videoType) {
     case 'vimeo':
@@ -109,7 +109,7 @@ const Video = ({videoTitle, videoUrl, videoType, videoFallback, videoIsPaused, v
   }
 };
 
-const parseVideo = videoUrl => {
+const parseVideo = (videoUrl) => {
   // - Supported YouTube URL formats:
   //   - http://www.youtube.com/watch?v=My2FRPA3Gf8
   //   - http://youtu.be/My2FRPA3Gf8
@@ -121,7 +121,7 @@ const parseVideo = videoUrl => {
   //   - //player.vimeo.com/video/25451551
 
   videoUrl.match(
-    /(http:|https:|)\/\/(player.|www.)?(vimeo\.com|youtu(be\.com|\.be|be\.googleapis\.com))\/(video\/|embed\/|watch\?v=|v\/)?([A-Za-z0-9._%-]*)(\&\S+)?/
+    /(http:|https:|)\/\/(player.|www.)?(vimeo\.com|youtu(be\.com|\.be|be\.googleapis\.com))\/(video\/|embed\/|watch\?v=|v\/)?([A-Za-z0-9._%-]*)(&\S+)?/
   );
 
   var type = '';
@@ -133,7 +133,7 @@ const parseVideo = videoUrl => {
 
   return {
     type: type,
-    id: RegExp.$6
+    id: RegExp.$6,
   };
 };
 
