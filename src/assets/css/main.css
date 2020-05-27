@@ -72,7 +72,8 @@ body {
   font-size: 18px;
 }
 
-.navigation {}
+.navigation {
+}
 
 .nav--toggle {
   position: absolute;
@@ -134,7 +135,6 @@ body {
   display: block;
 }
 
-
 /* Burger animation config */
 .burger--icon,
 .burger--icon:before,
@@ -155,25 +155,25 @@ body {
 }
 
 /* Burger animation after checked */
-.burger:checked+.burger--toggle .burger--icon {
+.burger:checked + .burger--toggle .burger--icon {
   transition-delay: 0s;
 }
 
-.burgerchecked+.burger--toggle .burger--icon:before,
-.burger:checked+.burger--toggle .burger--icon:after {
+.burgerchecked + .burger--toggle .burger--icon:before,
+.burger:checked + .burger--toggle .burger--icon:after {
   transition-delay: 0.025s;
 }
 
-.burger:checked+.burger--toggle .burger--icon:before {
+.burger:checked + .burger--toggle .burger--icon:before {
   transform: translateY(8px) rotate(135deg);
   border-color: #ffc701;
 }
 
-.burger:checked+.burger--toggle .burger--icon {
+.burger:checked + .burger--toggle .burger--icon {
   border-color: transparent;
 }
 
-.burger:checked+.burger--toggle .burger--icon:after {
+.burger:checked + .burger--toggle .burger--icon:after {
   transform: translateY(-6px) rotate(-135deg);
   border-color: #ffc701;
 }
@@ -275,12 +275,10 @@ body {
   padding-left: 0;
 }
 
-
 .menu--list__social .list--item {
   display: inline;
   padding-left: 1em;
 }
-
 
 .menu--list__social .list--item a:hover {
   color: var(--color-primary);
@@ -298,11 +296,14 @@ body {
   color: var(--color-white-lucid);
 }
 
-.list--item {}
+.list--item {
+}
 
-.list--link {}
+.list--link {
+}
 
-.list--link__active {}
+.list--link__active {
+}
 
 /* Home */
 .view__home .content {
@@ -331,7 +332,8 @@ body {
   pointer-events: none;
 }
 
-.cover--item:hover {}
+.cover--item:hover {
+}
 
 .cover--item:hover .overlay {
   background: var(--color-black-trans);
@@ -362,7 +364,6 @@ body {
   text-align: center;
   width: 100%;
 }
-
 
 .cover--item .overlay--content .overlay--title a {
   pointer-events: auto;
@@ -472,7 +473,6 @@ body {
 }
 
 @-webkit-keyframes loadanim {
-
   0%,
   80%,
   100% {
@@ -485,7 +485,6 @@ body {
 }
 
 @keyframes loadanim {
-
   0%,
   80%,
   100% {
@@ -508,7 +507,8 @@ body {
   margin-bottom: 20vh;
 }
 
-.projects {}
+.projects {
+}
 
 .projects--splash {
   position: relative;
@@ -597,7 +597,8 @@ body {
   padding-right: 1em;
 }
 
-.project--item .overlay--content .meta--tags {}
+.project--item .overlay--content .meta--tags {
+}
 
 .project--item .overlay--content .meta--tags .tag {
   margin-right: 0.5em;
@@ -687,8 +688,6 @@ body {
   z-index: 5;
 }
 
-
-
 .view__project .content .series {
   display: flex;
   flex-direction: column;
@@ -746,7 +745,8 @@ body {
   border-radius: 1.5em;
 }
 
-.info--toggle {}
+.info--toggle {
+}
 
 .info--toggle:hover {
   border: 1px solid var(--color-white);
@@ -816,7 +816,6 @@ body {
 .about--content {
   padding: 1.5em 1em;
 }
-
 
 .page--title,
 .contacts--title,
@@ -902,9 +901,9 @@ body {
   grid-template-columns: auto auto;
 }
 
-
 /* =========== Tablet ========== */
-@media only screen and (min-width: 768px) {}
+@media only screen and (min-width: 768px) {
+}
 
 @media only screen and (min-width: 1024px) {
   :root {
@@ -916,7 +915,6 @@ body {
   body {
     font-size: var(--base-size);
   }
-
 
   /* Home */
   .view__home .content {
@@ -941,7 +939,6 @@ body {
   .view__home .covers .cover--item .overlay--content .overlay--title {
     font-size: 4rem;
   }
-
 
   .view__home .covers .cover--item:hover {
     width: 70%;
@@ -997,10 +994,11 @@ body {
   }
 
   /*info*/
-  .view__page .content {}
+  .view__page .content {
+  }
 
-
-  .about--content {}
+  .about--content {
+  }
 
   .page--lead {
     font-size: 1.8rem;
@@ -1032,12 +1030,10 @@ body {
     width: 35vw;
     padding-right: 4em;
   }
-
 }
 
 /* =========== Widescreen ========== */
 @media only screen and (min-width: 1920px) {
-
   html,
   body {
     font-size: 32px;
@@ -1123,5 +1119,4 @@ body {
     width: 35vw;
     padding-right: 4em;
   }
-
 }
