@@ -8,8 +8,6 @@ import {routes} from '../routes';
 
 // Component: Navigation
 const Navigation = ({showBackButton = false}) => {
-  let history = useHistory(); // Set history for EventHandler
-
   const [navIsOpen, SetNavIsOpen] = useState(false);
   const [navHoverID, setNavHoverID] = useState(null);
 
@@ -22,12 +20,15 @@ const Navigation = ({showBackButton = false}) => {
   };
 
   const BackButton = () => {
+    let history = useHistory();
     return (
-      <div className="nav--toggle">
-        <div className="back--button">
-          <img src={close} alt="" onClick={() => history.goBack()} />
+      <>
+        <div className="nav--toggle">
+          <div className="back--button">
+            <img src={close} alt="" onClick={() => history.goBack()} />
+          </div>
         </div>
-      </div>
+      </>
     );
   };
 
