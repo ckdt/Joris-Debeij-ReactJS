@@ -21,6 +21,7 @@ const Navigation = ({showBackButton = false}) => {
 
   const BackButton = () => {
     let history = useHistory();
+    // this fixed the back button
     return (
       <>
         <div className="nav--toggle">
