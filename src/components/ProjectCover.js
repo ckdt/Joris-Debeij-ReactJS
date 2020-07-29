@@ -34,9 +34,9 @@ const ProjectCover = ({...props}) => {
   const preloadSource = preload.url;
 
   // find year
-  const dispYear = tags.find((value) => /\d{4}/.test(value));
+  const dispYear = tags.find(value => /\d{4}/.test(value));
   const blacklist = ['tv-film', 'commercial', dispYear];
-  const dispTags = tags.filter((tag) => !blacklist.includes(tag));
+  const dispTags = tags.filter(tag => !blacklist.includes(tag));
 
   return (
     <Fade bottom>
