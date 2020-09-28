@@ -26,7 +26,7 @@ const Navigation = ({showBackButton = false}) => {
       <>
         <div className="nav--toggle">
           <div className="back--button">
-            <img src={close} alt="" onClick={() => history.goBack()} />
+            <img src={close} alt="" onClick={() => history.go(-1)} />
           </div>
         </div>
       </>
