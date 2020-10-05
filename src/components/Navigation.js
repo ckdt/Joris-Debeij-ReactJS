@@ -1,18 +1,18 @@
 // Import Defaults
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, {useState} from 'react';
+import {useHistory} from 'react-router-dom';
 import NavLink from './NavLink';
 import close from '../assets/images/close.svg';
 
 // Import Routes
-import { routes } from '../routes';
+import {routes} from '../routes';
 import Link from './Link';
-import { useCursor } from './Cursor';
+import {useCursor} from './Cursor';
 
 const BackButton = () => {
   let history = useHistory();
   // this fixed the back button
-  const { setStatus } = useCursor();
+  const {setStatus} = useCursor();
   return (
     <>
       <div
@@ -29,10 +29,10 @@ const BackButton = () => {
 };
 
 // Component: Navigation
-const Navigation = ({ showBackButton = false }) => {
+const Navigation = ({showBackButton = false}) => {
   const [navIsOpen, SetNavIsOpen] = useState(false);
   const [navHoverID, setNavHoverID] = useState(null);
-  const { setStatus } = useCursor();
+  const {setStatus} = useCursor();
 
   const toggleNav = (navIsOpen) => {
     if (navIsOpen) {
@@ -49,7 +49,7 @@ const Navigation = ({ showBackButton = false }) => {
     setNavHoverID(null);
   };
 
-  const links = routes.map(({ id, to, label, slug }) => {
+  const links = routes.map(({id, to, label, slug}) => {
     return (
       <li className="list--item" key={id}>
         <NavLink

@@ -1,22 +1,22 @@
 // Import Defaults
-import React, { useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import React, {useState} from 'react';
+import {Link as RouterLink} from 'react-router-dom';
 import Link from './Link';
 
 import Fade from 'react-reveal/Fade';
 
 // Import Prismic
-import { RichText } from 'prismic-reactjs';
+import {RichText} from 'prismic-reactjs';
 
 // Import Custom Components
 import Loader from './Loader';
 
 // Component: ProjectCover
-const ProjectCover = ({ ...props }) => {
+const ProjectCover = ({...props}) => {
   // States
   const [loaded, setLoaded] = useState(false);
   // Descructure
-  const { tags, slug, video, title, subtitle, fallback, preload } = props;
+  const {tags, slug, video, title, subtitle, fallback, preload} = props;
 
   // Set vars
   const permaLink = `/project/${slug}`;

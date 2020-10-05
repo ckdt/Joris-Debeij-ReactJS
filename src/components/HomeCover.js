@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import Link from './Link';
 import Loader from './Loader';
-import { RichText } from 'prismic-reactjs';
+import {RichText} from 'prismic-reactjs';
 
 // Component: HomeCover
-const HomeCover = ({ ...props }) => {
+const HomeCover = ({...props}) => {
   // States
   const [loaded, setLoaded] = useState(false);
   // Destructure
-  const { id, slug, video, title, fallback, preload } = props;
+  const {id, slug, video, title, fallback, preload} = props;
 
   // Set vars
   const permaLink = `/projects/${slug}`;

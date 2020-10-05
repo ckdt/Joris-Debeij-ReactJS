@@ -1,9 +1,9 @@
 // Import Defaults
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 
 // Import Prismic
 import Prismic from 'prismic-javascript';
-import { client } from '../prismic-configuration';
+import {client} from '../prismic-configuration';
 
 // Import Views
 import NotFound from '../views/NotFound';
@@ -13,7 +13,7 @@ import ProjectCover from '../components/ProjectCover';
 import DefaultLayout from '../components/DefaultLayout';
 
 // Component: Projects
-const Projects = ({ match }) => {
+const Projects = ({match}) => {
   const uid = match.params.uid;
 
   // States
@@ -32,7 +32,7 @@ const Projects = ({ match }) => {
       );
 
       if (result) {
-        const { results } = result;
+        const {results} = result;
         setDocData(results);
 
         const covers = results.map((item) => ({
