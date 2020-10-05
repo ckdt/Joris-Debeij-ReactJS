@@ -1,19 +1,19 @@
 // Import Defaults
-import React, { Fragment } from "react"
-import { BrowserRouter, Route, Switch } from "react-router-dom"
-import { TransitionGroup, CSSTransition } from "react-transition-group"
+import React, { Fragment } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 // Import Prismic
-import { Helmet } from "react-helmet"
-import { apiEndpoint } from "./prismic-configuration"
+import { Helmet } from 'react-helmet';
+import { apiEndpoint } from './prismic-configuration';
 
 // Import Custom Components
-import { Home, Projects, Project, NotFound, Page } from "./views"
-import CursorProvider from "./components/Cursor"
+import { Home, Projects, Project, NotFound, Page } from './views';
+import CursorProvider from './components/Cursor';
 
 // Set API connection variables
-const repoNameArray = /([^/]+)\.cdn.prismic\.io\/api/.exec(apiEndpoint)
-const repoName = repoNameArray[1]
+const repoNameArray = /([^/]+)\.cdn.prismic\.io\/api/.exec(apiEndpoint);
+const repoName = repoNameArray[1];
 
 // Component: App
 const App = () => {
@@ -33,7 +33,7 @@ const App = () => {
         <BrowserRouter>
           <Route
             render={({ location }) => {
-              const { key } = location
+              const { key } = location;
 
               return (
                 <TransitionGroup component={null}>
@@ -64,13 +64,13 @@ const App = () => {
                     </div>
                   </CSSTransition>
                 </TransitionGroup>
-              )
+              );
             }}
           />
         </BrowserRouter>
       </CursorProvider>
     </Fragment>
-  )
-}
+  );
+};
 
-export default App
+export default App;

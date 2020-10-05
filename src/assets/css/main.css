@@ -10,9 +10,9 @@
   --color-primary: #ffc701;
   --base-size: 16px;
   --duration: 0.5s;
-  --type-head: "Formula Condensed";
-  --type-lead: "Neue Montreal";
-  --type-paragraph: "Neue Montreal";
+  --type-head: 'Formula Condensed';
+  --type-lead: 'Neue Montreal';
+  --type-paragraph: 'Neue Montreal';
 }
 
 /* Links */
@@ -38,8 +38,8 @@ video {
 html,
 body {
   height: 100%;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
-    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+    Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   font-family: var(--type-lead);
   font-size: var(--base-size);
   color: var(--color-white);
@@ -105,7 +105,7 @@ body {
 .burger--icon:before,
 .burger--icon:after {
   border-top: 2px solid white;
-  content: "";
+  content: '';
   position: absolute;
   left: 0px;
   right: 0;
@@ -244,7 +244,7 @@ body {
 
 .strike::before,
 .list--link.active::before {
-  content: " ";
+  content: ' ';
   position: absolute;
   top: 36%;
   left: 0;
@@ -457,7 +457,7 @@ body {
 
 .status--loader:before,
 .status--loader:after {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
 }
@@ -833,7 +833,7 @@ body {
 }
 
 .page--title:before {
-  content: " ";
+  content: ' ';
   position: absolute;
   top: 36%;
   left: 0;

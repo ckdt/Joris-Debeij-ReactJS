@@ -1,9 +1,9 @@
 // Import Defaults
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 
 // Import Prismic
 import Prismic from 'prismic-javascript';
-import {client} from '../prismic-configuration';
+import { client } from '../prismic-configuration';
 
 // Import Views
 import NotFound from '../views/NotFound';
@@ -13,7 +13,7 @@ import ProjectCover from '../components/ProjectCover';
 import DefaultLayout from '../components/DefaultLayout';
 
 // Component: Projects
-const Projects = ({match}) => {
+const Projects = ({ match }) => {
   const uid = match.params.uid;
 
   // States
@@ -24,12 +24,15 @@ const Projects = ({match}) => {
   // ComponentDidMount
   useEffect(() => {
     const fetchData = async () => {
-      const result = await client.query(Prismic.Predicates.at('document.tags', [uid]), {
-        orderings: '[document.last_publication_date desc]',
-      });
+      const result = await client.query(
+        Prismic.Predicates.at('document.tags', [uid]),
+        {
+          orderings: '[document.last_publication_date desc]',
+        }
+      );
 
       if (result) {
-        const {results} = result;
+        const { results } = result;
         setDocData(results);
 
         const covers = results.map((item) => ({
@@ -58,8 +61,12 @@ const Projects = ({match}) => {
     return (
       <DefaultLayout title="projects">
         <div className="projects--splash">
-          {uid === 'commercial' && <h1 className="splash--title">Commercial</h1>}
-          {uid === 'tv-film' && <h1 className="splash--title">TV &amp; Film</h1>}
+          {uid === 'commercial' && (
+            <h1 className="splash--title">Commercial</h1>
+          )}
+          {uid === 'tv-film' && (
+            <h1 className="splash--title">TV &amp; Film</h1>
+          )}
         </div>
         <div className="projects">
           {covers.map((item) => (

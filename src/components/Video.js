@@ -1,5 +1,5 @@
-import React, { useRef, useEffect } from "react"
-import Plyr from "plyr"
+import React, { useRef, useEffect } from 'react';
+import Plyr from 'plyr';
 
 const Video = ({
   videoTitle,
@@ -9,13 +9,13 @@ const Video = ({
   videoIsPaused,
   videoIsBlurred,
 }) => {
-  const videoID = parseVideo(videoUrl).id
-  const videoInstance = useRef(null)
-  const videoPlayer = useRef(null)
+  const videoID = parseVideo(videoUrl).id;
+  const videoInstance = useRef(null);
+  const videoPlayer = useRef(null);
 
   const blurStyle = {
     filter: `blur(20px)`,
-  }
+  };
 
   // Initialize Plyr
   useEffect(() => {
@@ -44,7 +44,7 @@ const Video = ({
         <svg class="icon--not-pressed" role="presentation"><use xlink:href="#plyr-enter-fullscreen"></use></svg>
     </button>
   </div>
-  `
+  `;
 
     const plyr = new Plyr(videoInstance.current, {
       volume: 0.5,
@@ -52,26 +52,26 @@ const Video = ({
       controls: controls,
       title: videoTitle,
       // autoplay: true
-    })
+    });
     if (!videoIsPaused) {
-      plyr.autoplay = true
+      plyr.autoplay = true;
     }
-    window.player = plyr
-    videoPlayer.current = plyr
-  }, [videoInstance, videoIsPaused, videoTitle])
+    window.player = plyr;
+    videoPlayer.current = plyr;
+  }, [videoInstance, videoIsPaused, videoTitle]);
 
   useEffect(() => {
     if (videoPlayer.current) {
       if (videoIsPaused) {
-        videoPlayer.current.pause()
+        videoPlayer.current.pause();
       } else {
-        videoPlayer.current.play()
+        videoPlayer.current.play();
       }
     }
-  }, [videoIsPaused])
+  }, [videoIsPaused]);
 
   switch (videoType) {
-    case "vimeo":
+    case 'vimeo':
       return (
         <>
           <div className="video" style={videoIsBlurred ? blurStyle : null}>
@@ -83,8 +83,8 @@ const Video = ({
             ></div>
           </div>
         </>
-      )
-    case "youtube":
+      );
+    case 'youtube':
       return (
         <>
           <div className="video" style={videoIsBlurred ? blurStyle : null}>
@@ -96,7 +96,7 @@ const Video = ({
             ></div>
           </div>
         </>
-      )
+      );
     default:
       return (
         <>
@@ -112,9 +112,9 @@ const Video = ({
             </video>
           </div>
         </>
-      )
+      );
   }
-}
+};
 
 const parseVideo = (videoUrl) => {
   // - Supported YouTube URL formats:
@@ -129,19 +129,19 @@ const parseVideo = (videoUrl) => {
 
   videoUrl.match(
     /(http:|https:|)\/\/(player.|www.)?(vimeo\.com|youtu(be\.com|\.be|be\.googleapis\.com))\/(video\/|embed\/|watch\?v=|v\/)?([A-Za-z0-9._%-]*)(&\S+)?/
-  )
+  );
 
-  var type = ""
-  if (RegExp.$3.indexOf("youtu") > -1) {
-    type = "youtube"
-  } else if (RegExp.$3.indexOf("vimeo") > -1) {
-    type = "vimeo"
+  var type = '';
+  if (RegExp.$3.indexOf('youtu') > -1) {
+    type = 'youtube';
+  } else if (RegExp.$3.indexOf('vimeo') > -1) {
+    type = 'vimeo';
   }
 
   return {
     type: type,
     id: RegExp.$6,
-  }
-}
+  };
+};
 
-export default Video
+export default Video;

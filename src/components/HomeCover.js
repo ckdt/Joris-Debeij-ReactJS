@@ -1,21 +1,21 @@
-import React, { useState } from "react"
-import Link from "./Link"
-import Loader from "./Loader"
-import { RichText } from "prismic-reactjs"
+import React, { useState } from 'react';
+import Link from './Link';
+import Loader from './Loader';
+import { RichText } from 'prismic-reactjs';
 
 // Component: HomeCover
 const HomeCover = ({ ...props }) => {
   // States
-  const [loaded, setLoaded] = useState(false)
+  const [loaded, setLoaded] = useState(false);
   // Destructure
-  const { id, slug, video, title, fallback, preload } = props
+  const { id, slug, video, title, fallback, preload } = props;
 
   // Set vars
-  const permaLink = `/projects/${slug}`
-  const videoSource = video.url
-  const titleText = RichText.asText(title)
-  const fallbackSource = fallback.url
-  const preloadSource = preload.url
+  const permaLink = `/projects/${slug}`;
+  const videoSource = video.url;
+  const titleText = RichText.asText(title);
+  const fallbackSource = fallback.url;
+  const preloadSource = preload.url;
 
   return (
     <div className={`cover--item cover--item__${slug}`}>
@@ -30,7 +30,7 @@ const HomeCover = ({ ...props }) => {
       )}
 
       {videoSource ? (
-        <div className={`video ${loaded ? "is-loaded" : "loading"}`}>
+        <div className={`video ${loaded ? 'is-loaded' : 'loading'}`}>
           <video
             poster={fallbackSource}
             key={id}
@@ -64,7 +64,7 @@ const HomeCover = ({ ...props }) => {
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default HomeCover
+export default HomeCover;

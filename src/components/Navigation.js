@@ -1,23 +1,23 @@
 // Import Defaults
-import React, { useState } from "react"
-import { useHistory } from "react-router-dom"
-import NavLink from "./NavLink"
-import close from "../assets/images/close.svg"
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import NavLink from './NavLink';
+import close from '../assets/images/close.svg';
 
 // Import Routes
-import { routes } from "../routes"
-import Link from "./Link"
-import { useCursor } from "./Cursor"
+import { routes } from '../routes';
+import Link from './Link';
+import { useCursor } from './Cursor';
 
 const BackButton = () => {
-  let history = useHistory()
+  let history = useHistory();
   // this fixed the back button
-  const { setStatus } = useCursor()
+  const { setStatus } = useCursor();
   return (
     <>
       <div
         className="nav--toggle"
-        onMouseEnter={() => setStatus("hover")}
+        onMouseEnter={() => setStatus('hover')}
         onMouseLeave={() => setStatus(null)}
       >
         <div className="back--button">
@@ -25,36 +25,36 @@ const BackButton = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
 // Component: Navigation
 const Navigation = ({ showBackButton = false }) => {
-  const [navIsOpen, SetNavIsOpen] = useState(false)
-  const [navHoverID, setNavHoverID] = useState(null)
-  const { setStatus } = useCursor()
+  const [navIsOpen, SetNavIsOpen] = useState(false);
+  const [navHoverID, setNavHoverID] = useState(null);
+  const { setStatus } = useCursor();
 
   const toggleNav = (navIsOpen) => {
     if (navIsOpen) {
-      SetNavIsOpen(false)
+      SetNavIsOpen(false);
     } else {
-      SetNavIsOpen(true)
+      SetNavIsOpen(true);
     }
-  }
+  };
 
   const handleMouseEnter = (id) => {
-    setNavHoverID(id)
-  }
+    setNavHoverID(id);
+  };
   const handleMouseLeave = () => {
-    setNavHoverID(null)
-  }
+    setNavHoverID(null);
+  };
 
   const links = routes.map(({ id, to, label, slug }) => {
     return (
       <li className="list--item" key={id}>
         <NavLink
           className={`list--link link--list__${slug} ${
-            navHoverID === id ? "strike" : null
+            navHoverID === id ? 'strike' : null
           }`}
           to={to}
           onMouseEnter={() => handleMouseEnter(id)}
@@ -63,8 +63,8 @@ const Navigation = ({ showBackButton = false }) => {
           {label}
         </NavLink>
       </li>
-    )
-  })
+    );
+  });
 
   return (
     <>
@@ -76,15 +76,15 @@ const Navigation = ({ showBackButton = false }) => {
         ) : (
           <div
             className="nav--toggle"
-            onMouseEnter={() => setStatus("hover")}
+            onMouseEnter={() => setStatus('hover')}
             onMouseLeave={() => setStatus(null)}
           >
             <input
               id="burger"
               className="burger"
               type="checkbox"
-              checked={navIsOpen ? "checked" : ""}
-              value={""}
+              checked={navIsOpen ? 'checked' : ''}
+              value={''}
               onChange={() => toggleNav(navIsOpen)}
             />
             <label className="burger--toggle" htmlFor="burger">
@@ -94,7 +94,7 @@ const Navigation = ({ showBackButton = false }) => {
         )}
         <div
           className={`nav--overlay nav--overlay__${
-            navIsOpen ? "visible" : "hidden"
+            navIsOpen ? 'visible' : 'hidden'
           }`}
         >
           <nav className="menu" role="navigation">
@@ -170,8 +170,8 @@ const Navigation = ({ showBackButton = false }) => {
         </label>
       </div>
     </> */
-  )
-}
+  );
+};
 
 // Export Navigation
-export default Navigation
+export default Navigation;

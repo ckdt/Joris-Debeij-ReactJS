@@ -1,35 +1,35 @@
 // Import Defaults
-import React, { useState } from "react"
-import { Link as RouterLink } from "react-router-dom"
-import Link from "./Link"
+import React, { useState } from 'react';
+import { Link as RouterLink } from 'react-router-dom';
+import Link from './Link';
 
-import Fade from "react-reveal/Fade"
+import Fade from 'react-reveal/Fade';
 
 // Import Prismic
-import { RichText } from "prismic-reactjs"
+import { RichText } from 'prismic-reactjs';
 
 // Import Custom Components
-import Loader from "./Loader"
+import Loader from './Loader';
 
 // Component: ProjectCover
 const ProjectCover = ({ ...props }) => {
   // States
-  const [loaded, setLoaded] = useState(false)
+  const [loaded, setLoaded] = useState(false);
   // Descructure
-  const { tags, slug, video, title, subtitle, fallback, preload } = props
+  const { tags, slug, video, title, subtitle, fallback, preload } = props;
 
   // Set vars
-  const permaLink = `/project/${slug}`
-  const videoSource = video.url
-  const titleText = RichText.asText(title)
-  const subtitleText = RichText.asText(subtitle)
-  const fallbackSource = fallback.url
-  const preloadSource = preload.url
+  const permaLink = `/project/${slug}`;
+  const videoSource = video.url;
+  const titleText = RichText.asText(title);
+  const subtitleText = RichText.asText(subtitle);
+  const fallbackSource = fallback.url;
+  const preloadSource = preload.url;
 
   // find year
-  const dispYear = tags.find((value) => /\d{4}/.test(value))
-  const blacklist = ["tv-film", "commercial", dispYear]
-  const dispTags = tags.filter((tag) => !blacklist.includes(tag))
+  const dispYear = tags.find((value) => /\d{4}/.test(value));
+  const blacklist = ['tv-film', 'commercial', dispYear];
+  const dispTags = tags.filter((tag) => !blacklist.includes(tag));
 
   return (
     <Fade bottom>
@@ -62,7 +62,7 @@ const ProjectCover = ({ ...props }) => {
           </div>
         </div>
         {videoSource ? (
-          <div className={`video ${loaded ? "is-loaded" : "loading"}`}>
+          <div className={`video ${loaded ? 'is-loaded' : 'loading'}`}>
             <video
               poster={fallbackSource}
               className="video--player"
@@ -96,8 +96,8 @@ const ProjectCover = ({ ...props }) => {
         )}
       </RouterLink>
     </Fade>
-  )
-}
+  );
+};
 
 // Export: ProjectCover
-export default ProjectCover
+export default ProjectCover;
