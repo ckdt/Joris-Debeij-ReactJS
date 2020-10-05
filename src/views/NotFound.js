@@ -1,9 +1,9 @@
 // Import Defaults
-import React from 'react';
-import {Link} from 'react-router-dom';
+import React from "react"
+import Link from "../components/Link"
 
 // Import Custom Components
-import DefaultLayout from '../components/DefaultLayout';
+import DefaultLayout from "../components/DefaultLayout"
 
 // Component: Not Found
 const NotFound = () => {
@@ -17,17 +17,17 @@ const NotFound = () => {
         </p>
       </div>
     </DefaultLayout>
-  );
-};
+  )
+}
 
 // Component: CSS
 const notFoundStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  height: '50vw',
-  alignItems: 'center'
-};
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  height: "50vw",
+  alignItems: "center",
+}
 
 // Export View
-export default NotFound;
+export default NotFound
