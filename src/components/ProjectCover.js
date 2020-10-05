@@ -1,6 +1,6 @@
 // Import Defaults
 import React, { useState } from "react"
-import { useHistory } from "react-router-dom"
+import { Link as RouterLink, useHistory } from "react-router-dom"
 import Link from "./Link"
 
 import Fade from "react-reveal/Fade"
@@ -10,12 +10,6 @@ import { RichText } from "prismic-reactjs"
 
 // Import Custom Components
 import Loader from "./Loader"
-
-// EventHandlers
-const handleClick = (history, location) => {
-  // Go to a new page
-  return history.push(location)
-}
 
 // Component: ProjectCover
 const ProjectCover = ({ ...props }) => {
@@ -41,9 +35,9 @@ const ProjectCover = ({ ...props }) => {
 
   return (
     <Fade bottom>
-      <div
+      <RouterLink
         className={`project--item project--item__${slug}`}
-        onClick={() => handleClick(history, permaLink)}
+        to={permaLink}
       >
         <div className="overlay">
           <div className="overlay--content">
@@ -102,7 +96,7 @@ const ProjectCover = ({ ...props }) => {
             />
           </div>
         )}
-      </div>
+      </RouterLink>
     </Fade>
   )
 }
