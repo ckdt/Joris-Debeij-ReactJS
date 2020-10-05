@@ -1,6 +1,6 @@
 // Import Defaults
 import React, { useState } from "react"
-import { Link as RouterLink, useHistory } from "react-router-dom"
+import { Link as RouterLink } from "react-router-dom"
 import Link from "./Link"
 
 import Fade from "react-reveal/Fade"
@@ -13,8 +13,6 @@ import Loader from "./Loader"
 
 // Component: ProjectCover
 const ProjectCover = ({ ...props }) => {
-  let history = useHistory() // Set history for EventHandler
-
   // States
   const [loaded, setLoaded] = useState(false)
   // Descructure
