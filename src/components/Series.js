@@ -3,8 +3,14 @@ import Video from '../components/Video';
 import {RichText} from 'prismic-reactjs';
 import arrowLeft from '../assets/images/arrow-left.svg';
 import arrowRight from '../assets/images/arrow-right.svg';
+import './video.css';
 
-const Series = ({seriesData, videoIsPaused, setVideoIsPaused, videoIsBlurred}) => {
+const Series = ({
+  seriesData,
+  videoIsPaused,
+  setVideoIsPaused,
+  videoIsBlurred,
+}) => {
   const total = seriesData.length;
   const startIndex = 0;
   const [currentIndex, setCurrentIndex] = useState(startIndex);
@@ -13,7 +19,7 @@ const Series = ({seriesData, videoIsPaused, setVideoIsPaused, videoIsBlurred}) =
   const videoFallback = seriesData[currentIndex].fallback_image.url;
   const videoType = seriesData[currentIndex].video_embed_type;
   const videoTitle = RichText.asText(seriesData[currentIndex].video_title);
-  const updateIndex = num => {
+  const updateIndex = (num) => {
     if (num >= 0 && num < total) {
       setCurrentIndex(num);
       setVideoIsPaused(false);
