@@ -8,7 +8,12 @@ import Header from '../components/Header';
 const DefaultLayout = ({title, children, showBackButton}) => (
   <div className={`view view__${title}`}>
     <Header showBackButton={showBackButton} />
-    <section className="content">{children}</section>
+    <section
+      className="content"
+      {...(title === 'home' && {style: {height: '100vh'}})}
+    >
+      {children}
+    </section>
   </div>
 );
 

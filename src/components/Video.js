@@ -1,5 +1,6 @@
 import React, {useRef, useEffect} from 'react';
 import Plyr from 'plyr';
+import './video.css';
 
 const Video = ({
   videoTitle,

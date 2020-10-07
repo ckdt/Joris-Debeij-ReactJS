@@ -10,12 +10,13 @@ import NotFound from '../views/NotFound';
 // Import Custom Components
 import DefaultLayout from '../components/DefaultLayout';
 import HomeCover from '../components/HomeCover';
+import {useComingFrom} from '../components/ComingFrom';
 
 // Component: Cover
 const Cover = ({items}) => {
   return (
     <div className="covers">
-      {items.map(item => (
+      {items.map((item) => (
         <HomeCover key={item.id} {...item} />
       ))}
     </div>
@@ -24,6 +25,8 @@ const Cover = ({items}) => {
 
 // Page: Home
 const Home = () => {
+  const {set} = useComingFrom();
+  useEffect(() => set('home'), [set]);
   // States
   const [notFound, toggleNotFound] = useState(false);
   const [data, setDocData] = useState(null);
@@ -44,7 +47,7 @@ const Home = () => {
           slug: item.cover_link,
           video: item.cover_video,
           fallback: item.cover_fallback_image,
-          preload: item.cover_preload_image
+          preload: item.cover_preload_image,
         }));
         setCoverData(covers);
 

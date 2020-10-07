@@ -1,5 +1,5 @@
 // Import Defaults
-import React, {useState} from 'react';
+import React, {useState, Fragment} from 'react';
 import {Link as RouterLink} from 'react-router-dom';
 import Link from './Link';
 
@@ -16,7 +16,7 @@ const ProjectCover = ({...props}) => {
   // States
   const [loaded, setLoaded] = useState(false);
   // Descructure
-  const {tags, slug, video, title, subtitle, fallback, preload} = props;
+  const {tags, slug, video, title, subtitle, fallback, preload, fade} = props;
 
   // Set vars
   const permaLink = `/project/${slug}`;
@@ -31,8 +31,10 @@ const ProjectCover = ({...props}) => {
   const blacklist = ['tv-film', 'commercial', dispYear];
   const dispTags = tags.filter((tag) => !blacklist.includes(tag));
 
+  const FadeOrFragment = fade ? Fade : Fragment;
+
   return (
-    <Fade bottom>
+    <FadeOrFragment bottom>
       <RouterLink
         className={`project--item project--item__${slug}`}
         to={permaLink}
@@ -95,7 +97,7 @@ const ProjectCover = ({...props}) => {
           </div>
         )}
       </RouterLink>
-    </Fade>
+    </FadeOrFragment>
   );
 };
 
