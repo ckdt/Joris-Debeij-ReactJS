@@ -24,9 +24,12 @@ const Projects = ({match}) => {
   // ComponentDidMount
   useEffect(() => {
     const fetchData = async () => {
-      const result = await client.query(Prismic.Predicates.at('document.tags', [uid]), {
-        orderings: '[document.last_publication_date desc]',
-      });
+      const result = await client.query(
+        Prismic.Predicates.at('document.tags', [uid]),
+        {
+          orderings: '[document.last_publication_date desc]',
+        }
+      );
 
       if (result) {
         const {results} = result;
@@ -58,8 +61,12 @@ const Projects = ({match}) => {
     return (
       <DefaultLayout title="projects">
         <div className="projects--splash">
-          {uid === 'commercial' && <h1 className="splash--title">Commercial</h1>}
-          {uid === 'tv-film' && <h1 className="splash--title">TV &amp; Film</h1>}
+          {uid === 'commercial' && (
+            <h1 className="splash--title">Commercial</h1>
+          )}
+          {uid === 'tv-film' && (
+            <h1 className="splash--title">TV &amp; Film</h1>
+          )}
         </div>
         <div className="projects">
           {covers.map((item) => (

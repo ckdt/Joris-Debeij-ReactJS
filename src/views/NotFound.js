@@ -1,6 +1,6 @@
 // Import Defaults
 import React from 'react';
-import {Link} from 'react-router-dom';
+import Link from '../components/Link';
 
 // Import Custom Components
 import DefaultLayout from '../components/DefaultLayout';
@@ -26,7 +26,7 @@ const notFoundStyle = {
   flexDirection: 'column',
   justifyContent: 'center',
   height: '50vw',
-  alignItems: 'center'
+  alignItems: 'center',
 };
 
 // Export View

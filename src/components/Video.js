@@ -1,10 +1,17 @@
-import React, {useRef, useState, useEffect} from 'react';
+import React, {useRef, useEffect} from 'react';
 import Plyr from 'plyr';
 
-const Video = ({videoTitle, videoUrl, videoType, videoFallback, videoIsPaused, videoIsBlurred}) => {
+const Video = ({
+  videoTitle,
+  videoUrl,
+  videoType,
+  videoFallback,
+  videoIsPaused,
+  videoIsBlurred,
+}) => {
   const videoID = parseVideo(videoUrl).id;
   const videoInstance = useRef(null);
-  const [videoPlayer, setVideoPlayer] = useState(null);
+  const videoPlayer = useRef(null);
 
   const blurStyle = {
     filter: `blur(20px)`,
@@ -50,18 +57,18 @@ const Video = ({videoTitle, videoUrl, videoType, videoFallback, videoIsPaused, v
       plyr.autoplay = true;
     }
     window.player = plyr;
-    setVideoPlayer(plyr);
+    videoPlayer.current = plyr;
   }, [videoInstance, videoIsPaused, videoTitle]);
 
   useEffect(() => {
-    if (videoPlayer) {
+    if (videoPlayer.current) {
       if (videoIsPaused) {
-        videoPlayer.pause();
+        videoPlayer.current.pause();
       } else {
-        videoPlayer.play();
+        videoPlayer.current.play();
       }
     }
-  }, [videoIsPaused, videoPlayer]);
+  }, [videoIsPaused]);
 
   switch (videoType) {
     case 'vimeo':

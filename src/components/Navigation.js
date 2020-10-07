@@ -1,17 +1,40 @@
 // Import Defaults
 import React, {useState} from 'react';
-import {NavLink, useHistory} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
+import NavLink from './NavLink';
 import close from '../assets/images/close.svg';
 
 // Import Routes
 import {routes} from '../routes';
+import Link from './Link';
+import {useCursor} from './Cursor';
+
+const BackButton = () => {
+  let history = useHistory();
+  // this fixed the back button
+  const {setStatus} = useCursor();
+  return (
+    <>
+      <div
+        className="nav--toggle"
+        onMouseEnter={() => setStatus('hover')}
+        onMouseLeave={() => setStatus(null)}
+      >
+        <div className="back--button">
+          <img src={close} alt="" onClick={() => history.go(-1)} />
+        </div>
+      </div>
+    </>
+  );
+};
 
 // Component: Navigation
 const Navigation = ({showBackButton = false}) => {
   const [navIsOpen, SetNavIsOpen] = useState(false);
   const [navHoverID, setNavHoverID] = useState(null);
+  const {setStatus} = useCursor();
 
-  const toggleNav = navIsOpen => {
+  const toggleNav = (navIsOpen) => {
     if (navIsOpen) {
       SetNavIsOpen(false);
     } else {
@@ -19,21 +42,7 @@ const Navigation = ({showBackButton = false}) => {
     }
   };
 
-  const BackButton = () => {
-    let history = useHistory();
-    // this fixed the back button
-    return (
-      <>
-        <div className="nav--toggle">
-          <div className="back--button">
-            <img src={close} alt="" onClick={() => history.goBack()} />
-          </div>
-        </div>
-      </>
-    );
-  };
-
-  const handleMouseEnter = id => {
+  const handleMouseEnter = (id) => {
     setNavHoverID(id);
   };
   const handleMouseLeave = () => {
@@ -44,7 +53,9 @@ const Navigation = ({showBackButton = false}) => {
     return (
       <li className="list--item" key={id}>
         <NavLink
-          className={`list--link link--list__${slug} ${navHoverID === id ? 'strike' : null}`}
+          className={`list--link link--list__${slug} ${
+            navHoverID === id ? 'strike' : null
+          }`}
           to={to}
           onMouseEnter={() => handleMouseEnter(id)}
           onMouseLeave={() => handleMouseLeave()}
@@ -63,7 +74,11 @@ const Navigation = ({showBackButton = false}) => {
             <BackButton />
           </>
         ) : (
-          <div className="nav--toggle">
+          <div
+            className="nav--toggle"
+            onMouseEnter={() => setStatus('hover')}
+            onMouseLeave={() => setStatus(null)}
+          >
             <input
               id="burger"
               className="burger"
@@ -77,51 +92,59 @@ const Navigation = ({showBackButton = false}) => {
             </label>
           </div>
         )}
-        <div className={`nav--overlay nav--overlay__${navIsOpen ? 'visible' : 'hidden'}`}>
+        <div
+          className={`nav--overlay nav--overlay__${
+            navIsOpen ? 'visible' : 'hidden'
+          }`}
+        >
           <nav className="menu" role="navigation">
             <ul className="menu--list menu--list__main">{links}</ul>
             <ul className="menu--list menu--list__social">
               <li className="list--item">
-                <a
+                <Link
+                  as="a"
                   className="list--link"
                   href="https://www.instagram.com/jorisdebeij"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   Instagram
-                </a>
+                </Link>
               </li>
               <li className="list--item">
-                <a
+                <Link
+                  as="a"
                   className="list--link"
                   href="https://vimeo.com/jorisdebeij"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   Vimeo
-                </a>
+                </Link>
               </li>
               <li className="list--item">
-                <a
+                <Link
+                  as="a"
                   className="list--link"
                   href="https://www.imdb.com/name/nm4757578"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   IMDB
-                </a>
+                </Link>
               </li>
             </ul>
             <ul className="menu--list menu--list__credits">
               <li className="list--item">
-                <a
+                <Link
+                  as="a"
                   className="list--link"
                   href="https://allthis.digital"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   Design &amp; Development by ALL THIS
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>

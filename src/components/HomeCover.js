@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
+import Link from './Link';
 import Loader from './Loader';
 import {RichText} from 'prismic-reactjs';
 
@@ -45,14 +45,22 @@ const HomeCover = ({...props}) => {
         </div>
       ) : (
         <div className="video is-loaded is-unavailable">
-          <img className="video--fallback" src={fallbackSource} alt={titleText} />
+          <img
+            className="video--fallback"
+            src={fallbackSource}
+            alt={titleText}
+          />
         </div>
       )}
       {videoSource && <Loader loaded={loaded} />}
 
       {preloadSource && (
         <div className="preload">
-          <img className="preload--image" src={preloadSource} alt="loading..." />
+          <img
+            className="preload--image"
+            src={preloadSource}
+            alt="loading..."
+          />
         </div>
       )}
     </div>

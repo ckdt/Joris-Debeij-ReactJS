@@ -1,6 +1,7 @@
 // Import Defaults
 import React, {useState} from 'react';
-import {Link, useHistory} from 'react-router-dom';
+import {Link as RouterLink} from 'react-router-dom';
+import Link from './Link';
 
 import Fade from 'react-reveal/Fade';
 
@@ -10,16 +11,8 @@ import {RichText} from 'prismic-reactjs';
 // Import Custom Components
 import Loader from './Loader';
 
-// EventHandlers
-const handleClick = (history, location) => {
-  // Go to a new page
-  return history.push(location);
-};
-
 // Component: ProjectCover
 const ProjectCover = ({...props}) => {
-  let history = useHistory(); // Set history for EventHandler
-
   // States
   const [loaded, setLoaded] = useState(false);
   // Descructure
@@ -34,15 +27,15 @@ const ProjectCover = ({...props}) => {
   const preloadSource = preload.url;
 
   // find year
-  const dispYear = tags.find(value => /\d{4}/.test(value));
+  const dispYear = tags.find((value) => /\d{4}/.test(value));
   const blacklist = ['tv-film', 'commercial', dispYear];
-  const dispTags = tags.filter(tag => !blacklist.includes(tag));
+  const dispTags = tags.filter((tag) => !blacklist.includes(tag));
 
   return (
     <Fade bottom>
-      <div
+      <RouterLink
         className={`project--item project--item__${slug}`}
-        onClick={() => handleClick(history, permaLink)}
+        to={permaLink}
       >
         <div className="overlay">
           <div className="overlay--content">
@@ -63,7 +56,9 @@ const ProjectCover = ({...props}) => {
                 <Link to={permaLink}>{titleText}</Link>
               </h2>
             )}
-            {subtitleText && <h3 className="overlay--subtitle">{subtitleText}</h3>}
+            {subtitleText && (
+              <h3 className="overlay--subtitle">{subtitleText}</h3>
+            )}
           </div>
         </div>
         {videoSource ? (
@@ -81,17 +76,25 @@ const ProjectCover = ({...props}) => {
           </div>
         ) : (
           <div className="video is-loaded is-unavailable">
-            <img className="video--fallback" src={fallbackSource} alt={titleText} />
+            <img
+              className="video--fallback"
+              src={fallbackSource}
+              alt={titleText}
+            />
           </div>
         )}
         {videoSource && <Loader loaded={loaded} />}
 
         {preloadSource && (
           <div className="preload">
-            <img className="preload--image" src={preloadSource} alt="loading..." />
+            <img
+              className="preload--image"
+              src={preloadSource}
+              alt="loading..."
+            />
           </div>
         )}
-      </div>
+      </RouterLink>
     </Fade>
   );
 };
