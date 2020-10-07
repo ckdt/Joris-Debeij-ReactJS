@@ -1,5 +1,5 @@
 // Import Defaults
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 
 // Import Prismic
 import Prismic from 'prismic-javascript';
@@ -11,11 +11,16 @@ import NotFound from '../views/NotFound';
 // Import Custom Components
 import ProjectCover from '../components/ProjectCover';
 import DefaultLayout from '../components/DefaultLayout';
+import {useComingFrom} from '../components/ComingFrom';
 
 // Component: Projects
 const Projects = ({match}) => {
   const uid = match.params.uid;
 
+  const {comingFrom, set} = useComingFrom();
+  // do not fade when coming back from a project
+  const fade = useMemo(() => comingFrom !== 'project', []);
+  useEffect(() => set('projects'), []);
   // States
   const [notFound, toggleNotFound] = useState(false);
   const [data, setDocData] = useState(null);
@@ -60,17 +65,19 @@ const Projects = ({match}) => {
   if (data && covers.length > 0) {
     return (
       <DefaultLayout title="projects">
-        <div className="projects--splash">
-          {uid === 'commercial' && (
-            <h1 className="splash--title">Commercial</h1>
-          )}
-          {uid === 'tv-film' && (
-            <h1 className="splash--title">TV &amp; Film</h1>
-          )}
-        </div>
+        {fade && (
+          <div className="projects--splash">
+            {uid === 'commercial' && (
+              <h1 className="splash--title">Commercial</h1>
+            )}
+            {uid === 'tv-film' && (
+              <h1 className="splash--title">TV &amp; Film</h1>
+            )}
+          </div>
+        )}
         <div className="projects">
           {covers.map((item) => (
-            <ProjectCover key={item.id} {...item} />
+            <ProjectCover key={item.id} {...item} fade={fade} />
           ))}
         </div>
       </DefaultLayout>

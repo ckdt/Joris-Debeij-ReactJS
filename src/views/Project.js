@@ -15,6 +15,7 @@ import Video from '../components/Video';
 
 // Components
 import Credits from '../components/Credits';
+import {useComingFrom} from '../components/ComingFrom';
 
 const ContentSlices = ({
   doc,
@@ -22,11 +23,11 @@ const ContentSlices = ({
   videoIsBlurred,
   setVideoIsPaused,
   seriesIndex,
-  setSeriesIndex
+  setSeriesIndex,
 }) => {
   const {body} = doc;
 
-  const content = body.map(function(item, index) {
+  const content = body.map(function (item, index) {
     const type = item.slice_type;
     const {items, primary} = item;
 
@@ -79,7 +80,7 @@ const InfoPopModal = ({doc, openModal, toggleInfoModal}) => {
   const txtSubTitle = RichText.asText(subtitle);
 
   const ModalSlices = ({body}) => {
-    const content = body.map(function(item, index) {
+    const content = body.map(function (item, index) {
       const type = item.slice_type;
       const {primary} = item;
       switch (type) {
@@ -118,6 +119,8 @@ const InfoPopModal = ({doc, openModal, toggleInfoModal}) => {
 const Project = ({match}) => {
   const uid = match.params.uid;
 
+  const {comingFrom, set} = useComingFrom();
+  useEffect(() => set('project'), []);
   // States
   const [notFound, toggleNotFound] = useState(false);
   const [doc, setDocData] = useState(null);
@@ -138,7 +141,9 @@ const Project = ({match}) => {
         setDocData(data);
 
         //  Check if there are series
-        const hasFilter = data.body.filter(item => item.slice_type === 'series');
+        const hasFilter = data.body.filter(
+          (item) => item.slice_type === 'series'
+        );
         if (hasFilter.length > 0) {
           setDataHasSeries(true);
         }
@@ -182,7 +187,11 @@ const Project = ({match}) => {
           seriesIndex={seriesIndex}
           setSeriesIndex={setSeriesIndex}
         />
-        <InfoPopModal doc={doc} openModal={openModal} toggleInfoModal={toggleInfoModal} />
+        <InfoPopModal
+          doc={doc}
+          openModal={openModal}
+          toggleInfoModal={toggleInfoModal}
+        />
         <InfoPopToggle dataHasSeries={dataHasSeries} />
       </DefaultLayout>
     );
