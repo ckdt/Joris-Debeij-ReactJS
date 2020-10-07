@@ -44,7 +44,7 @@ const CursorProvider = ({children}) => {
         </svg>
         <div className="circle-wrap">
           <svg
-            class="cursor"
+            className="cursor"
             width="18"
             height="18"
             style={{transform: 'matrix(1, 0, 0, 1, 0, 0)'}}

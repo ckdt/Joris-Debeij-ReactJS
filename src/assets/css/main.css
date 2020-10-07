@@ -686,6 +686,7 @@ body {
   align-items: center;
   padding-top: 64px;
 
+  height: calc(100% - 64px);
   z-index: 5;
 }
 
@@ -724,10 +725,6 @@ body {
 .series--control.is-disabled {
   cursor: default;
   opacity: 0.2;
-}
-
-.view__project .content .video {
-  width: 100%;
 }
 
 .info--toggle {
@@ -963,12 +960,6 @@ body {
     font-size: 6rem;
   }
 
-  /*project*/
-  .view__project .content .video {
-    width: 80%;
-    height: 70vh;
-  }
-
   .info.is-open {
     padding: 1rem 8rem;
     display: flex !important;
@@ -1069,13 +1060,6 @@ body {
   /*projects*/
   .overlay--title {
     font-size: 6rem;
-  }
-
-  /*project*/
-  .view__project .content .video {
-    width: 80%;
-    height: 70vh;
-    object-fit: contain;
   }
 
   /*info*/
