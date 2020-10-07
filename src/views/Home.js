@@ -26,7 +26,7 @@ const Cover = ({items}) => {
 // Page: Home
 const Home = () => {
   const {set} = useComingFrom();
-  useEffect(() => set('home'), []);
+  useEffect(() => set('home'), [set]);
   // States
   const [notFound, toggleNotFound] = useState(false);
   const [data, setDocData] = useState(null);

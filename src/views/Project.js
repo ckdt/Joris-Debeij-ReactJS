@@ -120,7 +120,7 @@ const Project = ({match}) => {
   const uid = match.params.uid;
 
   const {set} = useComingFrom();
-  useEffect(() => set('project'), []);
+  useEffect(() => set('project'), [set]);
   // States
   const [notFound, toggleNotFound] = useState(false);
   const [doc, setDocData] = useState(null);

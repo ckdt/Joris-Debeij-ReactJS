@@ -1,5 +1,5 @@
 // Import Defaults
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 // Import Prismic
 import Prismic from 'prismic-javascript';
@@ -19,8 +19,8 @@ const Projects = ({match}) => {
 
   const {comingFrom, set} = useComingFrom();
   // do not fade when coming back from a project
-  const fade = useMemo(() => comingFrom !== 'project', []);
-  useEffect(() => set('projects'), []);
+  const [fade] = useState(comingFrom !== 'project');
+  useEffect(() => set('projects'), [set]);
   // States
   const [notFound, toggleNotFound] = useState(false);
   const [data, setDocData] = useState(null);
