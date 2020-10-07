@@ -119,7 +119,7 @@ const InfoPopModal = ({doc, openModal, toggleInfoModal}) => {
 const Project = ({match}) => {
   const uid = match.params.uid;
 
-  const {comingFrom, set} = useComingFrom();
+  const {set} = useComingFrom();
   useEffect(() => set('project'), []);
   // States
   const [notFound, toggleNotFound] = useState(false);
