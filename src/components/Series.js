@@ -46,7 +46,7 @@ const Series = ({
       ) : (
         <img
           src={videoFallback}
-          alt="Image"
+          alt="Undisclosed"
           style={{
             width: '80%',
             height: '100%',
