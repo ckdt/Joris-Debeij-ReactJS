@@ -5,6 +5,7 @@ import arrowLeft from '../assets/images/arrow-left.svg';
 import arrowRight from '../assets/images/arrow-right.svg';
 import './video.css';
 import {blurStyle} from '../components/Video';
+import {useCursor} from './Cursor';
 
 const Series = ({
   seriesData,
@@ -26,6 +27,9 @@ const Series = ({
       setVideoIsPaused(false);
     }
   };
+
+  // cursor
+  const {setStatus} = useCursor();
 
   return (
     <div className="series">
@@ -55,6 +59,10 @@ const Series = ({
           onClick={() => updateIndex(currentIndex - 1)}
           className={`series--control series--control__prev 
           ${currentIndex === 0 ? 'is-disabled' : null}`}
+          onMouseEnter={() => {
+            if (!(currentIndex === 0)) setStatus('hover');
+          }}
+          onMouseLeave={() => setStatus(null)}
         >
           <img src={arrowLeft} alt="Previous" />
         </div>
@@ -62,6 +70,10 @@ const Series = ({
           onClick={() => updateIndex(currentIndex + 1)}
           className={`series--control series--control__next 
           ${currentIndex === total - 1 ? 'is-disabled' : null}`}
+          onMouseEnter={() => {
+            if (!(currentIndex === total - 1)) setStatus('hover');
+          }}
+          onMouseLeave={() => setStatus(null)}
         >
           <img src={arrowRight} alt="Previous" />
         </div>
