@@ -47,10 +47,8 @@ const Series = ({
         <img
           src={videoFallback}
           alt="Undisclosed"
+          className="series_image"
           style={{
-            width: '80%',
-            height: '100%',
-            objectFit: 'contain',
             ...(videoIsBlurred && blurStyle),
           }}
         />
