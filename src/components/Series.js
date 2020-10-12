@@ -4,6 +4,7 @@ import {RichText} from 'prismic-reactjs';
 import arrowLeft from '../assets/images/arrow-left.svg';
 import arrowRight from '../assets/images/arrow-right.svg';
 import './video.css';
+import {blurStyle} from '../components/Video';
 
 const Series = ({
   seriesData,
@@ -28,15 +29,27 @@ const Series = ({
 
   return (
     <div className="series">
-      <Video
-        key={currentIndex}
-        videoUrl={videoUrl}
-        videoType={videoType}
-        videoFallback={videoFallback}
-        videoIsPaused={videoIsPaused}
-        videoTitle={videoTitle}
-        videoIsBlurred={videoIsBlurred}
-      />
+      {videoUrl ? (
+        <Video
+          key={currentIndex}
+          videoUrl={videoUrl}
+          videoType={videoType}
+          videoFallback={videoFallback}
+          videoIsPaused={videoIsPaused}
+          videoTitle={videoTitle}
+          videoIsBlurred={videoIsBlurred}
+        />
+      ) : (
+        <img
+          src={videoFallback}
+          style={{
+            width: '80%',
+            height: '100%',
+            objectFit: 'contain',
+            ...(videoIsBlurred && blurStyle),
+          }}
+        />
+      )}
       <div className="series--controls">
         <div
           onClick={() => updateIndex(currentIndex - 1)}

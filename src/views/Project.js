@@ -176,6 +176,8 @@ const Project = ({match}) => {
     }
   };
 
+  console.log({doc});
+
   if (doc) {
     return (
       <DefaultLayout title="project" showBackButton={true}>
