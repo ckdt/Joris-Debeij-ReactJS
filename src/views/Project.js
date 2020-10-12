@@ -16,6 +16,7 @@ import Video from '../components/Video';
 // Components
 import Credits from '../components/Credits';
 import {useComingFrom} from '../components/ComingFrom';
+import {useCursor} from '../components/Cursor';
 
 const ContentSlices = ({
   doc,
@@ -156,9 +157,22 @@ const Project = ({match}) => {
     fetchData();
   }, [uid]);
 
+  // cursor
+  const {setStatus} = useCursor();
+
   const InfoPopToggle = ({dataHasSeries}) => {
     return (
-      <button className="info--toggle" onClick={() => toggleInfoModal()}>
+      <button
+        className="info--toggle"
+        onClick={() => {
+          setStatus(null);
+          toggleInfoModal();
+        }}
+        onMouseEnter={() => setStatus('hover')}
+        onMouseLeave={() => setStatus(null)}
+        onMouseOutCapture={() => setStatus(null)}
+        style={{backgroundColor: 'black', cursor: 'pointer'}}
+      >
         {openModal ? 'close' : 'info'}
       </button>
     );
@@ -175,6 +189,8 @@ const Project = ({match}) => {
       setOpenModal(true);
     }
   };
+
+  console.log({doc});
 
   if (doc) {
     return (

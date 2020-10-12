@@ -2,6 +2,10 @@ import React, {useRef, useEffect} from 'react';
 import Plyr from 'plyr';
 import './video.css';
 
+export const blurStyle = {
+  filter: `blur(20px)`,
+};
+
 const Video = ({
   videoTitle,
   videoUrl,
@@ -13,10 +17,6 @@ const Video = ({
   const videoID = parseVideo(videoUrl).id;
   const videoInstance = useRef(null);
   const videoPlayer = useRef(null);
-
-  const blurStyle = {
-    filter: `blur(20px)`,
-  };
 
   // Initialize Plyr
   useEffect(() => {
