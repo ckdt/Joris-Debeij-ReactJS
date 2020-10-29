@@ -3,6 +3,7 @@ import { createContext, useContext } from 'react';
 import './cursor.css';
 import useMousePosition from '../utilities/useMousePosition';
 import detectIt from "detect-it"
+import useWindowFocus from "use-window-focus"
 
 const CursorContext = createContext(null);
 
@@ -12,13 +13,14 @@ const CursorProvider = ({ children }) => {
   let { x, y } = useMousePosition();
   const [status, setStatus] = React.useState(null);
   const touchOnly = detectIt.deviceType === "touchOnly"
+  const windowFocused = useWindowFocus()
 
   return (
     <CursorContext.Provider value={{ status, setStatus }}>
       {children}
       {!touchOnly && !!x && !!y && <div
         id="circle-follow"
-        style={{ left: x, top: y, zIndex: 998, pointerEvents: "none" }}
+        style={{ left: x, top: y, zIndex: 998, pointerEvents: "none", opacity: windowFocused ? 1 : 0, transition: "opacity 300ms ease" }}
         className={'show click ' + status}
       >
         <svg
