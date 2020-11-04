@@ -1,14 +1,14 @@
 // Import Defaults
-import React, {Fragment} from 'react';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import {TransitionGroup, CSSTransition} from 'react-transition-group';
+import React, { Fragment } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 // Import Prismic
-import {Helmet} from 'react-helmet';
-import {apiEndpoint} from './prismic-configuration';
+import { Helmet } from 'react-helmet';
+import { apiEndpoint } from './prismic-configuration';
 
 // Import Custom Components
-import {Home, Projects, Project, NotFound, Page} from './views';
+import { Home, Projects, Project, NotFound, Page } from './views';
 import CursorProvider from './components/Cursor';
 import ManageScroll from './components/ManageScroll';
 import ComingFrom from './components/ComingFrom';
@@ -36,8 +36,8 @@ const App = () => {
           <BrowserRouter>
             <ManageScroll />
             <Route
-              render={({location}) => {
-                const {key} = location;
+              render={({ location }) => {
+                const { key } = location;
 
                 return (
                   <TransitionGroup component={null}>

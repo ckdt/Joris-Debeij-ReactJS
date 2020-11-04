@@ -1,9 +1,9 @@
 // Import Defaults
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 
 // Import Prismic
-import {client} from '../prismic-configuration';
-import {RichText} from 'prismic-reactjs';
+import { client } from '../prismic-configuration';
+import { RichText } from 'prismic-reactjs';
 
 // Import Views
 import NotFound from './NotFound';
@@ -15,8 +15,8 @@ import Video from '../components/Video';
 
 // Components
 import Credits from '../components/Credits';
-import {useComingFrom} from '../components/ComingFrom';
-import {useCursor} from '../components/Cursor';
+import { useComingFrom } from '../components/ComingFrom';
+import { useCursor } from '../components/Cursor';
 
 const ContentSlices = ({
   doc,
@@ -26,11 +26,11 @@ const ContentSlices = ({
   seriesIndex,
   setSeriesIndex,
 }) => {
-  const {body} = doc;
+  const { body } = doc;
 
   const content = body.map(function (item, index) {
     const type = item.slice_type;
-    const {items, primary} = item;
+    const { items, primary } = item;
 
     const txtTitle = RichText.asText(doc.title);
 
@@ -74,16 +74,16 @@ const ContentSlices = ({
   }
 };
 
-const InfoPopModal = ({doc, openModal, toggleInfoModal}) => {
-  const {title, subtitle, description} = doc;
+const InfoPopModal = ({ doc, openModal, toggleInfoModal }) => {
+  const { title, subtitle, description } = doc;
 
   const txtTitle = RichText.asText(title);
   const txtSubTitle = RichText.asText(subtitle);
 
-  const ModalSlices = ({body}) => {
+  const ModalSlices = ({ body }) => {
     const content = body.map(function (item, index) {
       const type = item.slice_type;
-      const {primary} = item;
+      const { primary } = item;
       switch (type) {
         case 'credits':
           return <Credits content={primary} key={index} />;
@@ -117,10 +117,32 @@ const InfoPopModal = ({doc, openModal, toggleInfoModal}) => {
   );
 };
 
-const Project = ({match}) => {
+const InfoPopToggle = ({ toggleInfoModal, openModal }) => {
+
+  // cursor
+  const { setStatus } = useCursor();
+
+  return (
+    <button
+      className="info--toggle"
+      onClick={() => {
+        setStatus(null);
+        toggleInfoModal();
+      }}
+      onMouseEnter={() => setStatus('hover')}
+      onMouseLeave={() => setStatus(null)}
+      onMouseOutCapture={() => setStatus(null)}
+      style={{ backgroundColor: 'black', cursor: 'pointer', display: "block" }}
+    >
+      {openModal ? 'close' : 'info'}
+    </button>
+  );
+};
+
+const Project = ({ match }) => {
   const uid = match.params.uid;
 
-  const {set} = useComingFrom();
+  const { set } = useComingFrom();
   useEffect(() => set('project'), [set]);
   // States
   const [notFound, toggleNotFound] = useState(false);
@@ -138,7 +160,7 @@ const Project = ({match}) => {
 
       if (result) {
         // set document data
-        const {data} = result;
+        const { data } = result;
         setDocData(data);
 
         //  Check if there are series
@@ -157,27 +179,6 @@ const Project = ({match}) => {
     fetchData();
   }, [uid]);
 
-  // cursor
-  const {setStatus} = useCursor();
-
-  const InfoPopToggle = ({dataHasSeries}) => {
-    return (
-      <button
-        className="info--toggle"
-        onClick={() => {
-          setStatus(null);
-          toggleInfoModal();
-        }}
-        onMouseEnter={() => setStatus('hover')}
-        onMouseLeave={() => setStatus(null)}
-        onMouseOutCapture={() => setStatus(null)}
-        style={{backgroundColor: 'black', cursor: 'pointer'}}
-      >
-        {openModal ? 'close' : 'info'}
-      </button>
-    );
-  };
-
   const toggleInfoModal = () => {
     if (videoIsPaused) {
       setVideoIsPaused(false);
@@ -190,7 +191,7 @@ const Project = ({match}) => {
     }
   };
 
-  console.log({doc});
+  console.log({ doc });
 
   if (doc) {
     return (
@@ -208,7 +209,8 @@ const Project = ({match}) => {
           openModal={openModal}
           toggleInfoModal={toggleInfoModal}
         />
-        <InfoPopToggle dataHasSeries={dataHasSeries} />
+        <InfoPopToggle openModal={openModal} toggleInfoModal={toggleInfoModal}
+        />
       </DefaultLayout>
     );
   } else if (notFound) {

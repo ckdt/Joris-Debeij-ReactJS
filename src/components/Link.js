@@ -1,9 +1,9 @@
 import * as React from 'react';
-import {Link} from 'react-router-dom';
-import {useCursor} from './Cursor';
+import { Link } from 'react-router-dom';
+import { useCursor } from './Cursor';
 
-const ExtendedLink = ({as: AS = Link, ...rest}) => {
-  const {setStatus} = useCursor();
+const ExtendedLink = ({ as: AS = Link, ...rest }) => {
+  const { setStatus } = useCursor();
   return (
     <AS
       onMouseEnter={() => setStatus('hover')}
