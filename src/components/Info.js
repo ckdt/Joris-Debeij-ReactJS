@@ -6,7 +6,7 @@ import Awards from '../components/Awards';
 
 const Slices = ({doc}) => {
   const {body} = doc;
-  const content = body.map(function(item, index) {
+  const content = body.map(function (item, index) {
     const type = item.slice_type;
     const {items, primary} = item;
 
@@ -35,11 +35,14 @@ const Info = ({doc, toggleInfo, showInfo}) => {
     backgroundImage: `url(${backgroundSource})`,
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center center',
-    backgroundSize: 'cover'
+    backgroundSize: 'cover',
   };
 
   return (
-    <div className={`info ${showInfo ? 'is-open' : 'is-closed'}`} style={styleBackground}>
+    <div
+      className={`info ${showInfo ? 'is-open' : 'is-closed'}`}
+      style={styleBackground}
+    >
       <h1>{RichText.asText(title)}</h1>
       <Slices doc={doc} />
       <button onClick={() => toggleInfo()}>Close</button>

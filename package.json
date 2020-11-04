@@ -23,12 +23,14 @@
     "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
+    "prettier": "^2.1.2",
     "react-scripts": "^3.4.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "format": "prettier --write './src/**/*.js'"
   },
   "engines": {
     "node": ">=4.8.1",
@@ -39,5 +41,13 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "prettier": {
+    "tabWidth": 2,
+    "useTabs": false,
+    "trailingComma": "es5",
+    "semi": true,
+    "singleQuote": true,
+    "bracketSpacing": false
+  }
 }
