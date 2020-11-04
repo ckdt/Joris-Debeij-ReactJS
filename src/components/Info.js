@@ -35,7 +35,7 @@ const Info = ({doc, toggleInfo, showInfo}) => {
     backgroundImage: `url(${backgroundSource})`,
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center center',
-    backgroundSize: 'cover',
+    backgroundSize: 'cover'
   };
 
   return (

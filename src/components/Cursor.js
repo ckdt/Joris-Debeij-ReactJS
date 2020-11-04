@@ -27,7 +27,7 @@ const CursorProvider = ({children}) => {
             zIndex: 998,
             pointerEvents: 'none',
             opacity: windowFocused ? 1 : 0,
-            transition: 'opacity 300ms ease',
+            transition: 'opacity 300ms ease'
           }}
           className={'show click ' + status}
         >
@@ -51,7 +51,7 @@ const CursorProvider = ({children}) => {
               r="30"
               style={{
                 strokeDashoffset: 1e-5,
-                strokeDasharray: 'none',
+                strokeDasharray: 'none'
               }}
             ></circle>
           </svg>

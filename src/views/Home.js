@@ -47,7 +47,7 @@ const Home = () => {
           slug: item.cover_link,
           video: item.cover_video,
           fallback: item.cover_fallback_image,
-          preload: item.cover_preload_image,
+          preload: item.cover_preload_image
         }));
         setCoverData(covers);
 

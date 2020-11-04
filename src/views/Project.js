@@ -24,7 +24,7 @@ const ContentSlices = ({
   videoIsBlurred,
   setVideoIsPaused,
   seriesIndex,
-  setSeriesIndex,
+  setSeriesIndex
 }) => {
   const {body} = doc;
 

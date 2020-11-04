@@ -11,7 +11,7 @@ const Series = ({
   seriesData,
   videoIsPaused,
   setVideoIsPaused,
-  videoIsBlurred,
+  videoIsBlurred
 }) => {
   const total = seriesData.length;
   const startIndex = 0;
@@ -49,7 +49,7 @@ const Series = ({
           alt="Undisclosed"
           className="series_image"
           style={{
-            ...(videoIsBlurred && blurStyle),
+            ...(videoIsBlurred && blurStyle)
           }}
         />
       )}
