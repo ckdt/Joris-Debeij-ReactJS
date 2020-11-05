@@ -26,7 +26,7 @@ const notFoundStyle = {
   flexDirection: 'column',
   justifyContent: 'center',
   height: '50vw',
-  alignItems: 'center',
+  alignItems: 'center'
 };
 
 // Export View

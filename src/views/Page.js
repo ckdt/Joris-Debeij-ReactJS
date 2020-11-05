@@ -12,7 +12,7 @@ import NotFound from '../views/NotFound';
 import DefaultLayout from '../components/DefaultLayout';
 
 const Contacts = ({items}) => {
-  const result = items.map(function(item, index) {
+  const result = items.map(function (item, index) {
     const {contact_title, contact_info} = item;
     return (
       <div className="contacts--item" key={index}>
@@ -36,7 +36,7 @@ const Contacts = ({items}) => {
 };
 
 const Awards = ({items}) => {
-  const result = items.map(function(item, index) {
+  const result = items.map(function (item, index) {
     const {award_logo, award_title} = item;
     return (
       <div className="awards--item" key={index}>
@@ -60,7 +60,7 @@ const Awards = ({items}) => {
 
 const ContentSlices = ({data}) => {
   const {slices} = data;
-  const result = slices.map(function(item, index) {
+  const result = slices.map(function (item, index) {
     const type = item.slice_type;
     const {items} = item;
     switch (type) {
@@ -103,12 +103,19 @@ const Page = ({match}) => {
     return (
       <DefaultLayout title="page">
         <header className="about--header">
-          <img className="page--masthead" src={doc.data.image.url} alt={doc.data.image.alt} />
+          <img
+            className="page--masthead"
+            src={doc.data.image.url}
+            alt={doc.data.image.alt}
+          />
         </header>
         <div className="about--content">
           <h1 className="page--title">{RichText.asText(doc.data.title)}</h1>
           <div className="page--lead">
-            <RichText render={doc.data.description} linkResolver={linkResolver} />
+            <RichText
+              render={doc.data.description}
+              linkResolver={linkResolver}
+            />
           </div>
           <div className="page--body">
             <RichText render={doc.data.body_copy} linkResolver={linkResolver} />

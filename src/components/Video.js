@@ -3,7 +3,7 @@ import Plyr from 'plyr';
 import './video.css';
 
 export const blurStyle = {
-  filter: `blur(20px)`,
+  filter: `blur(20px)`
 };
 
 const Video = ({
@@ -12,7 +12,7 @@ const Video = ({
   videoType,
   videoFallback,
   videoIsPaused,
-  videoIsBlurred,
+  videoIsBlurred
 }) => {
   const videoID = parseVideo(videoUrl).id;
   const videoInstance = useRef(null);
@@ -51,7 +51,7 @@ const Video = ({
       volume: 0.5,
       muted: false,
       controls: controls,
-      title: videoTitle,
+      title: videoTitle
       // autoplay: true
     });
     if (!videoIsPaused) {
@@ -141,7 +141,7 @@ const parseVideo = (videoUrl) => {
 
   return {
     type: type,
-    id: RegExp.$6,
+    id: RegExp.$6
   };
 };
 

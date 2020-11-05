@@ -24,7 +24,7 @@ const ContentSlices = ({
   videoIsBlurred,
   setVideoIsPaused,
   seriesIndex,
-  setSeriesIndex,
+  setSeriesIndex
 }) => {
   const {body} = doc;
 
@@ -117,6 +117,27 @@ const InfoPopModal = ({doc, openModal, toggleInfoModal}) => {
   );
 };
 
+const InfoPopToggle = ({toggleInfoModal, openModal}) => {
+  // cursor
+  const {setStatus} = useCursor();
+
+  return (
+    <button
+      className="info--toggle"
+      onClick={() => {
+        setStatus(null);
+        toggleInfoModal();
+      }}
+      onMouseEnter={() => setStatus('hover')}
+      onMouseLeave={() => setStatus(null)}
+      onMouseOutCapture={() => setStatus(null)}
+      style={{backgroundColor: 'black', cursor: 'pointer', display: 'block'}}
+    >
+      {openModal ? 'close' : 'info'}
+    </button>
+  );
+};
+
 const Project = ({match}) => {
   const uid = match.params.uid;
 
@@ -157,27 +178,6 @@ const Project = ({match}) => {
     fetchData();
   }, [uid]);
 
-  // cursor
-  const {setStatus} = useCursor();
-
-  const InfoPopToggle = ({dataHasSeries}) => {
-    return (
-      <button
-        className="info--toggle"
-        onClick={() => {
-          setStatus(null);
-          toggleInfoModal();
-        }}
-        onMouseEnter={() => setStatus('hover')}
-        onMouseLeave={() => setStatus(null)}
-        onMouseOutCapture={() => setStatus(null)}
-        style={{backgroundColor: 'black', cursor: 'pointer'}}
-      >
-        {openModal ? 'close' : 'info'}
-      </button>
-    );
-  };
-
   const toggleInfoModal = () => {
     if (videoIsPaused) {
       setVideoIsPaused(false);
@@ -208,7 +208,10 @@ const Project = ({match}) => {
           openModal={openModal}
           toggleInfoModal={toggleInfoModal}
         />
-        <InfoPopToggle dataHasSeries={dataHasSeries} />
+        <InfoPopToggle
+          openModal={openModal}
+          toggleInfoModal={toggleInfoModal}
+        />
       </DefaultLayout>
     );
   } else if (notFound) {

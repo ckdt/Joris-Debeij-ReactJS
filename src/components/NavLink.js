@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { NavLink } from 'react-router-dom';
-import { useCursor } from './Cursor';
+import {NavLink} from 'react-router-dom';
+import {useCursor} from './Cursor';
 
-const ExtendedLink = ({ onMouseEnter, onMouseLeave, ...rest }) => {
-  const { setStatus } = useCursor();
+const ExtendedLink = ({onMouseEnter, onMouseLeave, ...rest}) => {
+  const {setStatus} = useCursor();
   return (
     <NavLink
       onMouseEnter={() => {

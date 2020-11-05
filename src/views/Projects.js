@@ -32,7 +32,7 @@ const Projects = ({match}) => {
       const result = await client.query(
         Prismic.Predicates.at('document.tags', [uid]),
         {
-          orderings: '[document.last_publication_date desc]',
+          orderings: '[document.last_publication_date desc]'
         }
       );
 
@@ -49,7 +49,7 @@ const Projects = ({match}) => {
           slug: item.uid,
           video: item.data.cover_video,
           fallback: item.data.cover_image,
-          preload: item.data.cover_preload_image,
+          preload: item.data.cover_preload_image
         }));
         setCoverData(covers);
 
