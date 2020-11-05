@@ -146,7 +146,6 @@ const Project = ({match}) => {
   // States
   const [notFound, toggleNotFound] = useState(false);
   const [doc, setDocData] = useState(null);
-  const [dataHasSeries, setDataHasSeries] = useState(false);
   const [seriesIndex, setSeriesIndex] = useState(0);
   const [videoIsPaused, setVideoIsPaused] = useState(false);
   const [videoIsBlurred, setVideoIsBlurred] = useState(false);
@@ -167,7 +166,7 @@ const Project = ({match}) => {
           (item) => item.slice_type === 'series'
         );
         if (hasFilter.length > 0) {
-          setDataHasSeries(true);
+          // setDataHasSeries(true);
         }
         return true;
       } else {
