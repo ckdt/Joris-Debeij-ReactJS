@@ -29,10 +29,12 @@ const Projects = ({match}) => {
   // ComponentDidMount
   useEffect(() => {
     const fetchData = async () => {
+
       const result = await client.query(
+      
         Prismic.Predicates.at('document.tags', [uid]),
         {
-          orderings: '[document.last_publication_date desc]'
+          orderings: '[my.project.sort_index]'
         }
       );
 
